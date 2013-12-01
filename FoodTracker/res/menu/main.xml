@@ -6,6 +6,12 @@
 <!--         android:showAsAction="never" -->
 <!--         android:title="@string/action_settings"/>  -->
     <item
+        android:id="@+id/action_view"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:onClick="aView"
+        android:title="@string/action_view"/>         
+    <item
         android:id="@+id/action_truncate"
         android:orderInCategory="100"
         android:showAsAction="never"

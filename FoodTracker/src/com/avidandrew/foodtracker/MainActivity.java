@@ -28,6 +28,7 @@ import android.util.Log;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.io.File;
 
 public class MainActivity extends FragmentActivity {
 
@@ -155,6 +156,14 @@ public class MainActivity extends FragmentActivity {
     
     public void lCoconut(View v) {
     	dataLogger("Coconut Product");
+    }
+    
+    public void aView(MenuItem item) {
+    	Intent intent = new Intent();
+    	intent.setAction(android.content.Intent.ACTION_VIEW);
+    	File file = new File(storage);
+    	intent.setDataAndType(Uri.fromFile(file), "text/plain");
+    	startActivity(intent); 
     }
     
     public void aTruncate(MenuItem item) {

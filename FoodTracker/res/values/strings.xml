@@ -3,6 +3,7 @@
 
     <string name="app_name">Food Tracker</string>
     <string name="action_settings">Settings</string>
+    <string name="action_view">View History</string>
     <string name="action_truncate">Clear History</string>
     <string name="action_email">Email History</string>
     <string name="title_section1">Meat</string>
