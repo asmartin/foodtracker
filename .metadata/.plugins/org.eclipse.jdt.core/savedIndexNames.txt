@@ -1,4 +1,2 @@
-INDEX VERSION 1.126+/home/amartin/Projects/FoodTracker/.metadata/.plugins/org.eclipse.jdt.core
+INDEX VERSION 1.126+/home/amartin/Projects/Android/FoodTracker/.metadata/.plugins/org.eclipse.jdt.core
 1728412625.index
-648553166.index
-4041518053.index

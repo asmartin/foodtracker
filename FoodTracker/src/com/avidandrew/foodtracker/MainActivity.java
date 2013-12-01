@@ -1,7 +1,8 @@
 package com.avidandrew.foodtracker;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Locale;
-
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.os.Environment;
+import android.util.Log;
+
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class MainActivity extends FragmentActivity {
 
@@ -58,7 +64,104 @@ public class MainActivity extends FragmentActivity {
         return true;
     }
     
+    private String getTimestamp() {
+    	java.util.Date date= new java.util.Date();
+   	    String full = new Timestamp(date.getTime()).toString();
+   	    return full.substring(0, full.length()-4);
+    }
     
+    public void lBeef(View v) {
+    	dataLogger("Beef");
+    }
+    
+    public void lPork(View v) {
+    	dataLogger("Pork");
+    }
+    
+    public void lHam(View v) {
+    	dataLogger("Ham");
+    }
+    
+    public void lBacon(View v) {
+    	dataLogger("Bacon");
+    }
+    
+    public void lChicken(View v) {
+    	dataLogger("Chicken");
+    }
+    
+    public void lTurkey(View v) {
+    	dataLogger("Turkey");
+    }
+    
+    public void lMilk(View v) {
+    	dataLogger("Milk");
+    }
+    
+    public void lYogurt(View v) {
+    	dataLogger("Yogurt");
+    }
+    
+    public void lCheese(View v) {
+    	dataLogger("Cheese");
+    }
+    
+    public void lButter(View v) {
+    	dataLogger("Butter");
+    }
+    
+    public void lIceCream(View v) {
+    	dataLogger("Ice Cream");
+    }
+    
+    public void lCream(View v) {
+    	dataLogger("Cream");
+    }
+    
+    public void lEggs(View v) {
+    	dataLogger("Eggs");
+    }
+    
+    public void lVegetables(View v) {
+    	dataLogger("Vegetables");
+    }
+    
+    public void lFruit(View v) {
+    	dataLogger("Fruit");
+    }
+    
+    public void lBeans(View v) {
+    	dataLogger("Beans");
+    }
+    
+    public void lTofu(View v) {
+    	dataLogger("Tofu/Seitan");
+    }
+    
+    public void lSoy(View v) {
+    	dataLogger("Soy Product");
+    }
+    
+    public void lAlmond(View v) {
+    	dataLogger("Almond Product");
+    }
+    
+    public void lCoconut(View v) {
+    	dataLogger("Coconut Product");
+    }
+    
+    public void dataLogger(String s) {
+    	try {
+    	// get external storage file reference
+    	FileWriter writer = new FileWriter(Environment.getExternalStorageDirectory() + "/foodtracker.csv", true); 
+    	// Writes the content to the file
+    	writer.write(getTimestamp() + "," + s + "\n"); 
+    	writer.flush();
+    	writer.close();
+    	} catch (IOException ioe) {
+    		
+    	}
+    }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -75,9 +178,14 @@ public class MainActivity extends FragmentActivity {
             // getItem is called to instantiate the fragment for the given page.
             // Return a DummySectionFragment (defined as a static inner class
             // below) with the page number as its lone argument.
-            Fragment fragment = new DummySectionFragment();
+            Fragment fragment = new MeatSectionFragment();
             Bundle args = new Bundle();
-            args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
+            //args.putInt(MeatSectionFragment.ARG_SECTION_NUMBER, position);
+            switch (position) {
+            case 0: fragment = new MeatSectionFragment(); break;
+            case 1: fragment = new DairySectionFragment(); break;
+            case 2: fragment = new OtherSectionFragment(); break;
+            }
             fragment.setArguments(args);
             return fragment;
         }
@@ -107,24 +215,76 @@ public class MainActivity extends FragmentActivity {
      * A dummy fragment representing a section of the app, but that simply
      * displays dummy text.
      */
-    public static class DummySectionFragment extends Fragment {
+    public static class MeatSectionFragment extends Fragment {
         /**
          * The fragment argument representing the section number for this
          * fragment.
          */
         public static final String ARG_SECTION_NUMBER = "section_number";
 
-        public DummySectionFragment() {
+        public MeatSectionFragment() {
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main_dummy, container, false);
-            TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
-            dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+            View rootView = inflater.inflate(R.layout.fragment_meat, container, false);
+            
+            //TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
+            //dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
     }
 
+    /**
+     * A dummy fragment representing a section of the app, but that simply
+     * displays dummy text.
+     */
+    public static class DairySectionFragment extends Fragment {
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
+        public static final String ARG_SECTION_NUMBER = "section_number";
+
+        public DairySectionFragment() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_dairy, container, false);
+            
+            //TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
+            //dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+            return rootView;
+        }
+    }
+
+    /**
+     * A dummy fragment representing a section of the app, but that simply
+     * displays dummy text.
+     */
+    public static class OtherSectionFragment extends Fragment {
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
+        public static final String ARG_SECTION_NUMBER = "section_number";
+
+        public OtherSectionFragment() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_other, container, false);
+            
+            //TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
+            //dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+            return rootView;
+        }
+    }
+    
+    
 }
