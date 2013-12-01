@@ -3,6 +3,7 @@ package com.avidandrew.foodtracker;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
 import java.io.FileOutputStream;
 import java.util.Locale;
@@ -158,6 +159,22 @@ public class MainActivity extends FragmentActivity {
     	dataLogger("Coconut Product");
     }
     
+    public void aUndo(MenuItem item) {
+    	try {
+	    	RandomAccessFile f = new RandomAccessFile(storage, "rw");
+	    	long length = f.length() - 1;
+	    	byte b;
+	    	do {                     
+	    	  length -= 1;
+	    	  f.seek(length);
+	    	  b = f.readByte();
+	    	} while(b != 10);
+	    	f.setLength(length+1);
+    	} catch (IOException ioe) {
+    		
+    	}
+    }
+    
     public void aView(MenuItem item) {
     	Intent intent = new Intent();
     	intent.setAction(android.content.Intent.ACTION_VIEW);
@@ -183,7 +200,6 @@ public class MainActivity extends FragmentActivity {
     public void aEmail(MenuItem item) {
     	Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND); 
     	emailIntent.setType("text/csv");
-    	//emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, "andrew.s.martin@gmail.com"); 
     	emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,"Food Tracker History"); 
     	emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "History Log from the FoodTracker Android App"); 
     	emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + storage));
