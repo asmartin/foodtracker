@@ -1,9 +1,14 @@
 package com.avidandrew.foodtracker;
 
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.channels.FileChannel;
+import java.io.FileOutputStream;
 import java.util.Locale;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -41,6 +46,8 @@ public class MainActivity extends FragmentActivity {
      */
     ViewPager mViewPager;
 
+    private String storage = Environment.getExternalStorageDirectory() + "/foodtracker.csv";
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,10 +157,34 @@ public class MainActivity extends FragmentActivity {
     	dataLogger("Coconut Product");
     }
     
+    public void aTruncate(MenuItem item) {
+    	try {
+    		FileOutputStream stream = new FileOutputStream(storage, true);
+	    	FileChannel outChan = stream.getChannel();
+	        outChan.truncate(0);
+	        outChan.close();
+	        stream.close();
+    	} catch (FileNotFoundException fnfe) {
+    		
+    	} catch (IOException ioe) {
+    		
+    	}
+    }
+    
+    public void aEmail(MenuItem item) {
+    	Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND); 
+    	emailIntent.setType("text/csv");
+    	//emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, "andrew.s.martin@gmail.com"); 
+    	emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,"Food Tracker History"); 
+    	emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "History Log from the FoodTracker Android App"); 
+    	emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + storage));
+    	startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+    }
+    
     public void dataLogger(String s) {
     	try {
     	// get external storage file reference
-    	FileWriter writer = new FileWriter(Environment.getExternalStorageDirectory() + "/foodtracker.csv", true); 
+    	FileWriter writer = new FileWriter(storage, true); 
     	// Writes the content to the file
     	writer.write(getTimestamp() + "," + s + "\n"); 
     	writer.flush();
