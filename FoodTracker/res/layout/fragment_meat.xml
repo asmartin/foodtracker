@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="lBeef"
-                android:text="Beef" />
+                android:text="@string/beef" />
 
         </TableRow>
 
@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="lPork"
-                android:text="Pork" />
+                android:text="@string/pork" />
 
         </TableRow>
 
@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="lHam"
-                android:text="Ham" />
+                android:text="@string/ham" />
 
         </TableRow>
 
@@ -71,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="lBacon"
-                android:text="Bacon" />
+                android:text="@string/bacon" />
 
         </TableRow>
         <TableRow
@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="lChicken"
-                android:text="Chicken" />
+                android:text="@string/chicken" />
 
         </TableRow>
         <TableRow
@@ -97,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="lTurkey"
-                android:text="Turkey" />
+                android:text="@string/turkey" />
 
         </TableRow>
     </TableLayout>

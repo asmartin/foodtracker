@@ -10,5 +10,13 @@
     <string name="title_section1">Meat</string>
     <string name="title_section2">Dairy</string>
     <string name="title_section3">Other</string>
+    <string name="beef">Beef</string>
+    <string name="pork">Pork</string>
+    <string name="ham">Ham</string>
+    <string name="bacon">Bacon</string>
+    <string name="chicken">Chicken</string>
+ 	<string name="turkey">Turkey</string>
+ 	<string name="milk">Milk</string>
+ 	<string name="yogurt">Yogurt</string>
 
 </resources>
