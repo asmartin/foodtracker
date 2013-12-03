@@ -13,6 +13,9 @@
 <!--         android:layout_width="wrap_content" -->
 <!--         android:layout_height="wrap_content" /> -->
 
+
+
+
     <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="lMilk"
-                android:text="Milk" />
+                android:text="@string/milk" />
 
         </TableRow>
 
@@ -43,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="lYogurt"
-                android:text="Yogurt" />
+                android:text="@string/yogurt" />
 
         </TableRow>
 
@@ -57,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="lCheese"
-                android:text="Cheese" />
+                android:text="@string/cheese" />
 
         </TableRow>
 
@@ -71,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="lButter"
-                android:text="Butter" />
+                android:text="@string/butter" />
 
         </TableRow>
         <TableRow
@@ -84,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="lIceCream"
-                android:text="Ice Cream" />
+                android:text="@string/iceCream" />
 
         </TableRow>
         <TableRow
@@ -97,7 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="lCream"
-                android:text="Cream" />
+                android:text="@string/cream" />
 
         </TableRow>
     </TableLayout>

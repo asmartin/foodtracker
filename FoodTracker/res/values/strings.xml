@@ -18,5 +18,9 @@
  	<string name="turkey">Turkey</string>
  	<string name="milk">Milk</string>
  	<string name="yogurt">Yogurt</string>
+ 	<string name="cheese">Cheese</string>
+ 	<string name="butter">Butter</string>
+ 	<string name="iceCream">Ice Cream</string>
+ 	<string name="cream">Cream</string>
 
 </resources>
