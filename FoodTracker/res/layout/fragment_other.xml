@@ -13,119 +13,82 @@
 <!--         android:layout_width="wrap_content" -->
 <!--         android:layout_height="wrap_content" /> -->
 
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" >
-
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
             <Button
                 android:id="@+id/button1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignRight="@+id/button7"
                 android:onClick="lEggs"
-                android:text="Eggs" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+                android:text="@string/eggs" />
 
             <Button
                 android:id="@+id/button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignRight="@+id/button1"
+                android:layout_below="@+id/button1"
                 android:onClick="lVegetables"
-                android:text="Vegetables" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+                android:text="@string/vegetables" />
 
             <Button
                 android:id="@+id/button3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignRight="@+id/button2"
+                android:layout_below="@+id/button2"
                 android:onClick="lFruit"
-                android:text="Fruit" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+                android:text="@string/fruit" />
 
             <Button
                 android:id="@+id/button4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignRight="@+id/button3"
+                android:layout_below="@+id/button3"
                 android:onClick="lBeans"
-                android:text="Beans" />
-
-        </TableRow>
-        <TableRow
-            android:id="@+id/tableRow5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+                android:text="@string/beans" />
 
             <Button
                 android:id="@+id/button5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignRight="@+id/button4"
+                android:layout_below="@+id/button4"
                 android:onClick="lTofu"
-                android:text="Tofu/Seitan" />
-
-        </TableRow>
-        <TableRow
-            android:id="@+id/tableRow6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+                android:text="@string/tofuSeitan" />
 
             <Button
                 android:id="@+id/button6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignRight="@+id/button5"
+                android:layout_below="@+id/button5"
                 android:onClick="lSoy"
-                android:text="Soy Product" />
-
-        </TableRow>
-                <TableRow
-            android:id="@+id/tableRow7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
+                android:text="@string/soyProduct" />
+      
             <Button
                 android:id="@+id/button7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/button6"
                 android:onClick="lAlmond"
-                android:text="Almond Product" />
-
-        </TableRow>
-                <TableRow
-            android:id="@+id/tableRow8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+                android:text="@string/almondProduct" />
 
             <Button
                 android:id="@+id/button8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignRight="@+id/button7"
+                android:layout_below="@+id/button7"
                 android:onClick="lCoconut"
-                android:text="Coconut Product" />
-
-        </TableRow>
-    </TableLayout>
+                android:text="@string/coconutProduct" />
 
 </RelativeLayout>

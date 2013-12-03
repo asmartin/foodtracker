@@ -22,5 +22,14 @@
  	<string name="butter">Butter</string>
  	<string name="iceCream">Ice Cream</string>
  	<string name="cream">Cream</string>
-
+ 	<string name="eggs">Eggs</string>
+	<string name="vegetables">Vegetables</string>
+	<string name="fruit">Fruit</string>
+	<string name="beans">Beans</string>
+	<string name="tofuSeitan">Tofu/Seitan</string>
+	<string name="soyProduct">Soy Product</string>
+	<string name="almondProduct">Almond Product</string>
+	<string name="coconutProduct">Coconut</string>
+	
+	
 </resources>
