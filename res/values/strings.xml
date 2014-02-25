@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Servings Tracker</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="item">item</string>
+    <string name="breakfast">B</string>
+    <string name="lunch">L</string>
+    <string name="dinner">D</string>
+    <string name="total">Total</string>
+    
+
+</resources>
