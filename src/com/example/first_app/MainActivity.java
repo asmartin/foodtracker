@@ -21,11 +21,11 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.object_test);
+		setContentView(R.layout.activity_main);
 		
 		
 		List<Item> items = new Items_Data().getItems();
-		TableLayout layout = (TableLayout) findViewById(R.id.main_layout);
+		TableLayout layout = (TableLayout) findViewById(R.id.main_table);
 		
 		
 		//This creates the buttons 
@@ -49,13 +49,31 @@ public class MainActivity extends Activity {
 			plus.setText("+");
 			row.addView(plus);
 			
+			
+			//Breakfast
+			TextView breakfast_counter = new TextView(this);
+			//CHANGE INT TO STRING
+			breakfast_counter.setText(Integer.toString(item.breakfast_counter));
+			row.addView(breakfast_counter);
+			
+			//Lunch Counter
+			TextView lunch_counter = new TextView(this);
+			lunch_counter.setText(Integer.toString(item.lunch_counter));
+			row.addView(lunch_counter);
+			
+			//Dinner Counter
+			TextView dinner_counter = new TextView(this);
+			dinner_counter.setText(Integer.toString(item.dinner_counter));
+			row.addView(dinner_counter);
+			
+			//Set Total
 			TextView total_counter = new TextView(this);
 			String out_of = "/11";
-			
-			//Set Totals
 			total_counter.setText(item.total_counter + out_of);
 			row.addView(total_counter);
+	
 			
+			//add row to view
 			layout.addView(row);
 		}
 	}
