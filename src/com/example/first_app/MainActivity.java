@@ -23,7 +23,6 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		
 		List<Item> items = new Items_Data().getItems();
 		TableLayout layout = (TableLayout) findViewById(R.id.main_table);
 		
@@ -33,11 +32,18 @@ public class MainActivity extends Activity {
 			
 			TableRow row = new TableRow(this);
 			
-			
 			//Create Minus button
 			Button minus = new Button(this);
 			minus.setText("-");
 			row.addView(minus);
+			minus.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					subtractServing();
+					
+				}
+			});
 			
 			//Create Item Button
 			Button button = new Button(this);
@@ -48,7 +54,6 @@ public class MainActivity extends Activity {
 			Button plus = new Button(this);
 			plus.setText("+");
 			row.addView(plus);
-			
 			
 			//Breakfast
 			TextView breakfast_counter = new TextView(this);
@@ -85,7 +90,11 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
-	public void addServing() { }
+	public void addServing(Item item) {
+		
+		
+		
+	}
 	
 	public void subtractServing() { }
 	

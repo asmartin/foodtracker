@@ -10,6 +10,9 @@ public class Items_Data {
 	public Items_Data() {
 		addItem(new Item("Vegetables", 2 ,2 ,2,6));
 		addItem(new Item("Dairy", 1 ,1 ,1,3));
+		addItem(new Item("Fats, Oils, Sweets",1,1,1,5));
+		addItem(new Item("Breads, Carbs", 2, 2, 2, 7));
+		addItem(new Item("Meats", 1, 1, 1, 4));
 	}
 
 	/**
