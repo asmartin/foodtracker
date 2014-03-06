@@ -3,9 +3,12 @@ package com.example.first_app;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.R.style;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +35,7 @@ public class MainActivity extends Activity {
 			
 			TableRow row = new TableRow(this);
 			
+			
 			//Create Minus button
 			Button minus = new Button(this);
 			minus.setText("-");
@@ -49,17 +53,20 @@ public class MainActivity extends Activity {
 			Button button = new Button(this);
 			button.setText(item.item_name);
 			row.addView(button);
+			button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
 			
-			//create the plus button
+			//Create the plus button
 			Button plus = new Button(this);
 			plus.setText("+");
 			row.addView(plus);
 			
+			/*
 			//Breakfast
 			TextView breakfast_counter = new TextView(this);
 			//CHANGE INT TO STRING
 			breakfast_counter.setText(Integer.toString(item.breakfast_counter));
 			row.addView(breakfast_counter);
+			
 			
 			//Lunch Counter
 			TextView lunch_counter = new TextView(this);
@@ -70,12 +77,14 @@ public class MainActivity extends Activity {
 			TextView dinner_counter = new TextView(this);
 			dinner_counter.setText(Integer.toString(item.dinner_counter));
 			row.addView(dinner_counter);
+			*/
 			
 			//Set Total
 			TextView total_counter = new TextView(this);
 			String out_of = "/11";
 			total_counter.setText(item.total_counter + out_of);
 			row.addView(total_counter);
+			
 	
 			
 			//add row to view
