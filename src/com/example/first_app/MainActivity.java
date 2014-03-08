@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.View;
@@ -30,7 +32,9 @@ public class MainActivity extends Activity {
 		TableLayout layout = (TableLayout) findViewById(R.id.main_table);
 		
 		
-		//This creates the buttons 
+		/**
+		 * This for loop creates the buttons on the screen, one for each item 
+		 */
 		for (final Item item : items) {
 			
 			TableRow row = new TableRow(this);
@@ -60,30 +64,37 @@ public class MainActivity extends Activity {
 			plus.setText("+");
 			row.addView(plus);
 			
-			/*
-			//Breakfast
-			TextView breakfast_counter = new TextView(this);
-			//CHANGE INT TO STRING
-			breakfast_counter.setText(Integer.toString(item.breakfast_counter));
-			row.addView(breakfast_counter);
-			
-			
-			//Lunch Counter
-			TextView lunch_counter = new TextView(this);
-			lunch_counter.setText(Integer.toString(item.lunch_counter));
-			row.addView(lunch_counter);
-			
-			//Dinner Counter
-			TextView dinner_counter = new TextView(this);
-			dinner_counter.setText(Integer.toString(item.dinner_counter));
-			row.addView(dinner_counter);
-			*/
 			
 			//Set Total
 			TextView total_counter = new TextView(this);
-			String out_of = "/11";
+			
+			String out_of = "/" + getMaxQuantity();
 			total_counter.setText(item.total_counter + out_of);
 			row.addView(total_counter);
+			/**
+			 * Update Text if item added
+			 */
+			
+			total_counter.addTextChangedListener(new TextWatcher() {
+				
+				@Override
+				public void onTextChanged(CharSequence s, int start, int before, int count) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void beforeTextChanged(CharSequence s, int start, int count,
+						int after) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void afterTextChanged(Editable s) {
+					
+				}
+			});
 			
 	
 			
@@ -91,7 +102,21 @@ public class MainActivity extends Activity {
 			layout.addView(row);
 		}
 	}
+	
+	
+	/**		END CREATING BUTTONS	 **/
 
+
+
+	/**
+	 * This method should return the max number of an item
+	 * @return
+	 */
+	public int getMaxQuantity(){
+		
+		return 1;
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -99,14 +124,28 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
+	/**
+	 * This method adds an item to the db, checks if it already exists
+	 * @param item
+	 */
 	public void addServing(Item item) {
-		
 		
 		
 	}
 	
-	public void subtractServing() { }
+	/**
+	 * This method subtracts an item from the db
+	 */
+	public void subtractServing() { 
+		
+		
+	}
 	
+	
+	/**
+	 * This method opens an activty to show servings for that category
+	 * @param v
+	 */
 	public void view_Details(View v){
 
 		Intent intent = new Intent(this, vegetables_detail_activity.class);
