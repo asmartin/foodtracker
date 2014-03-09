@@ -31,79 +31,16 @@ public class MainActivity extends Activity {
 		List<Item> items = new Items_Data().getItems();
 		TableLayout layout = (TableLayout) findViewById(R.id.main_table);
 		
+		/** TODO
+		 * read in item list from XML, csv, etc
+		 * create new Item object for each; item object should include interface
+		 */
 		
 		/**
 		 * This for loop creates the buttons on the screen, one for each item 
 		 */
 		for (final Item item : items) {
-			
-			TableRow row = new TableRow(this);
-			
-			
-			//Create Minus button
-			Button minus = new Button(this);
-			minus.setText("-");
-			row.addView(minus);
-			minus.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					subtractServing();
-					
-				}
-			});
-			
-			//Create Item Button
-			Button button = new Button(this);
-			button.setText(item.item_name);
-			row.addView(button);
-			button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
-			
-			//Create the plus button
-			Button plus = new Button(this);
-			plus.setText("+");
-			plus.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					
-					
-				}
-			});
-			row.addView(plus);
-			
-			
-			
-			//Set Total
-			TextView total_counter = new TextView(this);
-			total_counter.setText(item.total_counter + "/" + getMaxQuantity(item));
-			row.addView(total_counter);
-			/**
-			 * Update Text if item added
-			 */
-			
-			total_counter.addTextChangedListener(new TextWatcher() {
-				
-				@Override
-				public void onTextChanged(CharSequence s, int start, int before, int count) {
-					// TODO Auto-generated method stub
-					
-				}
-				
-				@Override
-				public void beforeTextChanged(CharSequence s, int start, int count,
-						int after) {
-					// TODO Auto-generated method stub
-					
-				}
-				
-				@Override
-				public void afterTextChanged(Editable s) {
-					
-				}
-			});
-			
-	
+			TableRow row = new ItemView(this, item);
 			
 			//add row to view
 			layout.addView(row);

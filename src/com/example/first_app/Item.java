@@ -26,6 +26,10 @@ public int getMaxServings(){
 	
 	
 	
+	public int getMaxQuantity() {
+		return max_servings;
+	}
+	
 	@Override
 	public String toString() {
 		return item_name;
