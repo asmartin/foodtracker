@@ -62,14 +62,21 @@ public class MainActivity extends Activity {
 			//Create the plus button
 			Button plus = new Button(this);
 			plus.setText("+");
+			plus.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					
+					
+				}
+			});
 			row.addView(plus);
+			
 			
 			
 			//Set Total
 			TextView total_counter = new TextView(this);
-			
-			String out_of = "/" + getMaxQuantity();
-			total_counter.setText(item.total_counter + out_of);
+			total_counter.setText(item.total_counter + "/" + getMaxQuantity(item));
 			row.addView(total_counter);
 			/**
 			 * Update Text if item added
@@ -112,9 +119,8 @@ public class MainActivity extends Activity {
 	 * This method should return the max number of an item
 	 * @return
 	 */
-	public int getMaxQuantity(){
-		
-		return 1;
+	public int getMaxQuantity(Item item){		
+		return item.getMaxServings();
 	}
 	
 	@Override
