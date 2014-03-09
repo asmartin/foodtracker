@@ -23,6 +23,10 @@ public class Item {
 		this.total_counter = total_counter;
 	}
 	
+	public int getMaxQuantity() {
+		return max_servings;
+	}
+	
 	@Override
 	public String toString() {
 		return item_name;
