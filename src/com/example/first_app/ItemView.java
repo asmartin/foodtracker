@@ -11,10 +11,13 @@ import android.widget.TextView;
 
 public class ItemView extends TableRow {
 	private Item item = null;
+	private TextView counterView = null;
+	private int totalCounter = 0;
 	public ItemView(Context c, Item i) {
 		super(c);
 		
 		item = i;
+		counterView = new TextView(c);
 
 		//Create Minus button
 		Button minus = new Button(c);
@@ -24,9 +27,7 @@ public class ItemView extends TableRow {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO
-				System.out.println("Clicked");
-				
+				decrement();
 			}
 		});
 		
@@ -43,23 +44,20 @@ public class ItemView extends TableRow {
 			
 			@Override
 			public void onClick(View v) {
-				
-				
+				increment();
 			}
 		});
 		addView(plus);
 		
 		
-		//Set Total
-		TextView total_counter = new TextView(c);
-
-		total_counter.setText(item.total_counter + "/" + item.getMaxQuantity());
-		addView(total_counter);
+		//Set Total Counter
+		setCounterValue(totalCounter);
+		addView(counterView);
 		/**
 		 * Update Text if item added
 		 */
 		
-		total_counter.addTextChangedListener(new TextWatcher() {
+		counterView.addTextChangedListener(new TextWatcher() {
 			
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -82,19 +80,21 @@ public class ItemView extends TableRow {
 	
 	}
 	
-	public boolean increment() {
-		return true;
+	public void increment() {
+		totalCounter++;
+		setCounterValue(totalCounter);
 	}
 	
-	public boolean decrement() {
-		return true;
+	public void decrement() {
+		totalCounter--;
+		setCounterValue(totalCounter);
 	}
 	
-	public int getValue() {
-		return 0;
+	public int getCounterValue() {
+		return totalCounter;
 	}
 	
-	public boolean setValue(int newValue) {
-		return true;
+	private void setCounterValue(int newValue) {
+		counterView.setText(newValue + "/" + item.getMaxQuantity());
 	}
 }
