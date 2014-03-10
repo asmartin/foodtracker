@@ -39,14 +39,21 @@ public class ItemView extends TableRow {
 		//Create the plus button
 		Button plus = new Button(c);
 		plus.setText("+");
+		plus.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				
+			}
+		});
 		addView(plus);
 		
 		
 		//Set Total
 		TextView total_counter = new TextView(c);
-		
-		String out_of = "/" + item.getMaxQuantity();
-		total_counter.setText(item.total_counter + out_of);
+
+		total_counter.setText(item.total_counter + "/" + item.getMaxQuantity());
 		addView(total_counter);
 		/**
 		 * Update Text if item added
