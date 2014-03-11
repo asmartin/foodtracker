@@ -7,9 +7,9 @@
     <string name="plus">+</string>
     <string name="minus">-</string>
     <string name="item">item</string>
-    <string name="breakfast">B</string>
-    <string name="lunch">L</string>
-    <string name="dinner">D</string>
     <string name="total">Total</string>
+    <string name="import_db">Import</string>
+    <string name="export_db">Export</string>
+    <string name="edit_items">Edit Items</string>
    
 </resources>

@@ -10,10 +10,12 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -33,6 +35,15 @@ public class MainActivity extends Activity {
 		List<Item> items = new Items_Data(this).getItems();
 		TableLayout layout = (TableLayout) findViewById(R.id.main_table);
 		
+		
+	//////////
+		
+		DBHelper items_database = new DBHelper(this);
+		
+		SQLiteDatabase db = items_database.getWritableDatabase();
+		
+	
+		
 		/** TODO
 		 * read in item list from XML, csv, etc
 		 * create new Item object for each; item object should include interface
@@ -50,7 +61,7 @@ public class MainActivity extends Activity {
 	}
 	
 	
-	/**		END CREATING BUTTONS	 **/
+	//This creates the menu items
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -67,5 +78,68 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, vegetables_detail_activity.class);
 		startActivity(intent);
 	}
+	
+	
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+	}
+	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+	}
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+	}
+	
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		switch (item.getItemId()) {
+		case R.id.action_settings:
+			
+			
+			break;
+		
+		case R.id.import_db:
+			
+			break;
+			
+		case R.id.export_db:
+			
+			break;
+			
+		case R.id.edit_items:
+			
+			break;
+			
+		default:
+			break;
+		}
+		
+		return super.onOptionsItemSelected(item);
+	}
+	
+	
+	public void importDB(){
+		
+	}
+	
+	public void exportDB(){
+		
+	}
+	
+	public void edit_items(){
+		
+	}
+	
+	
 	
 }
