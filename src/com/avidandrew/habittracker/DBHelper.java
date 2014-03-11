@@ -1,25 +1,20 @@
-package com.example.first_app;
+package com.avidandrew.habittracker;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-
-
 public class DBHelper extends SQLiteOpenHelper {
-	public static final String TABLE_ITEMS = "Items";
-	public static final String COLUMN_ID = "_id";
-	public static final String COLUMN_ITEM_NAME = "Name";
-	public static final String COLUMN_VALUE = "Value";
-	public static final String COLUMN_MAX = "Max";
+	public static final String TABLE_ITEMS = "Items";				// name of the table
+	public static final String COLUMN_ID = "_id";					// name of the ID column (primary key)
+	public static final String COLUMN_ITEM_NAME = "Name";			// name of the "name" column
+	public static final String COLUMN_VALUE = "Value";				// name of the counter column
+	public static final String COLUMN_MAX = "Max";					// name of the max recommended column
 	
-	public static final String DATABASE_NAME = "foodtracker.db";
-	public static final String DATABASE_TABLE = "items";
+	public static final String DATABASE_NAME = "foodtracker.db";	// name of the database
 	public static final int DATABASE_VERSION = 1;
 
-	// Database creation sql statement
+	// Database creation SQL statement
 	private static final String DATABASE_CREATE = "Create table " + TABLE_ITEMS
 			  + "(" + COLUMN_ID + " integer primary key autoincrement, " 
 			  + COLUMN_ITEM_NAME + " text not null, " 

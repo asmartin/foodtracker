@@ -1,4 +1,6 @@
-package com.example.first_app;
+package com.avidandrew.habittracker;
+
+import com.example.first_app.R;
 
 import android.app.Activity;
 import android.os.Bundle;

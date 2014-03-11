@@ -1,7 +1,9 @@
-package com.example.first_app;
+package com.avidandrew.habittracker;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.first_app.R;
 
 import android.R.style;
 import android.os.Bundle;
@@ -49,44 +51,15 @@ public class MainActivity extends Activity {
 	
 	
 	/**		END CREATING BUTTONS	 **/
-
-
-
-	/**
-	 * This method should return the max number of an item
-	 * @return
-	 */
-	public int getMaxQuantity(Item item){		
-		return item.getMaxServings();
-	}
-	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
+
 	/**
-	 * This method adds an item to the db, checks if it already exists
-	 * @param item
-	 */
-	public void addServing(Item item) {
-		
-		
-	}
-	
-	/**
-	 * This method subtracts an item from the db
-	 */
-	public void subtractServing() { 
-		
-		
-	}
-	
-	
-	/**
-	 * This method opens an activty to show servings for that category
+	 * This method opens an activity to show servings for that category
 	 * @param v
 	 */
 	public void view_Details(View v){

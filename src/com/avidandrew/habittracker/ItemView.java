@@ -1,4 +1,4 @@
-package com.example.first_app;
+package com.avidandrew.habittracker;
 
 import android.content.Context;
 import android.text.Editable;
