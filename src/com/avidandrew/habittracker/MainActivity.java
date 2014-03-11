@@ -37,6 +37,9 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		// empty DB (for debugging)
+		// DBHelper.emptyDB(this);
 		
 		List<Item> items = new Items_Data(this).getItems();
 		TableLayout layout = (TableLayout) findViewById(R.id.main_table);
@@ -181,4 +184,4 @@ public class MainActivity extends Activity {
 	
 	
 	
-}	
+}
