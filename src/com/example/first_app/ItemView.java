@@ -12,7 +12,6 @@ import android.widget.TextView;
 public class ItemView extends TableRow {
 	private Item item = null;
 	private TextView counterView = null;
-	private int totalCounter = 0;
 	public ItemView(Context c, Item i) {
 		super(c);
 		
@@ -27,7 +26,8 @@ public class ItemView extends TableRow {
 			
 			@Override
 			public void onClick(View v) {
-				decrement();
+				item.decrement();
+				setCounterValue();
 			}
 		});
 		
@@ -44,14 +44,15 @@ public class ItemView extends TableRow {
 			
 			@Override
 			public void onClick(View v) {
-				increment();
+				item.increment();
+				setCounterValue();
 			}
 		});
 		addView(plus);
 		
 		
 		//Set Total Counter
-		setCounterValue(totalCounter);
+		setCounterValue();
 		addView(counterView);
 		/**
 		 * Update Text if item added
@@ -80,21 +81,7 @@ public class ItemView extends TableRow {
 	
 	}
 	
-	public void increment() {
-		totalCounter++;
-		setCounterValue(totalCounter);
-	}
-	
-	public void decrement() {
-		totalCounter--;
-		setCounterValue(totalCounter);
-	}
-	
-	public int getCounterValue() {
-		return totalCounter;
-	}
-	
-	private void setCounterValue(int newValue) {
-		counterView.setText(newValue + "/" + item.getMaxQuantity());
+	private void setCounterValue() {
+		counterView.setText(item.getCounterValue() + "/" + item.getMaxServings());
 	}
 }
