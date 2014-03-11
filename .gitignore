@@ -2,3 +2,6 @@
 *.log
 *.cache
 *.apk
+.settings
+.metadata
+bin
