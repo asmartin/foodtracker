@@ -1,5 +1,9 @@
 package com.avidandrew.habittracker;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +11,7 @@ import com.example.first_app.R;
 
 import android.R.style;
 import android.os.Bundle;
+import android.os.Environment;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -74,7 +79,6 @@ public class MainActivity extends Activity {
 	 * @param v
 	 */
 	public void view_Details(View v){
-
 		Intent intent = new Intent(this, vegetables_detail_activity.class);
 		startActivity(intent);
 	}
@@ -104,40 +108,66 @@ public class MainActivity extends Activity {
 		
 		switch (item.getItemId()) {
 		case R.id.action_settings:
-			
-			
-			break;
+			return true;
 		
 		case R.id.import_db:
-			
-			break;
+			importDB();
+			return true;
 			
 		case R.id.export_db:
-			
-			break;
+			exportDB();
+			return true;
 			
 		case R.id.edit_items:
-			
-			break;
+			edit_items();
+			return true;
 			
 		default:
-			break;
+			return super.onOptionsItemSelected(item);
 		}
 		
-		return super.onOptionsItemSelected(item);
 	}
 	
 	
 	public void importDB(){
+		// TODO
 		
 	}
 	
 	public void exportDB(){
 		
-	}
+		try{
+		
+		  File sd = Environment.getExternalStorageDirectory();
+          File data = Environment.getDataDirectory();
+
+          if (sd.canWrite()) {
+        	  String currentDBPath = "/data/com.example.first_app/databases/foodtracker.db";
+              String backupDBPath = "foodtracker_backup.db";
+              File currentDB = new File(data, currentDBPath);
+              File backupDB = new File(sd, backupDBPath);
+
+                  FileChannel src = new FileInputStream(currentDB).getChannel();
+                  FileChannel dst = new FileOutputStream(backupDB).getChannel();
+                  dst.transferFrom(src, 0, src.size());
+                  src.close();
+                  dst.close();
+                  Toast.makeText(getBaseContext(), backupDB.toString(), Toast.LENGTH_LONG).show();
+
+          }
+      } catch (Exception e) {
+
+          Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_LONG).show();
+
+
+      }
+}
+	        	
+
+	
 	
 	public void edit_items(){
-		
+		//TODO
 	}
 	
 	

@@ -17,7 +17,7 @@ public class Item {
 
 	// Database fields
 	private DBHelper dbHelper;
-	private String[] ITEM_TABLE_COLUMNS = { DBHelper.COLUMN_ID, DBHelper.COLUMN_ITEM_NAME, String.valueOf(DBHelper.COLUMN_VALUE), String.valueOf(DBHelper.COLUMN_MAX) };
+	private String[] ITEM_TABLE_COLUMNS = {DBHelper.COLUMN_ID, DBHelper.COLUMN_ITEM_NAME, String.valueOf(DBHelper.COLUMN_VALUE), String.valueOf(DBHelper.COLUMN_MAX) };
 	private SQLiteDatabase database;
 
 	public void open() throws SQLException {

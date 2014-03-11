@@ -40,9 +40,6 @@
                 android:text="@string/plus"
                 android:visibility="invisible" />
 
-            
-         
-
 
             <TextView
                 android:id="@+id/textView1"
