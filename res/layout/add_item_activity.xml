@@ -4,7 +4,6 @@
     android:layout_height="match_parent" >
 
     <EditText
-<<<<<<< HEAD
         android:id="@+id/add_item_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -12,16 +11,12 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:hint="@string/item_name" >
-
-        <requestFocus />
-    </EditText>
-
+        android:hint="@string/item_name" />
+        
     <EditText
         android:id="@+id/max_quant_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/add_item_field"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="27dp"
         android:ems="10"
@@ -31,37 +26,8 @@
         android:id="@+id/add_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/max_quant_field"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
-=======
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="22dp"
-        android:ems="10"
-        android:hint="@string/max_quantity" />
+        android:layout_marginTop="28dp" />
 
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="17dp"
-        android:ems="10"
-        android:hint="@string/item_name" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp"
->>>>>>> 7f00ee9b6214e50a8acaee115c9de2f491f07372
-        android:text="@string/add_item" />
 
 </RelativeLayout>

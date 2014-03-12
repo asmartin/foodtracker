@@ -11,16 +11,10 @@
     <string name="import_db">Import</string>
     <string name="export_db">Export</string>
     <string name="edit_items">Edit Items</string>
-<<<<<<< HEAD
-    <string name="add_item">Add Item</string>
-    <string name="item_name">Item Name</string>
     <string name="max_quant">Max Quantity</string>
-   
-=======
     <string name="item_name">Item Name</string>
     <string name="max_quantity">Max Quantity</string>
     <string name="add_item">Add Item</string> 
     
     
->>>>>>> 7f00ee9b6214e50a8acaee115c9de2f491f07372
 </resources>
