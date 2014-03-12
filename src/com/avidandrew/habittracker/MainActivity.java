@@ -30,13 +30,11 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		// empty DB (for debugging)
+		DBHelper.emptyDB(this);
+		
 		List<Item> items = new Items_Data(this).getItems();
 		TableLayout layout = (TableLayout) findViewById(R.id.main_table);
-		
-		/** TODO
-		 * read in item list from XML, csv, etc
-		 * create new Item object for each; item object should include interface
-		 */
 		
 		/**
 		 * This for loop creates the buttons on the screen, one for each item 

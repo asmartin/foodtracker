@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteDatabase;
 public class Item {
 	private final String SQL_GET_ALL_ROWS = "SELECT * FROM " + DBHelper.TABLE_ITEMS + " WHERE 1";
 	private final String SQL_GET_ROW_BY_NAME = "SELECT * FROM " + DBHelper.TABLE_ITEMS + " WHERE " + DBHelper.COLUMN_ITEM_NAME + " = '%s'";
+	private final String SQL_GET_TIMESTAMP_ROWS_MATCHING_ITEMID = "SELECT " + DBHelper.COLUMN_TIME_ID + " FROM " + DBHelper.TABLE_TIMESTAMPS + " WHERE " + DBHelper.COLUMN_TIME_ITEM_ID + "='%s'";
+	private final String SQL_DELETE_LAST_TIMESTAMP = "DELETE FROM " + DBHelper.TABLE_TIMESTAMPS + " WHERE " + DBHelper.COLUMN_TIME_ID + " IN (SELECT " + DBHelper.COLUMN_TIME_ID + " FROM "
+			+ DBHelper.TABLE_TIMESTAMPS + " WHERE " + DBHelper.COLUMN_TIME_ITEM_ID + "='%d' ORDER BY " + DBHelper.COLUMN_TIME_ID + " DESC LIMIT 1)";
 	public String item_name;
 	public int totalCounter;
 	public int max_servings = 2;
@@ -33,14 +36,12 @@ public class Item {
 	public Item(Context c, String name, int max_servings){
 		dbHelper = new DBHelper(c);
 		open();
-		// uncomment to clear database
-		//dbHelper.onUpgrade(database, 1, 2);
 
 		this.item_name = name;
 		this.max_servings = max_servings;
 		
 		// check if this item exists already in the database (check based on name)
-		Cursor results = database.rawQuery(String.format(SQL_GET_ROW_BY_NAME,  name), null);  		
+		Cursor results = database.rawQuery(String.format(SQL_GET_ROW_BY_NAME,  name), null); 
 		if (!results.moveToFirst()) {
 			// no existing row found, add one for this item
             ContentValues values = new ContentValues();
@@ -57,6 +58,9 @@ public class Item {
 	        results = database.rawQuery(String.format(SQL_GET_ROW_BY_NAME,  name), null);
 	        if (results.moveToFirst()) {
 	        	updateVariablesFromDB(results, false);
+	        } else {
+	        	// cannot load any data from the database, error
+	        	throw new SQLException();
 	        }
 		} else {
 			// row already exists, update local variables
@@ -87,9 +91,29 @@ public class Item {
 	private void update(String col, int newValue) {
 	    ContentValues args = new ContentValues();
 	    args.put(col, newValue);
-	    database.update(DBHelper.TABLE_ITEMS, args, DBHelper.COLUMN_ID + " = " + itemID, null);
+	    int results = database.update(DBHelper.TABLE_ITEMS, args, DBHelper.COLUMN_ID + " = " + itemID, null);
+	    if (results < 1) {
+	    	// no rows affected; this didn't work as expected
+	    	throw new SQLException();
+	    }
 	}
 
+	/**
+	 * Returns the number of rows matching the query
+	 * @param sql the SQL query to use to query the rows
+	 * @return returns the number of rows matching the query, or -1 if none found
+	 */
+	private int getNumRows(String sql) {
+		Cursor results = database.rawQuery(sql, null);
+		if (results == null || results.getCount() < 0) {
+			// can't get any existing rows
+			return -1;
+		}
+		int numRows = results.getCount();
+		results.close();
+		return numRows;
+	}
+	
 	/**
 	 * Increments the counter; updates the data in the database
 	 * @return the new value of the counter
@@ -97,6 +121,16 @@ public class Item {
 	public int increment() {
 		totalCounter++;
 		update(DBHelper.COLUMN_VALUE, totalCounter);
+		
+		// record the timestamp
+		ContentValues values = new ContentValues();
+        values.put(DBHelper.COLUMN_TIME_ITEM_ID, itemID);
+		long ret = database.insert(DBHelper.TABLE_TIMESTAMPS, null, values);
+		if (ret < 0) {
+			// error inserting row
+			throw new SQLException();
+		}
+			
 		return totalCounter;
 	}
 	
@@ -105,8 +139,29 @@ public class Item {
 	 * @return the new value of the counter
 	 */
 	public int decrement() {
+		if (totalCounter <= 0) {
+			// don't allow negative values
+			totalCounter = 0;
+			return totalCounter;
+		}
 		totalCounter--;
+		
+		// check how many timestamp rows there are before the removal
+		int numRowsBefore = getNumRows(String.format(SQL_GET_TIMESTAMP_ROWS_MATCHING_ITEMID, itemID));
+		
+		// remove the last timestamp row
+		database.execSQL(String.format(SQL_DELETE_LAST_TIMESTAMP, itemID));
+		
+		// check how many timestamp rows there are after the removal (should be one less)
+		int numRowsAfter = getNumRows(String.format(SQL_GET_TIMESTAMP_ROWS_MATCHING_ITEMID, itemID));
+		
+		if (numRowsBefore == -1 || numRowsAfter + 1 != numRowsBefore) {
+			// this method was supposed to remove one row from this table, but something else happened
+			throw new SQLException();
+		}
+		
 		update(DBHelper.COLUMN_VALUE, totalCounter);
+		
 		return totalCounter;
 	}
 	
