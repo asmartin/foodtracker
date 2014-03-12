@@ -4,26 +4,6 @@
     android:layout_height="match_parent" >
 
     <EditText
-<<<<<<< HEAD
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="22dp"
-        android:ems="10"
-        android:hint="@string/max_quantity" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="17dp"
-        android:ems="10"
-        android:hint="@string/item_name" />
-=======
         android:id="@+id/add_item_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,35 +11,25 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:hint="@string/item_name" >
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/max_quant_field"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/add_item_field"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp"
-        android:ems="10"
-        android:hint="@string/max_quant" />
->>>>>>> added class and layout for new item activity
+        android:hint="@string/item_name" />
 
     <Button
         android:id="@+id/add_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/add_item_field"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp"
-=======
-        android:layout_below="@+id/max_quant_field"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
->>>>>>> added class and layout for new item activity
-        android:text="@string/add_item" />
+        android:text="@string/add_item"
+        android:layout_marginTop="64dp" />
+
+    <EditText
+        android:id="@+id/max_quant_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/add_item_field"
+        android:layout_below="@+id/add_item_field"
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:hint="@string/max_quant" />
 
 </RelativeLayout>
