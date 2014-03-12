@@ -1,5 +1,9 @@
 package com.avidandrew.habittracker;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
@@ -28,6 +33,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
+	
+	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +51,6 @@ public class MainActivity extends Activity {
 	//////////
 		
 		DBHelper items_database = new DBHelper(this);
-		
 		SQLiteDatabase db = items_database.getWritableDatabase();
 		
 	
@@ -173,6 +179,7 @@ public class MainActivity extends Activity {
 	
 	public void add_item(){
 		Intent intent = new Intent(this, Add_Item_Activity.class);
+		
 		startActivity(intent);
 		Toast.makeText(getBaseContext(), "Starting Add Item Activity",Toast.LENGTH_SHORT);
 	}

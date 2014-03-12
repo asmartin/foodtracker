@@ -178,7 +178,6 @@ public class Item {
 	 * @return the name of the item
 	 */
 	public String getName(){
-
 		return item_name;
 	}
 
