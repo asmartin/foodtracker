@@ -122,6 +122,10 @@ public class MainActivity extends Activity {
 			edit_items();
 			return true;
 			
+		case R.id.add_item:
+			add_item();
+			return true;
+			
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -163,11 +167,14 @@ public class MainActivity extends Activity {
       }
 }
 	        	
-
-	
-	
 	public void edit_items(){
 		//TODO
+	}
+	
+	public void add_item(){
+		Intent intent = new Intent(this, Add_Item_Activity.class);
+		startActivity(intent);
+		
 	}
 	
 	
