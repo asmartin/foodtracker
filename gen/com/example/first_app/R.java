@@ -29,9 +29,8 @@ public final class R {
         public static final int Button02=0x7f080003;
         public static final int Button03=0x7f080004;
         public static final int action_settings=0x7f08000b;
-        public static final int add_item=0x7f08000f;
+        public static final int add_item=0x7f080008;
         public static final int add_item_field=0x7f080006;
-        public static final int button1=0x7f080008;
         public static final int edit_items=0x7f08000e;
         public static final int export_db=0x7f08000d;
         public static final int imageView1=0x7f080009;

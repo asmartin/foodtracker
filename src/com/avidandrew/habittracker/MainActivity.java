@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.InputFilter.LengthFilter;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -174,6 +175,7 @@ public class MainActivity extends Activity {
 	public void add_item(){
 		Intent intent = new Intent(this, Add_Item_Activity.class);
 		startActivity(intent);
+		Toast.makeText(getBaseContext(), "Starting Add Item Activity",Toast.LENGTH_SHORT);
 		
 	}
 	
