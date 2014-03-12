@@ -4,6 +4,7 @@
     android:layout_height="match_parent" >
 
     <EditText
+<<<<<<< HEAD
         android:id="@+id/editText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,14 +23,43 @@
         android:layout_marginTop="17dp"
         android:ems="10"
         android:hint="@string/item_name" />
+=======
+        android:id="@+id/add_item_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="@string/item_name" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/max_quant_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_item_field"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp"
+        android:ems="10"
+        android:hint="@string/max_quant" />
+>>>>>>> added class and layout for new item activity
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:layout_below="@+id/editText2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="27dp"
+=======
+        android:layout_below="@+id/max_quant_field"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+>>>>>>> added class and layout for new item activity
         android:text="@string/add_item" />
 
 </RelativeLayout>

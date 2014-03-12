@@ -179,7 +179,6 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, Add_Item_Activity.class);
 		startActivity(intent);
 		Toast.makeText(getBaseContext(), "Starting Add Item Activity",Toast.LENGTH_SHORT);
-		
 	}
 	
 	
