@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableRow;
@@ -22,6 +23,7 @@ public class ItemView extends TableRow {
 		Button minus = new Button(c);
 		minus.setText("-");
 		addView(minus);
+		minus.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
 		minus.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -41,6 +43,7 @@ public class ItemView extends TableRow {
 		//Create the plus button
 		Button plus = new Button(c);
 		plus.setText("+");
+		plus.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
 		plus.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -50,7 +53,6 @@ public class ItemView extends TableRow {
 			}
 		});
 		addView(plus);
-		
 		
 		//Set Total Counter
 		setCounterValue();
