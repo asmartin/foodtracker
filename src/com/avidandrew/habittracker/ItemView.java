@@ -37,6 +37,7 @@ public class ItemView extends TableRow {
 		addView(button);
 		button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
 		
+		
 		//Create the plus button
 		Button plus = new Button(c);
 		plus.setText("+");
@@ -54,29 +55,7 @@ public class ItemView extends TableRow {
 		//Set Total Counter
 		setCounterValue();
 		addView(counterView);
-		/**
-		 * Update Text if item added
-		 */
 		
-		counterView.addTextChangedListener(new TextWatcher() {
-			
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				
-			}
-			
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-				
-			}
-			
-			@Override
-			public void afterTextChanged(Editable s) {
-				
-			}
-		});
-	
 	}
 	
 	private void setCounterValue() {

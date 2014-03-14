@@ -61,11 +61,10 @@ public class MainActivity extends Activity {
 			layout = (TableLayout) findViewById(R.id.main_table);
 			for (final Item item : items) {
 				TableRow row = new ItemView(this, item);
+				
 				//add row to view
 				layout.addView(row);
 			}
-
-			
 		}
 	}
 	
@@ -87,7 +86,6 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
 		// empty DB (for debugging)
 		// DBHelper.emptyDB(this);
 		
@@ -103,26 +101,13 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-
-	
-	@Override
-	protected void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-	}
-	
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-	}
 	
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		
 		// re-generate list of items
+		layout.removeAllViews();
 		loadItems();
 	}
 	
