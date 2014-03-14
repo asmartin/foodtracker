@@ -27,6 +27,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -34,7 +35,6 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	
-	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 	private TableLayout layout = null;
 	
 	/**
@@ -59,13 +59,13 @@ public class MainActivity extends Activity {
 	private void loadItemsView(ArrayList<Item> items) {
 		if (items != null) {
 			layout = (TableLayout) findViewById(R.id.main_table);
-			layout.removeAllViews();    // remove any existing rows
 			for (final Item item : items) {
 				TableRow row = new ItemView(this, item);
-
 				//add row to view
 				layout.addView(row);
 			}
+
+			
 		}
 	}
 	
@@ -103,15 +103,7 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	/**
-	 * This method opens an activity to show servings for that category
-	 * @param v
-	 */
-	public void view_Details(View v){
-		Intent intent = new Intent(this, vegetables_detail_activity.class);
-		startActivity(intent);
-	}
-	
+
 	
 	@Override
 	protected void onPause() {
