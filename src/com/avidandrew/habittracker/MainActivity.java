@@ -35,7 +35,54 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 	
 	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+	private TableLayout layout = null;
+	
+	/**
+	 * determines if there is data in the Items database; if so, display it; else, display sample data
+	 */
+	private void loadItems() {
+		DBHelper db = new DBHelper(this);
+		ArrayList<Item> items = db.getItems(this);
+		if (items == null || items.size() == 0) {
+			// load sample data
+			loadSampleData();
+		} else {
+			// load data from database
+			loadItemsView(items);
+		}
+	}
+	
+	/**
+	 * Loads a list of items into the activity
+	 * @param items
+	 */
+	private void loadItemsView(ArrayList<Item> items) {
+		if (items != null) {
+			layout = (TableLayout) findViewById(R.id.main_table);
+			layout.removeAllViews();    // remove any existing rows
+			for (final Item item : items) {
+				TableRow row = new ItemView(this, item);
 
+				//add row to view
+				layout.addView(row);
+			}
+		}
+	}
+	
+	/**
+	 * Loads sample data into the activity
+	 */
+	private void loadSampleData() {
+		ArrayList<Item> sampleData = new ArrayList<Item>();
+		sampleData.add(new Item(this, "Fats, Oils, Sweets",1));
+		sampleData.add(new Item(this, "Dairy",3));
+		sampleData.add(new Item(this, "Meats, Eggs, Nuts", 3));
+		sampleData.add(new Item(this, "Vegetables", 5));
+		sampleData.add(new Item(this, "Fruits", 5));
+		sampleData.add(new Item(this, "Breads, Carbs", 11));
+		loadItemsView(sampleData);
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,31 +91,7 @@ public class MainActivity extends Activity {
 		// empty DB (for debugging)
 		// DBHelper.emptyDB(this);
 		
-		List<Item> items = new Items_Data(this).getItems();
-		TableLayout layout = (TableLayout) findViewById(R.id.main_table);
-		
-		
-	//////////
-		
-		DBHelper items_database = new DBHelper(this);
-		SQLiteDatabase db = items_database.getWritableDatabase();
-		
-	
-		
-		/** TODO
-		 * read in item list from XML, csv, etc
-		 * create new Item object for each; item object should include interface
-		 */
-		
-		/**
-		 * This for loop creates the buttons on the screen, one for each item 
-		 */
-		for (final Item item : items) {
-			TableRow row = new ItemView(this, item);
-			
-			//add row to view
-			layout.addView(row);
-		}
+		loadItems();
 	}
 	
 	
@@ -106,6 +129,9 @@ public class MainActivity extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		
+		// re-generate list of items
+		loadItems();
 	}
 	
 	
@@ -179,7 +205,7 @@ public class MainActivity extends Activity {
 	
 	public void add_item(){
 		Intent intent = new Intent(this, Add_Item_Activity.class);
-		
+
 		startActivity(intent);
 		Toast.makeText(getBaseContext(), "Starting Add Item Activity",Toast.LENGTH_SHORT);
 	}

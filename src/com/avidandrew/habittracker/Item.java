@@ -7,7 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 public class Item {
-	private final String SQL_GET_ALL_ROWS = "SELECT * FROM " + DBHelper.TABLE_ITEMS + " WHERE 1";
+	public final static String SQL_GET_ALL_ROWS = "SELECT * FROM " + DBHelper.TABLE_ITEMS + " WHERE 1";	// needs to be public because is used in DBHelper
 	private final String SQL_GET_ROW_BY_NAME = "SELECT * FROM " + DBHelper.TABLE_ITEMS + " WHERE " + DBHelper.COLUMN_ITEM_NAME + " = '%s'";
 	private final String SQL_GET_TIMESTAMP_ROWS_MATCHING_ITEMID = "SELECT " + DBHelper.COLUMN_TIME_ID + " FROM " + DBHelper.TABLE_TIMESTAMPS + " WHERE " + DBHelper.COLUMN_TIME_ITEM_ID + "='%s'";
 	private final String SQL_DELETE_LAST_TIMESTAMP = "DELETE FROM " + DBHelper.TABLE_TIMESTAMPS + " WHERE " + DBHelper.COLUMN_TIME_ID + " IN (SELECT " + DBHelper.COLUMN_TIME_ID + " FROM "
@@ -23,7 +23,8 @@ public class Item {
 	private String[] ITEM_TABLE_COLUMNS = {DBHelper.COLUMN_ID, DBHelper.COLUMN_ITEM_NAME, String.valueOf(DBHelper.COLUMN_VALUE), String.valueOf(DBHelper.COLUMN_MAX) };
 	private SQLiteDatabase database;
 
-	public void open() throws SQLException {
+	public void open(Context c) throws SQLException {
+		dbHelper = new DBHelper(c);
 		database = dbHelper.getWritableDatabase();
 	}
 
@@ -34,8 +35,7 @@ public class Item {
 	 * @param max_servings
 	 */
 	public Item(Context c, String name, int max_servings){
-		dbHelper = new DBHelper(c);
-		open();
+		open(c);
 
 		this.item_name = name;
 		this.max_servings = max_servings;
@@ -67,6 +67,16 @@ public class Item {
 			updateVariablesFromDB(results, false);
 		}
 	}
+	
+	/**
+	 * Create a new item from data pulled from the database
+	 * @param c the context (view)
+	 * @param data the Cursor object, moveToFirst already run
+	 */
+	public Item(Context c, Cursor data) {
+		open(c);
+		updateVariablesFromDB(data, true);
+	}
 
 	/** 
 	 * Updates local variables from the results pulled from the database
@@ -79,6 +89,7 @@ public class Item {
 			results.moveToFirst();
 		}
 		itemID = results.getInt(results.getColumnIndexOrThrow(DBHelper.COLUMN_ID));
+		item_name = results.getString(results.getColumnIndexOrThrow(DBHelper.COLUMN_ITEM_NAME));
 		totalCounter = results.getInt(results.getColumnIndexOrThrow(DBHelper.COLUMN_VALUE));
 		max_servings = results.getInt(results.getColumnIndexOrThrow(DBHelper.COLUMN_MAX));
 	}
