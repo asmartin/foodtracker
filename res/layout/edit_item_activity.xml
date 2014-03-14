@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
          android:layout_centerHorizontal="true"
-        android:text="save changes" 
+        android:text="@string/save_changes" 
         android:layout_below="@+id/edit_max_quantity"
         />
 
@@ -44,6 +44,6 @@
         android:layout_height="wrap_content"
          android:layout_centerHorizontal="true"
 		android:layout_below="@+id/save_changes"
-        android:text="Delete Item" />
+        android:text="@string/delete_item" />
 
 </RelativeLayout>

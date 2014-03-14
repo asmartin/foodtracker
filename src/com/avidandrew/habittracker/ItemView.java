@@ -56,9 +56,7 @@ public class ItemView extends TableRow {
 				Intent edit_item = new Intent(getContext(), Edit_Item.class);
 				
 				edit_item.putExtra("name", item.getName());
-				
 				edit_item.putExtra("max", item.getMaxServings());
-				
 				getContext().startActivity(edit_item);
 				
 			}
