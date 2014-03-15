@@ -2,6 +2,7 @@ package com.avidandrew.habittracker;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -34,6 +35,7 @@ public class Add_Item_Activity extends Activity{
 				EditText item_name_field = (EditText) findViewById(R.id.add_item_field);
 				EditText quantity_field =(EditText) findViewById(R.id.max_quant_field);
 				String item_name = item_name_field.getText().toString();
+				
 				
 				//Check that fields aren't empty
 				if(item_name.equals("")){

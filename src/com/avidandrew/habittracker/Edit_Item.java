@@ -37,6 +37,9 @@ public class Edit_Item extends Activity{
 			
 			@Override
 			public void onClick(View v) {
+				//TODO
+				
+			
 				
 				
 			}
@@ -45,7 +48,6 @@ public class Edit_Item extends Activity{
 		//On Click Listener for the Delete Item button
 		 
 		 Button delete_item = (Button) findViewById(R.id.delete_item);
-		 
 		 delete_item.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

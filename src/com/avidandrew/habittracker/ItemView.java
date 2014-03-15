@@ -3,6 +3,7 @@ package com.avidandrew.habittracker;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -47,8 +48,8 @@ public class ItemView extends TableRow {
 		Button button = new Button(c);
 		button.setText(item.item_name);
 		addView(button);
-		button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
 		
+		button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
 		button.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

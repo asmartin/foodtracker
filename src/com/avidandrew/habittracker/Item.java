@@ -108,6 +108,16 @@ public class Item {
 	    	throw new SQLException();
 	    }
 	}
+	
+	public void updateMax(int new_max){
+		
+		
+	}
+	
+	public void updateName(String new_name){
+		
+		
+	}
 
 	/**
 	 * Returns the number of rows matching the query
