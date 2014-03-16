@@ -36,6 +36,7 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 	
 	private TableLayout layout = null;
+	private ArrayList<Item> items = null;
 	
 	/**
 	 * determines if there is data in the Items database; if so, display it; else, display sample data

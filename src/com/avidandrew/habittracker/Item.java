@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class Item {
 	public final static String SQL_GET_ALL_ROWS = "SELECT * FROM " + DBHelper.TABLE_ITEMS + " WHERE 1";	// needs to be public because is used in DBHelper
-	private final String SQL_GET_ROW_BY_NAME = "SELECT * FROM " + DBHelper.TABLE_ITEMS + " WHERE " + DBHelper.COLUMN_ITEM_NAME + " = '%s'";
+	public final static String SQL_GET_ROW_BY_NAME = "SELECT * FROM " + DBHelper.TABLE_ITEMS + " WHERE " + DBHelper.COLUMN_ITEM_NAME + " = '%s'";
 	private final String SQL_GET_TIMESTAMP_ROWS_MATCHING_ITEMID = "SELECT " + DBHelper.COLUMN_TIME_ID + " FROM " + DBHelper.TABLE_TIMESTAMPS + " WHERE " + DBHelper.COLUMN_TIME_ITEM_ID + "='%s'";
 	private final String SQL_DELETE_LAST_TIMESTAMP = "DELETE FROM " + DBHelper.TABLE_TIMESTAMPS + " WHERE " + DBHelper.COLUMN_TIME_ID + " IN (SELECT " + DBHelper.COLUMN_TIME_ID + " FROM "
 			+ DBHelper.TABLE_TIMESTAMPS + " WHERE " + DBHelper.COLUMN_TIME_ITEM_ID + "='%d' ORDER BY " + DBHelper.COLUMN_TIME_ID + " DESC LIMIT 1)";
@@ -98,23 +98,25 @@ public class Item {
 	 * Updates an existing row in the database
 	 * @param col the name of the column to update
 	 * @param newValue the new value
+	 * @return true if update succeeded, false otherwise
 	 */
-	private void update(String col, String newValue) {
+	private boolean update(String col, String newValue) {
 	    ContentValues args = new ContentValues();
 	    args.put(col, newValue);
 	    int results = database.update(DBHelper.TABLE_ITEMS, args, DBHelper.COLUMN_ID + " = " + itemID, null);
 	    if (results < 1) {
 	    	// no rows affected; this didn't work as expected
-	    	throw new SQLException();
+	    	return false;
 	    }
+	    return true;
 	}
 	
-	public void updateMax(int new_max){
-		update(DBHelper.COLUMN_MAX, String.valueOf(new_max));
+	public boolean updateMax(int new_max){
+		return update(DBHelper.COLUMN_MAX, String.valueOf(new_max));
 	}
 	
-	public void updateName(String new_name){
-		update(DBHelper.COLUMN_ITEM_NAME, new_name);
+	public boolean updateName(String new_name){
+		return update(DBHelper.COLUMN_ITEM_NAME, new_name);
 	}
 
 	/**

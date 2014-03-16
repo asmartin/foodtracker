@@ -8,8 +8,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Edit_Item extends Activity{
+	private DBHelper dbHelper = new DBHelper(this);
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -19,17 +21,15 @@ public class Edit_Item extends Activity{
 		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
-		//Get Items from previous Activity
-		String item_name = getIntent().getStringExtra("name");
-		int max_quant = getIntent().getIntExtra("max", 0);
-		
-		//Get Fields to edit
-		EditText item_name_field = (EditText) findViewById(R.id.edit_item_name);
-		EditText max_quantity_field = (EditText) findViewById(R.id.edit_max_quantity);
-		
 		//Update text for those fields
-		item_name_field.setText(item_name);
-		max_quantity_field.setText(String.valueOf(max_quant));
+		String item_name = getIntent().getStringExtra("name");
+		int max_quant = getIntent().getIntExtra("max",  0);
+		EditText item_name_field2 = (EditText) findViewById(R.id.edit_item_name);
+		EditText max_quantity_field2 = (EditText) findViewById(R.id.edit_max_quantity);
+		item_name_field2.setText(item_name);
+		max_quantity_field2.setText(String.valueOf(max_quant));
+		
+		final String nameText = item_name_field2.getText().toString();
 		
 		//On Click listener for the save changes button
 		 Button save_button = (Button) findViewById(R.id.save_changes);
@@ -37,9 +37,35 @@ public class Edit_Item extends Activity{
 			
 			@Override
 			public void onClick(View v) {
-			
-				
-				
+				EditText item_name_field = (EditText) findViewById(R.id.edit_item_name);
+				EditText max_quantity_field = (EditText) findViewById(R.id.edit_max_quantity);
+				Item thisItem = dbHelper.getItem(getBaseContext(), nameText);
+				if (thisItem == null) {
+					Toast.makeText(getBaseContext(), "Item cannot be updated - not found in database", Toast.LENGTH_SHORT).show();
+				} else {
+					// update the name and max quantity
+					// TODO: check return values
+					String name = item_name_field.getText().toString();
+					if (!thisItem.getName().equals(name)) {
+						if (!thisItem.updateName(name)) {
+							Toast.makeText(getBaseContext(), "Error updating name", Toast.LENGTH_SHORT).show();
+						}
+						Toast.makeText(getBaseContext(), "Item name set to " + name, Toast.LENGTH_SHORT).show();
+					}
+					
+					
+					try {
+						int max = Integer.parseInt(max_quantity_field.getText().toString());
+						if (thisItem.getMaxServings() != max) {
+							if (!thisItem.updateMax(max)) {
+								Toast.makeText(getBaseContext(), "Error updating max", Toast.LENGTH_SHORT).show();
+							}
+							Toast.makeText(getBaseContext(), "Max set to " + max, Toast.LENGTH_SHORT).show();
+						}
+					} catch (NumberFormatException nfe) {
+						Toast.makeText(getBaseContext(), "Error: Max must be a number", Toast.LENGTH_SHORT).show();
+					}
+				}
 			}
 		});
 		 

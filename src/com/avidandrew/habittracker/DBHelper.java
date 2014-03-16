@@ -30,7 +30,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			  + COLUMN_ITEM_NAME + " text not null, " 
 			  + COLUMN_VALUE + " integer, " 
 			  + COLUMN_MAX + " integer); ";
-	
+
 	private static final String TABLE_CREATE_TIMESTAMPS = "Create table " + TABLE_TIMESTAMPS
 			  + "(" + COLUMN_TIME_ID + " integer primary key autoincrement, "
 			  + COLUMN_TIME_ITEM_ID + " integer, "
@@ -58,6 +58,24 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         
         return items;
+	}
+	
+	/**
+	 * Gets an item object from a row in the database
+	 * @param c the current context
+	 * @param name the name of the item to get
+	 * @return null if item not found in the database, else an object representing the item
+	 */
+	public Item getItem(Context c, String name) {
+		database = this.getReadableDatabase();
+		Item thisItem = null;
+		Cursor results = database.rawQuery(String.format(Item.SQL_GET_ROW_BY_NAME, name), null);
+		
+		if (results.moveToFirst()) {
+			thisItem = new Item(c, results);
+        }
+        
+        return thisItem;
 	}
 	
 	public boolean itemNameExists(Context c, String name) {
