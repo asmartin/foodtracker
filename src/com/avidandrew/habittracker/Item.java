@@ -6,29 +6,17 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
+import static com.avidandrew.habittracker.Constants.*;
 
 public class Item {
-	public final static String SQL_GET_ALL_ROWS = "SELECT * FROM " + DBHelper.TABLE_ITEMS + " WHERE 1";	// needs to be public because is used in DBHelper
-	public final static String SQL_GET_ROW_BY_NAME = "SELECT * FROM " + DBHelper.TABLE_ITEMS + " WHERE " + DBHelper.COLUMN_ITEM_NAME + " = '%s'";
-	public final static String SQL_GET_ROW_BY_ID = "SELECT * FROM " + DBHelper.TABLE_ITEMS + " WHERE " + DBHelper.COLUMN_ID + " = '%d'";
-
-	
-	public static final String SQL_GET_TIMESTAMP_ROWS_MATCHING_ITEMID = "SELECT " + DBHelper.COLUMN_TIME_ID + " FROM " + DBHelper.TABLE_TIMESTAMPS + " WHERE " + DBHelper.COLUMN_TIME_ITEM_ID + "='%s'";
-	public static final String SQL_DELETE_ALL_ITEM_TIMESTAMPS = "DELETE FROM " + DBHelper.TABLE_TIMESTAMPS + " WHERE " + DBHelper.COLUMN_TIME_ID + " IN (SELECT " + DBHelper.COLUMN_TIME_ID + " FROM "
-			+ DBHelper.TABLE_TIMESTAMPS + " WHERE " + DBHelper.COLUMN_TIME_ITEM_ID + "='%d')";
-	private final String SQL_DELETE_LAST_TIMESTAMP = "DELETE FROM " + DBHelper.TABLE_TIMESTAMPS + " WHERE " + DBHelper.COLUMN_TIME_ID + " IN (SELECT " + DBHelper.COLUMN_TIME_ID + " FROM "
-			+ DBHelper.TABLE_TIMESTAMPS + " WHERE " + DBHelper.COLUMN_TIME_ITEM_ID + "='%d' ORDER BY " + DBHelper.COLUMN_TIME_ID + " DESC LIMIT 1)";
-	public static final String SQL_DELETE_ITEM = "DELETE FROM " + DBHelper.TABLE_ITEMS + " WHERE " + DBHelper.COLUMN_ID + "='%d'";
-	public String item_name;
-	public int totalCounter;
-	public int max_servings = 2;
-	public int day_counter;
-	public long itemID = -1;
+	public long itemID = -1;		// the unique ID of the item
+	public String item_name;		// the name of the item
+	public int totalCounter;		// the current value of the counter
+	public int max_in_period = 2;	// the maximum recommended/periodic counter value	
 	private Context c = null;		// the Context passed to the constructor (may be needed by other methods)
 
 	// Database fields
 	private DBHelper dbHelper;
-	private String[] ITEM_TABLE_COLUMNS = {DBHelper.COLUMN_ID, DBHelper.COLUMN_ITEM_NAME, String.valueOf(DBHelper.COLUMN_VALUE), String.valueOf(DBHelper.COLUMN_MAX) };
 	private SQLiteDatabase database;
 
 	/** 
@@ -46,23 +34,23 @@ public class Item {
 	 * Creates a new item
 	 * @param c
 	 * @param name
-	 * @param max_servings
+	 * @param max_in_period
 	 */
-	public Item(Context c, String name, int max_servings){
+	public Item(Context c, String name, int max_in_period){
 		open(c);
 
 		this.item_name = name;
-		this.max_servings = max_servings;
+		this.max_in_period = max_in_period;
 		
 		// check if this item exists already in the database (check based on name)
 		Cursor results = database.rawQuery(String.format(SQL_GET_ROW_BY_NAME,  name), null); 
 		if (!results.moveToFirst()) {
 			// no existing row found, add one for this item
             ContentValues values = new ContentValues();
-            values.put(DBHelper.COLUMN_ITEM_NAME, name);
-            values.put(DBHelper.COLUMN_VALUE, 0);
-            values.put(DBHelper.COLUMN_MAX, max_servings);
-			long ret = database.insert(DBHelper.TABLE_ITEMS, null, values);
+            values.put(COLUMN_ITEM_NAME, name);
+            values.put(COLUMN_VALUE, 0);
+            values.put(COLUMN_MAX, max_in_period);
+			long ret = database.insert(TABLE_ITEMS, null, values);
 			if (ret < 0) {
 				// error inserting row
 				throw new SQLException();
@@ -102,10 +90,10 @@ public class Item {
 			// if not already done, move to the first row of results
 			results.moveToFirst();
 		}
-		itemID = results.getInt(results.getColumnIndexOrThrow(DBHelper.COLUMN_ID));
-		item_name = results.getString(results.getColumnIndexOrThrow(DBHelper.COLUMN_ITEM_NAME));
-		totalCounter = results.getInt(results.getColumnIndexOrThrow(DBHelper.COLUMN_VALUE));
-		max_servings = results.getInt(results.getColumnIndexOrThrow(DBHelper.COLUMN_MAX));
+		itemID = results.getInt(results.getColumnIndexOrThrow(COLUMN_ID));
+		item_name = results.getString(results.getColumnIndexOrThrow(COLUMN_ITEM_NAME));
+		totalCounter = results.getInt(results.getColumnIndexOrThrow(COLUMN_VALUE));
+		max_in_period = results.getInt(results.getColumnIndexOrThrow(COLUMN_MAX));
 	}
 	
 	/** 
@@ -117,7 +105,7 @@ public class Item {
 	private boolean update(String col, String newValue) {
 	    ContentValues args = new ContentValues();
 	    args.put(col, newValue);
-	    int results = database.update(DBHelper.TABLE_ITEMS, args, DBHelper.COLUMN_ID + " = " + itemID, null);
+	    int results = database.update(TABLE_ITEMS, args, COLUMN_ID + " = " + itemID, null);
 	    if (results < 1) {
 	    	// no rows affected; this didn't work as expected
 	    	return false;
@@ -131,7 +119,7 @@ public class Item {
 	 * @return true if the update succeeded, false otherwise
 	 */
 	public boolean updateMax(int new_max){
-		return update(DBHelper.COLUMN_MAX, String.valueOf(new_max));
+		return update(COLUMN_MAX, String.valueOf(new_max));
 	}
 	
 	/**
@@ -150,7 +138,7 @@ public class Item {
 			return false;
 		}
 		
-		return update(DBHelper.COLUMN_ITEM_NAME, new_name);
+		return update(COLUMN_ITEM_NAME, new_name);
 	}
 
 
@@ -161,15 +149,15 @@ public class Item {
 	 */
 	public int increment() {
 		totalCounter++;
-		update(DBHelper.COLUMN_VALUE, String.valueOf(totalCounter));
+		update(COLUMN_VALUE, String.valueOf(totalCounter));
 		
 		// record the timestamp
 		ContentValues values = new ContentValues();
-        values.put(DBHelper.COLUMN_TIME_ITEM_ID, itemID);
-		long ret = database.insert(DBHelper.TABLE_TIMESTAMPS, null, values);
+        values.put(COLUMN_TIME_ITEM_ID, itemID);
+		long ret = database.insert(TABLE_TIMESTAMPS, null, values);
 		if (ret < 0) {
 			// error inserting row
-			Toast.makeText(c, "Error increasing count of " + item_name, Toast.LENGTH_SHORT).show();
+			Toast.makeText(c, String.format(MSG_ERROR_INCREMENT, item_name), Toast.LENGTH_SHORT).show();
 		}
 			
 		return totalCounter;
@@ -198,12 +186,29 @@ public class Item {
 		
 		if (numRowsBefore == -1 || numRowsAfter + 1 != numRowsBefore) {
 			// this method was supposed to remove one row from this table, but something else happened
-			Toast.makeText(c, "Error decreasing count of " + item_name, Toast.LENGTH_SHORT).show();
+			Toast.makeText(c, String.format(MSG_ERROR_DECREMENT, item_name), Toast.LENGTH_SHORT).show();
 		}
 		
-		update(DBHelper.COLUMN_VALUE, String.valueOf(totalCounter));
+		update(COLUMN_VALUE, String.valueOf(totalCounter));
 		
 		return totalCounter;
+	}
+
+	/** 
+	 * Returns the unique ID of the item
+	 * @return the item ID
+	 */
+	public int getID(){
+		return (int) itemID;
+		
+	}	
+
+	/** 
+	 * Returns the name of the item
+	 * @return the name of the item
+	 */
+	public String getName(){
+		return item_name;
 	}
 	
 	/** 
@@ -214,29 +219,16 @@ public class Item {
 		return totalCounter;
 	}
 	
-	/** 
-	 * Returns the name of the item
-	 * @return the name of the item
-	 */
-	public String getName(){
-		return item_name;
-	}
-
 	/**
 	 * Returns the maximum number of servings
 	 * @return the maximum number of servings
 	 */
-	public int getMaxServings(){
-		return max_servings;
+	public int getMaxInPeriod(){
+		return max_in_period;
 	}
 
 	@Override
 	public String toString() {
 		return item_name;
-	}
-	
-	public int getID(){
-		return (int) itemID;
-		
 	}
 }

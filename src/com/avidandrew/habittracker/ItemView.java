@@ -1,23 +1,21 @@
 package com.avidandrew.habittracker;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.text.Editable;
-import android.text.InputFilter;
-import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import static com.avidandrew.habittracker.Constants.*;
 
+@SuppressLint("ViewConstructor")
 public class ItemView extends TableRow {
-	
-	
 	private Item item = null;
 	private TextView counterView = null;
+	
 	public ItemView(Context c, Item i) {
 		super(c);
 		
@@ -29,10 +27,9 @@ public class ItemView extends TableRow {
 		params.gravity =  Gravity.CENTER_VERTICAL;
 		counterView.setLayoutParams(params);
 		
-
 		//Create Minus button
 		Button minus = new Button(c);
-		minus.setText("-");
+		minus.setText(BUTTON_MINUS);
 		addView(minus);
 		minus.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
 		minus.setOnClickListener(new View.OnClickListener() {
@@ -56,17 +53,19 @@ public class ItemView extends TableRow {
 			public void onClick(View v) {
 				Intent edit_item = new Intent(getContext(), Edit_Item.class);
 				
-				edit_item.putExtra("name", item.getName());
-				edit_item.putExtra("max", item.getMaxServings());
-				getContext().startActivity(edit_item);
+				// make the name and max variables available in the new activity
+				edit_item.putExtra(EXTRA_NAME, item.getName());
+				edit_item.putExtra(EXTRA_MAX, item.getMaxInPeriod());
 				
+				// launch the new activity
+				getContext().startActivity(edit_item);
 			}
 		});
 		
 		
 		//Create the plus button
 		Button plus = new Button(c);
-		plus.setText("+");
+		plus.setText(BUTTON_PLUS);
 		plus.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
 		plus.setOnClickListener(new View.OnClickListener() {
 			
@@ -81,10 +80,9 @@ public class ItemView extends TableRow {
 		//Set Total Counter
 		setCounterValue();
 		addView(counterView);
-		
 	}
 	
 	private void setCounterValue() {
-		counterView.setText(item.getCounterValue() + "/" + item.getMaxServings());
+		counterView.setText(item.getCounterValue() + "/" + item.getMaxInPeriod());
 	}
 }
