@@ -44,7 +44,7 @@ public class Add_Item_Activity extends Activity{
 				else if (quantity_field.getText().toString().equals("")){
 					Toast.makeText(getBaseContext(), "Quantity cannot be empty", Toast.LENGTH_SHORT).show();
 				}
-				else if (dbHelper.itemNameExists(getBaseContext(), item_name)) {
+				else if (dbHelper.itemNameExists(item_name)) {
 					Toast.makeText(getBaseContext(), "An item with the same name already exists", Toast.LENGTH_SHORT).show();
 				}
 				else{

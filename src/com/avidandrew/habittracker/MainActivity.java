@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
 	 */
 	private void loadItems() {
 		DBHelper db = new DBHelper(this);
-		ArrayList<Item> items = db.getItems(this);
+		ArrayList<Item> items = db.getItems();
 		if (items == null || items.size() == 0) {
 			// load sample data
 			loadSampleData();

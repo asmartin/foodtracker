@@ -41,14 +41,14 @@ public class Edit_Item extends Activity{
 			public void onClick(View v) {
 				EditText item_name_field = (EditText) findViewById(R.id.edit_item_name);
 				EditText max_quantity_field = (EditText) findViewById(R.id.edit_max_quantity);
-				Item thisItem = dbHelper.getItem(getBaseContext(), nameText);
+				Item thisItem = dbHelper.getItem(nameText);
 				if (thisItem == null) {
 					Toast.makeText(getBaseContext(), "Item cannot be updated - not found in database", Toast.LENGTH_SHORT).show();
 				} else {
 					// update the name and max quantity
 					boolean error = false;
 					String name = item_name_field.getText().toString();
-					if (dbHelper.itemNameExists(getBaseContext(), name)) {
+					if (dbHelper.itemNameExists(name)) {
 						Toast.makeText(getBaseContext(), "An item with the same name already exists", Toast.LENGTH_SHORT).show();
 						error = true;
 					}
@@ -99,7 +99,7 @@ public class Edit_Item extends Activity{
 
 			        public void onClick(DialogInterface dialog, int which) {
 			        	
-						Item thisItem = dbHelper.getItem(getBaseContext(), nameText);
+						Item thisItem = dbHelper.getItem(nameText);
 						if(thisItem == null){
 							
 							Toast.makeText(getBaseContext(), "Error Deleting Item", Toast.LENGTH_SHORT).show();

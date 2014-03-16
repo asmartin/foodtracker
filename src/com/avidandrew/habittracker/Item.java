@@ -144,7 +144,7 @@ public class Item {
 			return true;
 		}
 
-		if (dbHelper.itemNameExists(c, new_name)) {
+		if (dbHelper.itemNameExists(new_name)) {
 			// another item in the database has the same name, refuse to update
 			return false;
 		}
