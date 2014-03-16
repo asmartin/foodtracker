@@ -41,7 +41,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	}
 	
 	/** 
-	 * initialize the database connector
+	 * initialize the SQLiteDatabase object
 	 */
 	private void dbInit() {
 		if (database == null) {
