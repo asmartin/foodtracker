@@ -38,16 +38,23 @@ public class DBHelper extends SQLiteOpenHelper {
 	
 	public DBHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		
 	}
 	
+	/** 
+	 * initialize the database connector
+	 */
+	private void dbInit() {
+		if (database == null) {
+			database = this.getWritableDatabase();
+		}
+	}
 	/** 
 	 * Gets all of the items currently in the database
 	 * @param c the current context
 	 * @return a list of the items in the database, or an empty list if the database is empty
 	 */
 	public ArrayList<Item> getItems(Context c) {
-		database = this.getReadableDatabase();
+		dbInit();
 		ArrayList<Item> items = new ArrayList<Item>();
 		Cursor results = database.rawQuery(Item.SQL_GET_ALL_ROWS, null);
 		
@@ -62,7 +69,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	
 	
 	public boolean deleteItem(int item_id){
-		
+		dbInit();
 		// remove the last timestamp row
 		database.execSQL(String.format(Item.SQL_DELETE_ALL_ITEM_TIMESTAMPS, item_id));
 		database.execSQL(String.format(Item.SQL_DELETE_ITEM, item_id));
@@ -82,6 +89,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	 * @return returns the number of rows matching the query, or -1 if none found
 	 */
 	public int getNumRows(String sql) {
+		dbInit();
 		Cursor results = database.rawQuery(sql, null);
 		if (results == null || results.getCount() < 0) {
 			// can't get any existing rows
@@ -101,8 +109,8 @@ public class DBHelper extends SQLiteOpenHelper {
 	 * @return null if item not found in the database, else an object representing the item
 	 */
 	public Item getItem(Context c, String name) {
-		database = this.getReadableDatabase();
 		Item thisItem = null;
+		dbInit();
 		Cursor results = database.rawQuery(String.format(Item.SQL_GET_ROW_BY_NAME, name), null);
 		
 		if (results.moveToFirst()) {
