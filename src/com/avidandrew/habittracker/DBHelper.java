@@ -23,6 +23,8 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String DATABASE_NAME = "foodtracker.db";	// name of the database
 	public static final int DATABASE_VERSION = 1;
 	private SQLiteDatabase database = null;
+	
+	private Context c = null;		// the Context passed to the constructor (may be needed by other methods)
 
 	// Database creation SQL statement
 	private static final String TABLE_CREATE_ITEMS = "Create table " + TABLE_ITEMS
@@ -38,6 +40,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	
 	public DBHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		this.c = context;	// save the context for use in methods
 	}
 	
 	/** 
@@ -48,12 +51,13 @@ public class DBHelper extends SQLiteOpenHelper {
 			database = this.getWritableDatabase();
 		}
 	}
+
 	/** 
 	 * Gets all of the items currently in the database
 	 * @param c the current context
 	 * @return a list of the items in the database, or an empty list if the database is empty
 	 */
-	public ArrayList<Item> getItems(Context c) {
+	public ArrayList<Item> getItems() {
 		dbInit();
 		ArrayList<Item> items = new ArrayList<Item>();
 		Cursor results = database.rawQuery(Item.SQL_GET_ALL_ROWS, null);
@@ -108,7 +112,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	 * @param name the name of the item to get
 	 * @return null if item not found in the database, else an object representing the item
 	 */
-	public Item getItem(Context c, String name) {
+	public Item getItem(String name) {
 		Item thisItem = null;
 		dbInit();
 		Cursor results = database.rawQuery(String.format(Item.SQL_GET_ROW_BY_NAME, name), null);
@@ -120,10 +124,14 @@ public class DBHelper extends SQLiteOpenHelper {
         return thisItem;
 	}
 	
-	
-	
-	public boolean itemNameExists(Context c, String name) {
-		ArrayList<Item> items = getItems(c);
+	/** 
+	 * Checks if an item with the specified name already exits
+	 * @param c the current context
+	 * @param name the name to search for
+	 * @return true if the name is already used by an item, false otherwise
+	 */
+	public boolean itemNameExists(String name) {
+		ArrayList<Item> items = getItems();
 		if (items == null) {
 			return false;
 		} else {
@@ -151,6 +159,10 @@ public class DBHelper extends SQLiteOpenHelper {
 		db.execSQL(TABLE_CREATE_TIMESTAMPS);
 	}
 	
+	/**
+	 * deletes all content from the database
+	 * @param c the current context
+	 */
 	public static void emptyDB(Context c) {
 		DBHelper dbh = new DBHelper(c);
 		SQLiteDatabase d = dbh.getWritableDatabase();
