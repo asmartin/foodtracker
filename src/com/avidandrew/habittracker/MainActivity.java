@@ -144,9 +144,6 @@ public class MainActivity extends Activity {
 	
 	public void importDB(){
 		
-		
-		
-		
 	}
 	
 	public void exportDB(){

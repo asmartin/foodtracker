@@ -29,7 +29,7 @@ public class Edit_Item extends Activity{
 		
 		//Update text for those fields
 		item_name_field.setText(item_name);
-		max_quantity_field.setText("" + max_quant);
+		max_quantity_field.setText(String.valueOf(max_quant));
 		
 		//On Click listener for the save changes button
 		 Button save_button = (Button) findViewById(R.id.save_changes);
@@ -37,8 +37,6 @@ public class Edit_Item extends Activity{
 			
 			@Override
 			public void onClick(View v) {
-				//TODO
-				
 			
 				
 				
