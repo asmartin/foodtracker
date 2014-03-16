@@ -20,6 +20,7 @@ public class Item {
 	public int max_servings = 2;
 	public int day_counter;
 	public long itemID = -1;
+	private Context c = null;		// the Context passed to the constructor (may be needed by other methods)
 
 	// Database fields
 	private DBHelper dbHelper;
@@ -27,6 +28,7 @@ public class Item {
 	private SQLiteDatabase database;
 
 	public void open(Context c) throws SQLException {
+		this.c = c;		// save the context for use later in methods
 		dbHelper = new DBHelper(c);
 		database = dbHelper.getWritableDatabase();
 	}
@@ -114,11 +116,31 @@ public class Item {
 	    return true;
 	}
 	
+	/**
+	 * Updates the max value of the item
+	 * @param new_max the new max value
+	 * @return true if the update succeeded, false otherwise
+	 */
 	public boolean updateMax(int new_max){
 		return update(DBHelper.COLUMN_MAX, String.valueOf(new_max));
 	}
 	
+	/**
+	 * Updates the name of the item; does not check if a different item already 
+	 * @param new_name the new name to give the item
+	 * @return true if the update succeeded, false otherwise
+	 */
 	public boolean updateName(String new_name){
+		if (new_name.equals(item_name)) {
+			// the new name is the same as the old name, no need to do anything
+			return true;
+		}
+
+		if (dbHelper.itemNameExists(c, new_name)) {
+			// another item in the database has the same name, refuse to update
+			return false;
+		}
+		
 		return update(DBHelper.COLUMN_ITEM_NAME, new_name);
 	}
 
