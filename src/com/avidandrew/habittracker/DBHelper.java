@@ -78,6 +78,8 @@ public class DBHelper extends SQLiteOpenHelper {
         return thisItem;
 	}
 	
+	
+	
 	public boolean itemNameExists(Context c, String name) {
 		ArrayList<Item> items = getItems(c);
 		if (items == null) {

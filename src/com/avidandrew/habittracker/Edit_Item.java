@@ -12,15 +12,15 @@ import android.widget.Toast;
 
 public class Edit_Item extends Activity{
 	private DBHelper dbHelper = new DBHelper(this);
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		setContentView(R.layout.edit_item_activity);
-		
+
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		
+
 		//Update text for those fields
 		String item_name = getIntent().getStringExtra("name");
 		int max_quant = getIntent().getIntExtra("max",  0);
@@ -28,13 +28,13 @@ public class Edit_Item extends Activity{
 		EditText max_quantity_field2 = (EditText) findViewById(R.id.edit_max_quantity);
 		item_name_field2.setText(item_name);
 		max_quantity_field2.setText(String.valueOf(max_quant));
-		
+
 		final String nameText = item_name_field2.getText().toString();
-		
+
 		//On Click listener for the save changes button
-		 Button save_button = (Button) findViewById(R.id.save_changes);
-		 save_button.setOnClickListener(new View.OnClickListener() {
-			
+		Button save_button = (Button) findViewById(R.id.save_changes);
+		save_button.setOnClickListener(new View.OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
 				EditText item_name_field = (EditText) findViewById(R.id.edit_item_name);
@@ -46,14 +46,18 @@ public class Edit_Item extends Activity{
 					// update the name and max quantity
 					// TODO: check return values
 					String name = item_name_field.getText().toString();
-					if (!thisItem.getName().equals(name)) {
+					if (dbHelper.itemNameExists(getBaseContext(), name)) {
+						Toast.makeText(getBaseContext(), "An item with the same name already exists", Toast.LENGTH_SHORT).show();
+					}
+
+					else if (!thisItem.getName().equals(name)) {
 						if (!thisItem.updateName(name)) {
 							Toast.makeText(getBaseContext(), "Error updating name", Toast.LENGTH_SHORT).show();
 						}
 						Toast.makeText(getBaseContext(), "Item name set to " + name, Toast.LENGTH_SHORT).show();
 					}
-					
-					
+
+
 					try {
 						int max = Integer.parseInt(max_quantity_field.getText().toString());
 						if (thisItem.getMaxServings() != max) {
@@ -68,28 +72,30 @@ public class Edit_Item extends Activity{
 				}
 			}
 		});
-		 
+
 		//On Click Listener for the Delete Item button
-		 
-		 Button delete_item = (Button) findViewById(R.id.delete_item);
-		 delete_item.setOnClickListener(new View.OnClickListener() {
-			
+
+		Button delete_item = (Button) findViewById(R.id.delete_item);
+		delete_item.setOnClickListener(new View.OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
+
+
+
 			}
 		});
-		 
+
 	}
-	
-	
+
+
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == android.R.id.home) {
 			finish();
 		}
 		return super.onOptionsItemSelected(item);
-		}
+	}
 
-	
+
 }
