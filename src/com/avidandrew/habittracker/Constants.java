@@ -35,29 +35,6 @@ public class Constants {
 	// Sample Data
 	public static final String[][] SAMPLE_DATA = { {"Fats, Oils, Sweets", "1"}, {"Meat", "2"}, {"Eggs", "2"}, {"Dairy", "3"}, {"Fruits", "4"}, {"Vegetables", "5"}, {"Breads, Carbs", "3"}, {"Nuts", "4"} };
 
-	// Buttons
-	public static final String BUTTON_YES = "YES";
-	public static final String BUTTON_NO = "NO";
-	public static final String BUTTON_MINUS = "-";
-	public static final String BUTTON_PLUS = "+";	
 	
-	// Message Strings
-	public static final String MSG_INFO_UPDATE_NAME = "Item name set to %s";
-	public static final String MSG_INFO_UPDATE_MAX = "Max set to %d";
-	public static final String MSG_INFO_ADD_SUCCESS = "Item Added. Hit back to return to the list.";
-	public static final String MSG_INFO_CONFIRM_DELETE_TITLE = "Confirm Delete";
-	public static final String MSG_INFO_CONFIRM_DELETE_TEXT = "Are you sure you want to delete this item?";
-	public static final String MSG_INFO_DELETE_SUCCESS = "Item deleted successfully";
-	
-	public static final String MSG_ERROR_INCREMENT = "Error increasing count of %s";
-	public static final String MSG_ERROR_DECREMENT = "Error decreasing count of %s";
-	public static final String MSG_ERROR_NAME_EMPTY = "Item Name cannot be empty";
-	public static final String MSG_ERROR_MAX_EMPTY = "Max Quantity cannot be empty";
-	public static final String MSG_ERROR_MAX_NAN = "Error: Max must be a number";
-	public static final String MSG_ERROR_NAME_DUPLICATE = "An item with the same name already exists";
-	public static final String MSG_ERROR_NOT_IN_DATABASE = "Item cannot be updated - not found in database";
-	public static final String MSG_ERROR_UPDATE_NAME = "Error updating name";
-	public static final String MSG_ERROR_UPDATE_MAX = "Error updating max";
-	public static final String MSG_ERROR_DELETE_ITEM = "Error deleting Item";
 	
 }

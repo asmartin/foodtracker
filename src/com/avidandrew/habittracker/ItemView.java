@@ -1,5 +1,7 @@
 package com.avidandrew.habittracker;
 
+import com.example.first_app.R;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -29,7 +31,7 @@ public class ItemView extends TableRow {
 		
 		//Create Minus button
 		Button minus = new Button(c);
-		minus.setText(BUTTON_MINUS);
+		minus.setText(R.string.BUTTON_MINUS);
 		addView(minus);
 		minus.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
 		minus.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +67,7 @@ public class ItemView extends TableRow {
 		
 		//Create the plus button
 		Button plus = new Button(c);
-		plus.setText(BUTTON_PLUS);
+		plus.setText(R.string.BUTTON_PLUS);
 		plus.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
 		plus.setOnClickListener(new View.OnClickListener() {
 			

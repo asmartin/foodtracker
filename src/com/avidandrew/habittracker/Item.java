@@ -1,20 +1,23 @@
 package com.avidandrew.habittracker;
 
+import com.example.first_app.R;
+
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 import static com.avidandrew.habittracker.Constants.*;
 
-public class Item {
+public class Item extends Object{
 	public long itemID = -1;		// the unique ID of the item
 	public String item_name;		// the name of the item
 	public int totalCounter;		// the current value of the counter
 	public int max_in_period = 2;	// the maximum recommended/periodic counter value	
 	private Context c = null;		// the Context passed to the constructor (may be needed by other methods)
-
+	
 	// Database fields
 	private DBHelper dbHelper;
 	private SQLiteDatabase database;
@@ -140,14 +143,13 @@ public class Item {
 		
 		return update(COLUMN_ITEM_NAME, new_name);
 	}
-
-
 	
 	/**
 	 * Increments the counter; updates the data in the database
 	 * @return the new value of the counter
 	 */
 	public int increment() {
+		
 		totalCounter++;
 		update(COLUMN_VALUE, String.valueOf(totalCounter));
 		
@@ -157,10 +159,23 @@ public class Item {
 		long ret = database.insert(TABLE_TIMESTAMPS, null, values);
 		if (ret < 0) {
 			// error inserting row
-			Toast.makeText(c, String.format(MSG_ERROR_INCREMENT, item_name), Toast.LENGTH_SHORT).show();
+				
+			
+			// String resource = getResources().getString(R.string.MSG_INFO_UPDATE_MAX);
+						
+			Toast.makeText(c, String.format(getResource().getResourceName(R.string.MSG_ERROR_INCREMENT), item_name), Toast.LENGTH_SHORT).show();
 		}
 			
 		return totalCounter;
+	}
+	
+	/**
+	 * Get handle in order to access String Resources.
+	 * @return	Resource to accesss strings
+	 */
+	public  Resources getResource(){
+		
+		return getResource();
 	}
 	
 	/**
@@ -186,7 +201,8 @@ public class Item {
 		
 		if (numRowsBefore == -1 || numRowsAfter + 1 != numRowsBefore) {
 			// this method was supposed to remove one row from this table, but something else happened
-			Toast.makeText(c, String.format(MSG_ERROR_DECREMENT, item_name), Toast.LENGTH_SHORT).show();
+			
+			Toast.makeText(c, String.format(getResource().getResourceName(R.string.MSG_ERROR_DECREMENT), item_name), Toast.LENGTH_SHORT).show();
 		}
 		
 		update(COLUMN_VALUE, String.valueOf(totalCounter));

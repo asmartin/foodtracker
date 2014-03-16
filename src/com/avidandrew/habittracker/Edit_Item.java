@@ -16,6 +16,7 @@ import static com.avidandrew.habittracker.Constants.*;
 public class Edit_Item extends Activity{
 	private DBHelper dbHelper = new DBHelper(this);
 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,22 +45,23 @@ public class Edit_Item extends Activity{
 				EditText max_quantity_field = (EditText) findViewById(R.id.edit_max_quantity);
 				Item thisItem = dbHelper.getItem(nameText);
 				if (thisItem == null) {
-					Toast.makeText(getBaseContext(), MSG_ERROR_NOT_IN_DATABASE, Toast.LENGTH_SHORT).show();
+					Toast.makeText(getBaseContext(), R.string.MSG_ERROR_NOT_IN_DATABASE, Toast.LENGTH_SHORT).show();
 				} else {
 					// update the name and max quantity
 					boolean error = false;
 					String name = item_name_field.getText().toString();
 					if (dbHelper.itemNameExists(name)) {
-						Toast.makeText(getBaseContext(), MSG_ERROR_NAME_DUPLICATE, Toast.LENGTH_SHORT).show();
+						Toast.makeText(getBaseContext(), R.string.MSG_ERROR_NAME_DUPLICATE, Toast.LENGTH_SHORT).show();
 						error = true;
 					}
 
 					else if (!thisItem.getName().equals(name)) {
 						if (!thisItem.updateName(name)) {
-							Toast.makeText(getBaseContext(), MSG_ERROR_UPDATE_NAME, Toast.LENGTH_SHORT).show();
+							Toast.makeText(getBaseContext(), R.string.MSG_ERROR_UPDATE_NAME, Toast.LENGTH_SHORT).show();
 							error = true;
 						}
-						Toast.makeText(getBaseContext(), String.format(MSG_INFO_UPDATE_NAME, name), Toast.LENGTH_SHORT).show();
+						String resource = getResources().getString(R.string.MSG_INFO_UPDATE_NAME);
+						Toast.makeText(getBaseContext(), String.format(resource, name), Toast.LENGTH_SHORT).show();
 					}
 
 
@@ -67,13 +69,14 @@ public class Edit_Item extends Activity{
 						int max = Integer.parseInt(max_quantity_field.getText().toString());
 						if (thisItem.getMaxInPeriod() != max) {
 							if (!thisItem.updateMax(max)) {
-								Toast.makeText(getBaseContext(), MSG_ERROR_UPDATE_MAX, Toast.LENGTH_SHORT).show();
+								Toast.makeText(getBaseContext(), R.string.MSG_ERROR_UPDATE_MAX, Toast.LENGTH_SHORT).show();
 								error = true;
 							}
-							Toast.makeText(getBaseContext(), String.format(MSG_INFO_UPDATE_MAX, max), Toast.LENGTH_SHORT).show();
+							String resource = getResources().getString(R.string.MSG_INFO_UPDATE_MAX);
+							Toast.makeText(getBaseContext(), String.format(resource), Toast.LENGTH_SHORT).show();
 						}
 					} catch (NumberFormatException nfe) {
-						Toast.makeText(getBaseContext(), MSG_ERROR_MAX_NAN, Toast.LENGTH_SHORT).show();
+						Toast.makeText(getBaseContext(), R.string.MSG_ERROR_MAX_NAN, Toast.LENGTH_SHORT).show();
 						error = true;
 					}
 					
@@ -94,29 +97,29 @@ public class Edit_Item extends Activity{
 			public void onClick(View v) {
 				
 				AlertDialog.Builder builder = new AlertDialog.Builder(Edit_Item.this);
-			    builder.setTitle(MSG_INFO_CONFIRM_DELETE_TITLE);
-			    builder.setMessage(MSG_INFO_CONFIRM_DELETE_TEXT);
-			    builder.setPositiveButton(BUTTON_YES, new DialogInterface.OnClickListener() {
+			    builder.setTitle(R.string.MSG_INFO_CONFIRM_DELETE_TITLE);
+			    builder.setMessage(R.string.MSG_INFO_CONFIRM_DELETE_TEXT);
+			    builder.setPositiveButton(R.string.BUTTON_YES, new DialogInterface.OnClickListener() {
 
 			        public void onClick(DialogInterface dialog, int which) {
 			        	
 						Item thisItem = dbHelper.getItem(nameText);
 						if(thisItem == null){
 							
-							Toast.makeText(getBaseContext(), MSG_ERROR_DELETE_ITEM, Toast.LENGTH_SHORT).show();
+							Toast.makeText(getBaseContext(), R.string.MSG_ERROR_DELETE_ITEM, Toast.LENGTH_SHORT).show();
 						}
 						
 			        	if(dbHelper.deleteItem(thisItem.getID())){
-			        		Toast.makeText(getBaseContext(), MSG_INFO_DELETE_SUCCESS, Toast.LENGTH_SHORT).show();
+			        		Toast.makeText(getBaseContext(), R.string.MSG_INFO_DELETE_SUCCESS, Toast.LENGTH_SHORT).show();
 			        		finish();
 			        	}
-			        	else {Toast.makeText(getBaseContext(), MSG_ERROR_DELETE_ITEM, Toast.LENGTH_SHORT).show();}
+			        	else {Toast.makeText(getBaseContext(), R.string.MSG_ERROR_DELETE_ITEM, Toast.LENGTH_SHORT).show();}
 			          
 			        }
 
 			    });
 
-			    builder.setNegativeButton(BUTTON_NO, new DialogInterface.OnClickListener() {
+			    builder.setNegativeButton(R.string.BUTTON_NO, new DialogInterface.OnClickListener() {
 
 			        @Override
 			        public void onClick(DialogInterface dialog, int which) {

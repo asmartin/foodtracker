@@ -36,13 +36,13 @@ public class Add_Item_Activity extends Activity{
 				
 				//Check that fields aren't empty
 				if(item_name.equals("")){
-					Toast.makeText(getBaseContext(), MSG_ERROR_NAME_EMPTY, Toast.LENGTH_SHORT).show();
+					Toast.makeText(getBaseContext(), R.string.MSG_ERROR_NAME_EMPTY, Toast.LENGTH_SHORT).show();
 				}
 				else if (quantity_field.getText().toString().equals("")){
-					Toast.makeText(getBaseContext(), MSG_ERROR_MAX_EMPTY, Toast.LENGTH_SHORT).show();
+					Toast.makeText(getBaseContext(), R.string.MSG_ERROR_MAX_EMPTY, Toast.LENGTH_SHORT).show();
 				}
 				else if (dbHelper.itemNameExists(item_name)) {
-					Toast.makeText(getBaseContext(), MSG_ERROR_NAME_DUPLICATE, Toast.LENGTH_SHORT).show();
+					Toast.makeText(getBaseContext(), R.string.MSG_ERROR_NAME_DUPLICATE, Toast.LENGTH_SHORT).show();
 				}
 				else{
 					//If not empty then add to DB
@@ -52,7 +52,7 @@ public class Add_Item_Activity extends Activity{
 					//Clear Fields
 					item_name_field.setText("");
 					quantity_field.setText(null);
-					Toast.makeText(getBaseContext(), MSG_INFO_ADD_SUCCESS, Toast.LENGTH_SHORT).show();
+					Toast.makeText(getBaseContext(), R.string.MSG_INFO_ADD_SUCCESS, Toast.LENGTH_SHORT).show();
 
 				}	
 

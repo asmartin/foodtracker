@@ -49,6 +49,30 @@ public final class R {
         public static final int main=0x7f070000;
     }
     public static final class string {
+        public static final int BUTTON_MINUS=0x7f050012;
+        public static final int BUTTON_NO=0x7f050011;
+        public static final int BUTTON_PLUS=0x7f050013;
+        /**  	Buttons    
+         */
+        public static final int BUTTON_YES=0x7f050010;
+        public static final int MSG_ERROR_DECREMENT=0x7f05001b;
+        public static final int MSG_ERROR_DELETE_ITEM=0x7f050023;
+        public static final int MSG_ERROR_INCREMENT=0x7f05001a;
+        public static final int MSG_ERROR_MAX_EMPTY=0x7f05001d;
+        public static final int MSG_ERROR_MAX_NAN=0x7f05001e;
+        public static final int MSG_ERROR_NAME_DUPLICATE=0x7f05001f;
+        public static final int MSG_ERROR_NAME_EMPTY=0x7f05001c;
+        public static final int MSG_ERROR_NOT_IN_DATABASE=0x7f050020;
+        public static final int MSG_ERROR_UPDATE_MAX=0x7f050022;
+        public static final int MSG_ERROR_UPDATE_NAME=0x7f050021;
+        /**  Message Strings 
+         */
+        public static final int MSG_INFO_ADD_SUCCESS=0x7f050014;
+        public static final int MSG_INFO_CONFIRM_DELETE_TEXT=0x7f050016;
+        public static final int MSG_INFO_CONFIRM_DELETE_TITLE=0x7f050015;
+        public static final int MSG_INFO_DELETE_SUCCESS=0x7f050017;
+        public static final int MSG_INFO_UPDATE_MAX=0x7f050019;
+        public static final int MSG_INFO_UPDATE_NAME=0x7f050018;
         public static final int action_settings=0x7f050001;
         public static final int add_item=0x7f05000d;
         public static final int app_name=0x7f050000;
