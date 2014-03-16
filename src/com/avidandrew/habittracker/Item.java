@@ -27,6 +27,11 @@ public class Item {
 	private String[] ITEM_TABLE_COLUMNS = {DBHelper.COLUMN_ID, DBHelper.COLUMN_ITEM_NAME, String.valueOf(DBHelper.COLUMN_VALUE), String.valueOf(DBHelper.COLUMN_MAX) };
 	private SQLiteDatabase database;
 
+	/** 
+	 * opens the database connection
+	 * @param c
+	 * @throws SQLException
+	 */
 	public void open(Context c) throws SQLException {
 		this.c = c;		// save the context for use later in methods
 		dbHelper = new DBHelper(c);
