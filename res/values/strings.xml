@@ -34,8 +34,8 @@
 	<string name="MSG_INFO_DELETE_SUCCESS">Item deleted successfully</string> 
 	
 	
-	<string name="MSG_INFO_UPDATE_NAME">Item name set to %s</string> 
-	<string name="MSG_INFO_UPDATE_MAX">Max set to %d</string> 
+	<string name="MSG_INFO_UPDATE_NAME">Item name set to</string> 
+	<string name="MSG_INFO_UPDATE_MAX">Max set to</string> 
 	
 	<string name="MSG_ERROR_INCREMENT">Error increasing count of %s</string> 
 	<string name="MSG_ERROR_DECREMENT">Error decreasing count of %s</string> 
