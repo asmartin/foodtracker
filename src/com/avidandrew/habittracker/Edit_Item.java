@@ -3,6 +3,8 @@ package com.avidandrew.habittracker;
 import com.example.first_app.R;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -80,9 +82,28 @@ public class Edit_Item extends Activity{
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				
+				AlertDialog.Builder builder = new AlertDialog.Builder(Edit_Item.this);
+			    builder.setTitle("Confirm");
+			    builder.setMessage("Are you sure?");
+			    builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 
+			        public void onClick(DialogInterface dialog, int which) {
+			          
+			        }
 
+			    });
+
+			    builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+			        @Override
+			        public void onClick(DialogInterface dialog, int which) {
+			          
+			        }
+			    });
+
+			    AlertDialog alert = builder.create();
+			    alert.show();
 
 			}
 		});
