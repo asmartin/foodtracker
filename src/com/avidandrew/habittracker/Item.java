@@ -99,7 +99,7 @@ public class Item {
 	 * @param col the name of the column to update
 	 * @param newValue the new value
 	 */
-	private void update(String col, int newValue) {
+	private void update(String col, String newValue) {
 	    ContentValues args = new ContentValues();
 	    args.put(col, newValue);
 	    int results = database.update(DBHelper.TABLE_ITEMS, args, DBHelper.COLUMN_ID + " = " + itemID, null);
@@ -110,13 +110,11 @@ public class Item {
 	}
 	
 	public void updateMax(int new_max){
-		
-		
+		update(DBHelper.COLUMN_MAX, String.valueOf(new_max));
 	}
 	
 	public void updateName(String new_name){
-		
-		
+		update(DBHelper.COLUMN_ITEM_NAME, new_name);
 	}
 
 	/**
@@ -141,7 +139,7 @@ public class Item {
 	 */
 	public int increment() {
 		totalCounter++;
-		update(DBHelper.COLUMN_VALUE, totalCounter);
+		update(DBHelper.COLUMN_VALUE, String.valueOf(totalCounter));
 		
 		// record the timestamp
 		ContentValues values = new ContentValues();
@@ -181,7 +179,7 @@ public class Item {
 			throw new SQLException();
 		}
 		
-		update(DBHelper.COLUMN_VALUE, totalCounter);
+		update(DBHelper.COLUMN_VALUE, String.valueOf(totalCounter));
 		
 		return totalCounter;
 	}
