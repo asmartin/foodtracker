@@ -9,12 +9,15 @@ import android.database.sqlite.SQLiteDatabase;
 public class Item {
 	public final static String SQL_GET_ALL_ROWS = "SELECT * FROM " + DBHelper.TABLE_ITEMS + " WHERE 1";	// needs to be public because is used in DBHelper
 	public final static String SQL_GET_ROW_BY_NAME = "SELECT * FROM " + DBHelper.TABLE_ITEMS + " WHERE " + DBHelper.COLUMN_ITEM_NAME + " = '%s'";
-	private final String SQL_GET_TIMESTAMP_ROWS_MATCHING_ITEMID = "SELECT " + DBHelper.COLUMN_TIME_ID + " FROM " + DBHelper.TABLE_TIMESTAMPS + " WHERE " + DBHelper.COLUMN_TIME_ITEM_ID + "='%s'";
-	private final String SQL_DELETE_ALL_ITEM_TIMESTAMPS = "DELETE FROM " + DBHelper.TABLE_TIMESTAMPS + " WHERE " + DBHelper.COLUMN_TIME_ID + " IN (SELECT " + DBHelper.COLUMN_TIME_ID + " FROM "
+	public final static String SQL_GET_ROW_BY_ID = "SELECT * FROM " + DBHelper.TABLE_ITEMS + " WHERE " + DBHelper.COLUMN_ID + " = '%d'";
+
+	
+	public static final String SQL_GET_TIMESTAMP_ROWS_MATCHING_ITEMID = "SELECT " + DBHelper.COLUMN_TIME_ID + " FROM " + DBHelper.TABLE_TIMESTAMPS + " WHERE " + DBHelper.COLUMN_TIME_ITEM_ID + "='%s'";
+	public static final String SQL_DELETE_ALL_ITEM_TIMESTAMPS = "DELETE FROM " + DBHelper.TABLE_TIMESTAMPS + " WHERE " + DBHelper.COLUMN_TIME_ID + " IN (SELECT " + DBHelper.COLUMN_TIME_ID + " FROM "
 			+ DBHelper.TABLE_TIMESTAMPS + " WHERE " + DBHelper.COLUMN_TIME_ITEM_ID + "='%d')";
 	private final String SQL_DELETE_LAST_TIMESTAMP = "DELETE FROM " + DBHelper.TABLE_TIMESTAMPS + " WHERE " + DBHelper.COLUMN_TIME_ID + " IN (SELECT " + DBHelper.COLUMN_TIME_ID + " FROM "
 			+ DBHelper.TABLE_TIMESTAMPS + " WHERE " + DBHelper.COLUMN_TIME_ITEM_ID + "='%d' ORDER BY " + DBHelper.COLUMN_TIME_ID + " DESC LIMIT 1)";
-	private final String SQL_DELETE_ITEM = "DELETE FROM " + DBHelper.TABLE_ITEMS + " WHERE " + DBHelper.COLUMN_ID + "='%d'";
+	public static final String SQL_DELETE_ITEM = "DELETE FROM " + DBHelper.TABLE_ITEMS + " WHERE " + DBHelper.COLUMN_ID + "='%d'";
 	public String item_name;
 	public int totalCounter;
 	public int max_servings = 2;
@@ -149,21 +152,7 @@ public class Item {
 		return update(DBHelper.COLUMN_ITEM_NAME, new_name);
 	}
 
-	/**
-	 * Returns the number of rows matching the query
-	 * @param sql the SQL query to use to query the rows
-	 * @return returns the number of rows matching the query, or -1 if none found
-	 */
-	private int getNumRows(String sql) {
-		Cursor results = database.rawQuery(sql, null);
-		if (results == null || results.getCount() < 0) {
-			// can't get any existing rows
-			return -1;
-		}
-		int numRows = results.getCount();
-		results.close();
-		return numRows;
-	}
+
 	
 	/**
 	 * Increments the counter; updates the data in the database
@@ -198,13 +187,13 @@ public class Item {
 		totalCounter--;
 		
 		// check how many timestamp rows there are before the removal
-		int numRowsBefore = getNumRows(String.format(SQL_GET_TIMESTAMP_ROWS_MATCHING_ITEMID, itemID));
+		int numRowsBefore = dbHelper.getNumRows(String.format(SQL_GET_TIMESTAMP_ROWS_MATCHING_ITEMID, itemID));
 		
 		// remove the last timestamp row
 		database.execSQL(String.format(SQL_DELETE_LAST_TIMESTAMP, itemID));
 		
 		// check how many timestamp rows there are after the removal (should be one less)
-		int numRowsAfter = getNumRows(String.format(SQL_GET_TIMESTAMP_ROWS_MATCHING_ITEMID, itemID));
+		int numRowsAfter = dbHelper.getNumRows(String.format(SQL_GET_TIMESTAMP_ROWS_MATCHING_ITEMID, itemID));
 		
 		if (numRowsBefore == -1 || numRowsAfter + 1 != numRowsBefore) {
 			// this method was supposed to remove one row from this table, but something else happened
@@ -243,5 +232,10 @@ public class Item {
 	@Override
 	public String toString() {
 		return item_name;
+	}
+	
+	public int getID(){
+		return (int) itemID;
+		
 	}
 }

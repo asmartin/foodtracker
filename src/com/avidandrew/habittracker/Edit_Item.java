@@ -89,6 +89,18 @@ public class Edit_Item extends Activity{
 			    builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 
 			        public void onClick(DialogInterface dialog, int which) {
+			        	
+						Item thisItem = dbHelper.getItem(getBaseContext(), nameText);
+						if(thisItem == null){
+							
+							Toast.makeText(getBaseContext(), "Error Deleting Item", Toast.LENGTH_SHORT).show();
+						}
+						
+			        	if(dbHelper.deleteItem(thisItem.getID())){
+			        		Toast.makeText(getBaseContext(), "Delete Item Successful", Toast.LENGTH_SHORT).show();
+			        		finish();
+			        	}
+			        	else {Toast.makeText(getBaseContext(), "Could not Delete Item", Toast.LENGTH_SHORT).show();}
 			          
 			        }
 

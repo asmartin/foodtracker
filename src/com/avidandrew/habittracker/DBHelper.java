@@ -60,6 +60,40 @@ public class DBHelper extends SQLiteOpenHelper {
         return items;
 	}
 	
+	
+	public boolean deleteItem(int item_id){
+		
+		// remove the last timestamp row
+		database.execSQL(String.format(Item.SQL_DELETE_ALL_ITEM_TIMESTAMPS, item_id));
+		database.execSQL(String.format(Item.SQL_DELETE_ITEM, item_id));
+		
+		int matchingItems = getNumRows(String.format(Item.SQL_GET_ROW_BY_ID, item_id));
+		int matchingTimestamps = getNumRows(String.format(Item.SQL_GET_TIMESTAMP_ROWS_MATCHING_ITEMID, item_id));
+		
+		if(matchingItems > 0 || matchingTimestamps > 0){
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * Returns the number of rows matching the query
+	 * @param sql the SQL query to use to query the rows
+	 * @return returns the number of rows matching the query, or -1 if none found
+	 */
+	public int getNumRows(String sql) {
+		Cursor results = database.rawQuery(sql, null);
+		if (results == null || results.getCount() < 0) {
+			// can't get any existing rows
+			return -1;
+		}
+		int numRows = results.getCount();
+		results.close();
+		return numRows;
+	}
+	
+	
+	
 	/**
 	 * Gets an item object from a row in the database
 	 * @param c the current context
