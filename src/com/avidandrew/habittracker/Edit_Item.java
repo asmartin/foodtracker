@@ -77,15 +77,15 @@ public class Edit_Item extends Activity{
 						if (thisItem.getMaxInPeriod() != max) {
 							if (!thisItem.updateMax(max)) {
 
-								Toast.makeText(getBaseContext(), R.string.MSG_ERROR_UPDATE_MAX, Toast.LENGTH_SHORT).show();
+								Toast.makeText(getBaseContext(), R.string.MSG_ERROR_UPDATE_GOAL, Toast.LENGTH_SHORT).show();
 								error = true;
 							}
 							//Toast if updated max
-							String update_max_msg = getResources().getString(R.string.MSG_INFO_UPDATE_MAX) + " " + max;
+							String update_max_msg = getResources().getString(R.string.MSG_INFO_UPDATE_GOAL) + " " + max;
 							Toast.makeText(getBaseContext(), update_max_msg, Toast.LENGTH_SHORT).show();
 						}
 					} catch (NumberFormatException nfe) {
-						Toast.makeText(getBaseContext(), R.string.MSG_ERROR_MAX_NAN, Toast.LENGTH_SHORT).show();
+						Toast.makeText(getBaseContext(), R.string.MSG_ERROR_GOAL_NAN, Toast.LENGTH_SHORT).show();
 						error = true;
 					}
 

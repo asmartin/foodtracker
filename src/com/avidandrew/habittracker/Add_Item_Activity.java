@@ -39,7 +39,7 @@ public class Add_Item_Activity extends Activity{
 					Toast.makeText(getBaseContext(), R.string.MSG_ERROR_NAME_EMPTY, Toast.LENGTH_SHORT).show();
 				}
 				else if (quantity_field.getText().toString().equals("")){
-					Toast.makeText(getBaseContext(), R.string.MSG_ERROR_MAX_EMPTY, Toast.LENGTH_SHORT).show();
+					Toast.makeText(getBaseContext(), R.string.MSG_ERROR_GOAL_EMPTY, Toast.LENGTH_SHORT).show();
 				}
 				else if (dbHelper.itemNameExists(item_name)) {
 					Toast.makeText(getBaseContext(), R.string.MSG_ERROR_NAME_DUPLICATE, Toast.LENGTH_SHORT).show();

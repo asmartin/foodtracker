@@ -159,11 +159,8 @@ public class Item extends Object{
 		long ret = database.insert(TABLE_TIMESTAMPS, null, values);
 		if (ret < 0) {
 			// error inserting row
-				
-			
-			// String resource = getResources().getString(R.string.MSG_INFO_UPDATE_MAX);
-						
-			Toast.makeText(c, String.format(getResource().getResourceName(R.string.MSG_ERROR_INCREMENT), item_name), Toast.LENGTH_SHORT).show();
+										
+			Toast.makeText(c, getResource().getString(R.string.MSG_ERROR_INCREMENT) + item_name, Toast.LENGTH_SHORT).show();
 		}
 			
 		return totalCounter;
@@ -202,7 +199,7 @@ public class Item extends Object{
 		if (numRowsBefore == -1 || numRowsAfter + 1 != numRowsBefore) {
 			// this method was supposed to remove one row from this table, but something else happened
 			
-			Toast.makeText(c, String.format(getResource().getResourceName(R.string.MSG_ERROR_DECREMENT), item_name), Toast.LENGTH_SHORT).show();
+			Toast.makeText(c, getResource().getString(R.string.MSG_ERROR_DECREMENT) + item_name, Toast.LENGTH_SHORT).show();
 		}
 		
 		update(COLUMN_VALUE, String.valueOf(totalCounter));

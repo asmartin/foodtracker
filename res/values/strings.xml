@@ -11,9 +11,8 @@
     <string name="import_db">Import</string>
     <string name="export_db">Export</string>
     <string name="edit_items">Edit Items</string>
-    <string name="max_quant">Max Quantity</string>
+    <string name="goal">Goal</string>
     <string name="item_name">Item Name</string>
-    <string name="max_quantity">Max Quantity</string>
     <string name="add_item">Add Item</string> 
      <string name="save_changes">Save Changes</string>
       <string name="delete_item">Delete Item</string>  
@@ -35,17 +34,17 @@
 	
 	
 	<string name="MSG_INFO_UPDATE_NAME">Item name set to</string> 
-	<string name="MSG_INFO_UPDATE_MAX">Max set to</string> 
+	<string name="MSG_INFO_UPDATE_GOAL">Goal set to</string> 
 	
 	<string name="MSG_ERROR_INCREMENT">Error increasing count of %s</string> 
 	<string name="MSG_ERROR_DECREMENT">Error decreasing count of %s</string> 
 	<string name="MSG_ERROR_NAME_EMPTY">Item Name cannot be empty</string> 
-	<string name="MSG_ERROR_MAX_EMPTY">Max Quantity cannot be empty</string> 
-	<string name="MSG_ERROR_MAX_NAN">Error: Max must be a number</string> 
+	<string name="MSG_ERROR_GOAL_EMPTY">Goal Quantity cannot be empty</string> 
+	<string name="MSG_ERROR_GOAL_NAN">Error: Goal must be a number</string> 
 	<string name="MSG_ERROR_NAME_DUPLICATE">An item with the same name already exists</string> 
 	<string name="MSG_ERROR_NOT_IN_DATABASE">Item cannot be updated - not found in database</string> 
 	<string name="MSG_ERROR_UPDATE_NAME">Error updating name</string> 
-	<string name="MSG_ERROR_UPDATE_MAX">Error updating max</string> 
+	<string name="MSG_ERROR_UPDATE_GOAL">Error updating Goal</string> 
 	<string name="MSG_ERROR_DELETE_ITEM">Error deleting Item</string> 
 	
     
