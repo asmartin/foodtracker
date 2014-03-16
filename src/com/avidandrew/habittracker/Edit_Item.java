@@ -46,15 +46,17 @@ public class Edit_Item extends Activity{
 					Toast.makeText(getBaseContext(), "Item cannot be updated - not found in database", Toast.LENGTH_SHORT).show();
 				} else {
 					// update the name and max quantity
-					// TODO: check return values
+					boolean error = false;
 					String name = item_name_field.getText().toString();
 					if (dbHelper.itemNameExists(getBaseContext(), name)) {
 						Toast.makeText(getBaseContext(), "An item with the same name already exists", Toast.LENGTH_SHORT).show();
+						error = true;
 					}
 
 					else if (!thisItem.getName().equals(name)) {
 						if (!thisItem.updateName(name)) {
 							Toast.makeText(getBaseContext(), "Error updating name", Toast.LENGTH_SHORT).show();
+							error = true;
 						}
 						Toast.makeText(getBaseContext(), "Item name set to " + name, Toast.LENGTH_SHORT).show();
 					}
@@ -65,11 +67,18 @@ public class Edit_Item extends Activity{
 						if (thisItem.getMaxServings() != max) {
 							if (!thisItem.updateMax(max)) {
 								Toast.makeText(getBaseContext(), "Error updating max", Toast.LENGTH_SHORT).show();
+								error = true;
 							}
 							Toast.makeText(getBaseContext(), "Max set to " + max, Toast.LENGTH_SHORT).show();
 						}
 					} catch (NumberFormatException nfe) {
 						Toast.makeText(getBaseContext(), "Error: Max must be a number", Toast.LENGTH_SHORT).show();
+						error = true;
+					}
+					
+					if (!error) {
+						// if no errors, return to the main activity
+						finish();
 					}
 				}
 			}
