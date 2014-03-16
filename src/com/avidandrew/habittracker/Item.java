@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 public class Item {
 	public final static String SQL_GET_ALL_ROWS = "SELECT * FROM " + DBHelper.TABLE_ITEMS + " WHERE 1";	// needs to be public because is used in DBHelper
@@ -168,7 +169,7 @@ public class Item {
 		long ret = database.insert(DBHelper.TABLE_TIMESTAMPS, null, values);
 		if (ret < 0) {
 			// error inserting row
-			throw new SQLException();
+			Toast.makeText(c, "Error increasing count of " + item_name, Toast.LENGTH_SHORT).show();
 		}
 			
 		return totalCounter;
@@ -197,7 +198,7 @@ public class Item {
 		
 		if (numRowsBefore == -1 || numRowsAfter + 1 != numRowsBefore) {
 			// this method was supposed to remove one row from this table, but something else happened
-			throw new SQLException();
+			Toast.makeText(c, "Error decreasing count of " + item_name, Toast.LENGTH_SHORT).show();
 		}
 		
 		update(DBHelper.COLUMN_VALUE, String.valueOf(totalCounter));
