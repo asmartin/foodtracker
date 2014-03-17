@@ -15,16 +15,26 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/export_db"/>
+   
+    <!-- 
     <item
         android:id="@+id/edit_items"
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/edit_items"/>
+        
+         -->
     
      <item
         android:id="@+id/add_item"
         android:orderInCategory="100"
         android:showAsAction="ifRoom"
         android:title="@string/add_item"/>
+     
+       <item
+        android:id="@+id/about_actvity"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/BUTTON_ABOUT"/>
 
 </menu>

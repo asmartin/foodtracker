@@ -102,6 +102,11 @@ public class MainActivity extends Activity {
 			add_item();
 			return true;
 			
+		case R.id.about_actvity:
+			Intent intent = new Intent(this, About_Activity.class);
+			startActivity(intent);
+			return true;
+			
 		default:
 			return super.onOptionsItemSelected(item);
 		}

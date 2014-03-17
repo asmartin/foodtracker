@@ -13,39 +13,38 @@
     <string name="edit_items">Edit Items</string>
     <string name="goal">Goal</string>
     <string name="item_name">Item Name</string>
-    <string name="add_item">Add Item</string> 
-     <string name="save_changes">Save Changes</string>
-      <string name="delete_item">Delete Item</string>  
+    <string name="add_item">Add Item</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="delete_item">Delete Item</string>
+
+    <!-- Buttons -->
+    <string name="BUTTON_YES">YES</string>
+    <string name="BUTTON_NO">NO</string>
+    <string name="BUTTON_MINUS">-</string>
+    <string name="BUTTON_PLUS">+</string>
+    <string name="BUTTON_ABOUT">About</string>
+
+    <!-- Message Strings -->
+
+    <string name="MSG_INFO_ADD_SUCCESS">Item Added. Hit back to return to the list.</string>
+    <string name="MSG_INFO_CONFIRM_DELETE_TITLE">Confirm Delete</string>
+    <string name="MSG_INFO_CONFIRM_DELETE_TEXT">Are you sure you want to delete this item?</string>
+    <string name="MSG_INFO_DELETE_SUCCESS">Item deleted successfully</string>
+    <string name="MSG_INFO_UPDATE_NAME">Item name set to</string>
+    <string name="MSG_INFO_UPDATE_GOAL">Goal set to</string>
+    <string name="MSG_ERROR_INCREMENT">Error increasing count of %s</string>
+    <string name="MSG_ERROR_DECREMENT">Error decreasing count of %s</string>
+    <string name="MSG_ERROR_NAME_EMPTY">Item Name cannot be empty</string>
+    <string name="MSG_ERROR_GOAL_EMPTY">Goal Quantity cannot be empty</string>
+    <string name="MSG_ERROR_GOAL_NAN">Error: Goal must be a number</string>
+    <string name="MSG_ERROR_NAME_DUPLICATE">An item with the same name already exists</string>
+    <string name="MSG_ERROR_NOT_IN_DATABASE">Item cannot be updated - not found in database</string>
+    <string name="MSG_ERROR_UPDATE_NAME">Error updating name</string>
+    <string name="MSG_ERROR_UPDATE_GOAL">Error updating Goal</string>
+    <string name="MSG_ERROR_DELETE_ITEM">Error deleting Item</string>
     
-      
-        
-      <!-- 	Buttons    -->
-	<string name="BUTTON_YES">YES</string> 
-	<string name="BUTTON_NO">NO</string> 
-	<string name="BUTTON_MINUS">-</string> 
-	<string name="BUTTON_PLUS">+</string> 
-	
-	<!-- Message Strings -->
-	
-	<string name="MSG_INFO_ADD_SUCCESS">Item Added. Hit back to return to the list.</string> 
-	<string name="MSG_INFO_CONFIRM_DELETE_TITLE">Confirm Delete</string> 
-	<string name="MSG_INFO_CONFIRM_DELETE_TEXT">Are you sure you want to delete this item?</string> 
-	<string name="MSG_INFO_DELETE_SUCCESS">Item deleted successfully</string> 
-	
-	
-	<string name="MSG_INFO_UPDATE_NAME">Item name set to</string> 
-	<string name="MSG_INFO_UPDATE_GOAL">Goal set to</string> 
-	
-	<string name="MSG_ERROR_INCREMENT">Error increasing count of %s</string> 
-	<string name="MSG_ERROR_DECREMENT">Error decreasing count of %s</string> 
-	<string name="MSG_ERROR_NAME_EMPTY">Item Name cannot be empty</string> 
-	<string name="MSG_ERROR_GOAL_EMPTY">Goal Quantity cannot be empty</string> 
-	<string name="MSG_ERROR_GOAL_NAN">Error: Goal must be a number</string> 
-	<string name="MSG_ERROR_NAME_DUPLICATE">An item with the same name already exists</string> 
-	<string name="MSG_ERROR_NOT_IN_DATABASE">Item cannot be updated - not found in database</string> 
-	<string name="MSG_ERROR_UPDATE_NAME">Error updating name</string> 
-	<string name="MSG_ERROR_UPDATE_GOAL">Error updating Goal</string> 
-	<string name="MSG_ERROR_DELETE_ITEM">Error deleting Item</string> 
-	
-    
+    <!-- Paragraphs -->
+    <string name="about_title">About</string>
+    <string name="about_paragraph">This app was created in order to provide an easy way to track habbits in order to accomplish goals. This app comes as-is with no support, use at your own risk. Rememer to rate, comment, donate and enjoy!</string>
+
 </resources>
