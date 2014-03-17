@@ -1,5 +1,7 @@
 package com.avidandrew.habittracker;
 
+import java.lang.reflect.TypeVariable;
+
 import com.example.first_app.R;
 
 import android.annotation.SuppressLint;
@@ -98,8 +100,9 @@ public class ItemView extends TableRow {
 		//Button Parameters 
 		TableRow.LayoutParams text_view_params = new TableRow.LayoutParams(LayoutParams.MATCH_PARENT);
 		text_view_params.weight = 1;
+		text_view_params.width = 50;
 		counterView.setLayoutParams(text_view_params);
-		
+			
 		counterView.setText(item.getCounterValue() + "/" + item.getMaxInPeriod());
 	}
 }
