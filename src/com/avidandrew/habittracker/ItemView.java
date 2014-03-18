@@ -36,7 +36,7 @@ public class ItemView extends TableRow {
 		params_minus_button.setMargins(5, 5, 5, 5);
 		minus.setLayoutParams(params_minus_button);
 		minus.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
-		minus.setBackgroundResource(R.drawable.button_style);
+		minus.setBackgroundResource(R.drawable.minus_button_style);
 		minus.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -85,7 +85,7 @@ public class ItemView extends TableRow {
 		params_plus_button.weight = 1;
 		params_plus_button.setMargins(5, 5, 5, 5);
 		plus.setLayoutParams(params_plus_button);
-		plus.setBackgroundResource(R.drawable.button_style);
+		plus.setBackgroundResource(R.drawable.plus_button_style);
 		plus.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
 		plus.setOnClickListener(new View.OnClickListener() {
 
