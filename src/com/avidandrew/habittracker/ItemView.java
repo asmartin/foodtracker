@@ -30,11 +30,19 @@ public class ItemView extends TableRow {
 		Button minus = new Button(c);
 		minus.setText(R.string.BUTTON_MINUS);
 		
-		//Minus Parameters 
+		//Minus Styling Parameters 
 		TableRow.LayoutParams params_minus_button = new TableRow.LayoutParams(LayoutParams.MATCH_PARENT);
 		params_minus_button.weight = 1;
 		params_minus_button.setMargins(5, 5, 5, 5);
+		
+	    int minHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, getResources().getDisplayMetrics());
+	    params_minus_button.height = minHeight;
+	    params_minus_button.width = minHeight;
+		
 		minus.setLayoutParams(params_minus_button);
+		
+		
+		
 		minus.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
 		minus.setBackgroundResource(R.drawable.minus_button_style);
 		minus.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +93,11 @@ public class ItemView extends TableRow {
 		params_plus_button.weight = 1;
 		params_plus_button.setMargins(5, 5, 5, 5);
 		plus.setLayoutParams(params_plus_button);
+	    int minPlusHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, getResources().getDisplayMetrics());
+	    params_plus_button.height = minPlusHeight;
+	    params_plus_button.width = minPlusHeight;
+		
+		
 		plus.setBackgroundResource(R.drawable.plus_button_style);
 		plus.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
 		plus.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +121,8 @@ public class ItemView extends TableRow {
 		//Button Parameters 
 		TableRow.LayoutParams text_view_params = new TableRow.LayoutParams(LayoutParams.MATCH_PARENT);
 		text_view_params.weight = 1;
-		text_view_params.width = 60;
+	    int minTextViewSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics());
+		text_view_params.width = minTextViewSize;
 		counterView.setLayoutParams(text_view_params);
 			
 		counterView.setText(item.getCounterValue() + "/" + item.getMaxInPeriod());
