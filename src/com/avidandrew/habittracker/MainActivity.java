@@ -1,7 +1,9 @@
 package com.avidandrew.habittracker;
 
 import java.util.ArrayList;
+
 import com.example.first_app.R;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TableRow.LayoutParams;
 import static com.avidandrew.habittracker.Constants.*;
 
 public class MainActivity extends Activity {
@@ -37,9 +40,14 @@ public class MainActivity extends Activity {
 	private void loadItemsView(ArrayList<Item> items) {
 		if (items != null) {
 			layout = (TableLayout) findViewById(R.id.main_table);
+			
+			//Margins
+			TableRow.LayoutParams rowMargins = new TableRow.LayoutParams();
+			rowMargins.setMargins(5, 5, 5, 5);
+
 			for (final Item item : items) {
 				TableRow row = new ItemView(this, item);
-				
+				row.setLayoutParams(rowMargins);
 				//add row to view
 				layout.addView(row);
 			}

@@ -45,6 +45,17 @@
     
     <!-- Paragraphs -->
     <string name="about_title">About</string>
-    <string name="about_paragraph">This app was created in order to provide an easy way to track habbits in order to accomplish goals. This app comes as-is with no support, use at your own risk. Rememer to rate, comment, donate and enjoy!</string>
+    <string name="about_paragraph">
+        
+        This app was created in order to provide an easy way to track 
+        habbits in order to accomplish your goals. The app comes with 
+        a pre-populated list of items for tracking your daily food consumptions.
+       	As you consume of the item through the day, pressing the  "-" or the "+" 
+       	will increase the counter to reach your goal as well as create a timestamp on a table 
+       	which you can review at a late time. In future iterations of the app, these timestamps 
+       	will be plotted in a graph so that you can visually inspect your habbits. 
+        \n\n
+         This app comes as-is with no support, use at your own risk. 
+         Rememer to rate, comment, donate and enjoy!</string>
 
 </resources>
