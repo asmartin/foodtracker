@@ -121,7 +121,7 @@ public class ItemView extends TableRow {
 		//Button Parameters 
 		TableRow.LayoutParams text_view_params = new TableRow.LayoutParams(LayoutParams.MATCH_PARENT);
 		text_view_params.weight = 1;
-	    int minTextViewSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics());
+	    int minTextViewSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 55, getResources().getDisplayMetrics());
 		text_view_params.width = minTextViewSize;
 		counterView.setLayoutParams(text_view_params);
 			
