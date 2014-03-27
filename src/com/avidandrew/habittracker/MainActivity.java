@@ -5,100 +5,78 @@ import java.util.ArrayList;
 import com.example.first_app.R;
 
 import android.os.Bundle;
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
+
+import com.avidandrew.habittracker.TabsPagerAdapter;
+
 import static com.avidandrew.habittracker.Constants.*;
 
-public class MainActivity extends Activity {
-	
-	private TableLayout layout = null;
-	
-	/**
-	 * determines if there is data in the Items database; if so, display it; else, display sample data
-	 */
-	private void loadItems() {
-		DBHelper db = new DBHelper(this);
-		ArrayList<Item> items = db.getItems();
-		if (items == null || items.size() == 0) {
-			// load sample data
-			loadSampleData();
-		} else {
-			// load data from database
-			loadItemsView(items);
-		}
-	}
-	
-	/**
-	 * Loads a list of items into the activity
-	 * @param items
-	 */
-	private void loadItemsView(ArrayList<Item> items) {
-		if (items != null) {
-			layout = (TableLayout) findViewById(R.id.main_table);
-			
-			//Margins
-			TableRow.LayoutParams rowMargins = new TableRow.LayoutParams();
-			rowMargins.setMargins(5, 5, 5, 5);
+public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
+	private ViewPager viewPager;
+	private TabsPagerAdapter mAdapter;
+	private ActionBar actionBar;
+	private String[] tabs = { PERIOD_NONE, PERIOD_DAILY, PERIOD_WEEKLY, PERIOD_MONTHLY };
 
-			for (final Item item : items) {
-				TableRow row = new ItemView(this, item);
-				row.setLayoutParams(rowMargins);
-				//add row to view
-				layout.addView(row);
-			}
-		}
-	}
-	
-	/**
-	 * Loads sample data into the activity
-	 */
-	private void loadSampleData() {
-		ArrayList<Item> sampleData = new ArrayList<Item>();
-		for (String[] sample : SAMPLE_DATA) {
-			if (sample.length > 1) {
-				int max = Integer.parseInt(sample[1]);
-				sampleData.add(new Item(this, sample[0], max));
-			}
-		}
-		
-		loadItemsView(sampleData);
-	}
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		// empty DB (for debugging)
-		// DBHelper.emptyDB(this);
-		
-		loadItems();
-	}
-	
-	
-	//This creates the menu items
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
 
+		// Initialization
+		viewPager = (ViewPager) findViewById(R.id.pager);
+		actionBar = getActionBar();
+		mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+
+		viewPager.setAdapter(mAdapter);
+		actionBar.setHomeButtonEnabled(false);
+		
+		// ASM: uncomment to show tabs
+		//actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);        
+
+		// Adding Tabs
+		for (String tab_name : tabs) {
+			actionBar.addTab(actionBar.newTab().setText(tab_name)
+					.setTabListener(this));
+		}
 	
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-		// re-generate list of items
-		layout.removeAllViews();
-		loadItems();
+
+		/**
+		 * on swiping the viewpager make respective tab selected
+		 * */
+		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+			@Override
+			public void onPageSelected(int position) {
+				// on changing the page
+				// make respected tab selected
+				//actionBar.setSelectedNavigationItem(position);
+			}
+
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+			}
+		});
+		
+		viewPager.setCurrentItem(DEFAULT_TAB_INDEX);
+
 	}
 	
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		
@@ -125,5 +103,28 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, Add_Item_Activity.class);
 
 		startActivity(intent);
+	}
+
+	//This creates the menu items
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+	}
+
+	@Override
+	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+		// on tab selected
+		// show respected fragment view
+		viewPager.setCurrentItem(tab.getPosition());
+	}
+
+	@Override
+	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
 	}
 }
