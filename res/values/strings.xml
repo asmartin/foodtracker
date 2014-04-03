@@ -64,5 +64,24 @@
         \n\n
          This app comes as-is with no support, use at your own risk. 
          Rememer to rate, comment, donate and enjoy!</string>
+         
+    
+    <!-- Spinner Arrays -->
+    
+    
+    <string-array name="sort_order">
+        <item>Alphabetically</item>
+        <item>Order Added</item>
+        <item>Highest to Lowest Goal</item>
+        <item>Lowest to Highest Goal </item>
+    </string-array>
+    
+       <string-array name="starting_table_spinner">
+        <item>No Period</item>
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+    </string-array>
+    
 
 </resources>

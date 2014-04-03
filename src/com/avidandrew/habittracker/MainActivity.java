@@ -84,17 +84,23 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		// Global intent variable
+		Intent intent;
 		
 		switch (item.getItemId()) {
 		case R.id.action_settings:
+			
+			intent = new Intent(this, Settings_Activity.class);
+			startActivity(intent);
 			return true;
 		
 		case R.id.add_item:
-			add_item();
+			intent = new Intent(this, Add_Item_Activity.class);
+			startActivity(intent);
 			return true;
 			
 		case R.id.about_actvity:
-			Intent intent = new Intent(this, About_Activity.class);
+			 intent = new Intent(this, About_Activity.class);
 			startActivity(intent);
 			return true;
 			
@@ -102,12 +108,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			return super.onOptionsItemSelected(item);
 		}
 		
-	}
-	
-	public void add_item(){
-		Intent intent = new Intent(this, Add_Item_Activity.class);
-
-		startActivity(intent);
 	}
 
 	//This creates the menu items
