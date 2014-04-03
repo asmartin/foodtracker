@@ -16,6 +16,12 @@
     <string name="add_item">Add Item</string>
     <string name="save_changes">Save Changes</string>
     <string name="delete_item">Delete Item</string>
+    
+    <!-- Periods -->
+    <string name="PERIOD_NONE_LABEL">No Period</string>
+    <string name="PERIOD_DAILY_LABEL">Daily</string>
+    <string name="PERIOD_WEEKLY_LABEL">Weekly</string>
+    <string name="PERIOD_MONTHLY_LABEL">Monthly</string>
 
     <!-- Buttons -->
     <string name="BUTTON_YES">YES</string>

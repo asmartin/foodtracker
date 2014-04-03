@@ -2,15 +2,21 @@ package com.avidandrew.habittracker;
 
 import java.util.Locale;
 
+import com.example.first_app.R;
+
+import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import static com.avidandrew.habittracker.Constants.*;
 
 public class TabsPagerAdapter extends FragmentPagerAdapter {
- 
-    public TabsPagerAdapter(FragmentManager fm) {
+	private Activity activity = null;
+	
+    public TabsPagerAdapter(FragmentManager fm, Activity activity) {
         super(fm);
+        
+        this.activity = activity;
     }
  
     @Override
@@ -18,16 +24,16 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
  
         switch (index) {
         case 0:
-            // Top Rated fragment activity
+            // No Period
             return new ItemsFragment(PERIOD_NONE);
         case 1:
-            // Games fragment activity
+            // Daily
             return new ItemsFragment(PERIOD_DAILY);
         case 2:
-            // Movies fragment activity
+            // Weekly
             return new ItemsFragment(PERIOD_WEEKLY);
         case 3:
-            // Movies fragment activity
+            // Monthly
             return new ItemsFragment(PERIOD_MONTHLY);
         }
  
@@ -40,19 +46,44 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
         return 4;
     }
  
+    public String getLabel(int period) {
+		String label = "";
+
+		switch (period) {
+		case PERIOD_NONE:
+			label = activity.getResources().getString(R.string.PERIOD_NONE_LABEL);
+			break;
+		case PERIOD_DAILY:
+			label = activity.getResources().getString(R.string.PERIOD_DAILY_LABEL);
+			break;
+		case PERIOD_WEEKLY:
+			label = activity.getResources().getString(R.string.PERIOD_WEEKLY_LABEL);
+			break;
+		case PERIOD_MONTHLY:
+			label = activity.getResources().getString(R.string.PERIOD_MONTHLY_LABEL);
+			break;
+		}
+		
+		return label;
+	}
+    
     @Override
 	public CharSequence getPageTitle(int position) {
 		Locale l = Locale.getDefault();
 		switch (position) {
-		case 0:
-			return PERIOD_NONE.toUpperCase(l);
-		case 1:
-			return PERIOD_DAILY.toUpperCase(l);
-		case 2:
-			return PERIOD_WEEKLY.toUpperCase(l);
-		case 3:
-			return PERIOD_MONTHLY.toUpperCase(l);			
-		}
-		return null;
+        case 0:
+            // No Period
+            return getLabel(PERIOD_NONE).toUpperCase(l);
+        case 1:
+            // Daily
+            return getLabel(PERIOD_DAILY).toUpperCase(l);
+        case 2:
+            // Weekly
+            return getLabel(PERIOD_WEEKLY).toUpperCase(l);
+        case 3:
+            // Monthly
+            return getLabel(PERIOD_MONTHLY).toUpperCase(l);
+        }
+		return "";
 	}
 }

@@ -26,7 +26,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	private ViewPager viewPager;
 	private TabsPagerAdapter mAdapter;
 	private ActionBar actionBar;
-	private String[] tabs = { PERIOD_NONE, PERIOD_DAILY, PERIOD_WEEKLY, PERIOD_MONTHLY };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,21 +35,27 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		// Initialization
 		viewPager = (ViewPager) findViewById(R.id.pager);
 		actionBar = getActionBar();
-		mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+		mAdapter = new TabsPagerAdapter(getSupportFragmentManager(), this);
 
 		viewPager.setAdapter(mAdapter);
 		actionBar.setHomeButtonEnabled(false);
+		
+		// empty DB (for debugging)
+		// DBHelper.emptyDB(this);
 		
 		// ASM: uncomment to show tabs
 		//actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);        
 
 		// Adding Tabs
-		for (String tab_name : tabs) {
-			actionBar.addTab(actionBar.newTab().setText(tab_name)
-					.setTabListener(this));
-		}
-	
-
+		actionBar.addTab(actionBar.newTab().setText(
+				getResources().getString(R.string.PERIOD_NONE_LABEL)).setTabListener(this));
+		actionBar.addTab(actionBar.newTab().setText(
+				getResources().getString(R.string.PERIOD_DAILY_LABEL)).setTabListener(this));	
+		actionBar.addTab(actionBar.newTab().setText(
+				getResources().getString(R.string.PERIOD_WEEKLY_LABEL)).setTabListener(this));	
+		actionBar.addTab(actionBar.newTab().setText(
+				getResources().getString(R.string.PERIOD_MONTHLY_LABEL)).setTabListener(this));
+		
 		/**
 		 * on swiping the viewpager make respective tab selected
 		 * */

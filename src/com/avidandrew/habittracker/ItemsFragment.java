@@ -4,12 +4,9 @@ import static com.avidandrew.habittracker.Constants.*;
 
 import java.util.ArrayList;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
@@ -20,9 +17,9 @@ import com.example.first_app.R;
 
 public class ItemsFragment extends Fragment {
 	private TableLayout layout = null;
-	private String period = PERIOD_NONE;
+	private int period = 0;
 	
-	public ItemsFragment(String period) {
+	public ItemsFragment(int period) {
 		super();
 		
 		this.period = period;
@@ -83,10 +80,11 @@ public class ItemsFragment extends Fragment {
             Bundle savedInstanceState) {
  
         View rootView = inflater.inflate(R.layout.itemsfragment_activity, container, false);
+        
+		
+        
 		//this.getActivity().setContentView(R.layout.itemsfragment_activity);
 		layout = (TableLayout) rootView.findViewById(R.id.main_table);
-		// empty DB (for debugging)
-		// DBHelper.emptyDB(this);
 		
 		loadItems();
         
@@ -100,8 +98,5 @@ public class ItemsFragment extends Fragment {
 		// re-generate list of items
 		layout.removeAllViews();
 		loadItems();
-		
-		TextView title = (TextView) this.getActivity().findViewById(R.id.title_goal);
-		title.setText(period);
 	}
 }

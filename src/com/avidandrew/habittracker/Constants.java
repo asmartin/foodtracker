@@ -5,10 +5,10 @@ public class Constants {
 	public static final String DATABASE_NAME = "habittracker.db";	// name of the database
 	
 	// periods
-	public static final String PERIOD_NONE = "No Period";
-	public static final String PERIOD_DAILY = "Daily";
-	public static final String PERIOD_WEEKLY = "Weekly";
-	public static final String PERIOD_MONTHLY = "Monthly";
+	public static final int PERIOD_NONE = 0;
+	public static final int PERIOD_DAILY = 1;
+	public static final int PERIOD_WEEKLY = 2;
+	public static final int PERIOD_MONTHLY = 3;
 	public static final int DEFAULT_TAB_INDEX = 1;					// by default start at the daily tab
 	
 	// Items table
