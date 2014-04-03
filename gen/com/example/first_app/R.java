@@ -106,16 +106,17 @@ public final class R {
         public static final int MSG_INFO_DELETE_SUCCESS=0x7f05001b;
         public static final int MSG_INFO_UPDATE_GOAL=0x7f05001d;
         public static final int MSG_INFO_UPDATE_NAME=0x7f05001c;
+        public static final int MSG_NO_ITEMS=0x7f050029;
         public static final int PERIOD_DAILY_LABEL=0x7f050010;
         public static final int PERIOD_MONTHLY_LABEL=0x7f050012;
         /**  Periods 
          */
         public static final int PERIOD_NONE_LABEL=0x7f05000f;
         public static final int PERIOD_WEEKLY_LABEL=0x7f050011;
-        public static final int about_paragraph=0x7f05002a;
+        public static final int about_paragraph=0x7f05002b;
         /**  Paragraphs 
          */
-        public static final int about_title=0x7f050029;
+        public static final int about_title=0x7f05002a;
         public static final int action_settings=0x7f050001;
         public static final int add_item=0x7f05000c;
         public static final int app_name=0x7f050000;

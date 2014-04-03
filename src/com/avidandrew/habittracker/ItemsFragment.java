@@ -38,20 +38,12 @@ public class ItemsFragment extends Fragment {
 		if (items == null || items.size() == 0) {
 			// load sample data
 			//loadSampleData();
-
-			//Table Row and params
-			TableRow.LayoutParams tableRow_params = new TableRow.LayoutParams(LayoutParams.MATCH_PARENT);
-			tableRow_params.setMargins(5, 5, 5, 5);
 			
 			//TextView and params
 			TextView noDataMessage = new TextView(this.getActivity());
 			noDataMessage.setGravity(Gravity.CENTER_HORIZONTAL);
 			noDataMessage.setPadding(10, 10, 10, 10);
-			
-			//Set TableRow Layout Params to TextView
-			noDataMessage.setLayoutParams(tableRow_params);
-			//Set Text
-			noDataMessage.setText("No Items for This Period");
+			noDataMessage.setText(R.string.MSG_NO_ITEMS);
 			
 			layout.addView(noDataMessage);
 
