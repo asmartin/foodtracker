@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.TableRow.LayoutParams;
 
 import com.example.first_app.R;
 
@@ -35,13 +37,23 @@ public class ItemsFragment extends Fragment {
 		ArrayList<Item> items = db.getItemsByPeriod(period);
 		if (items == null || items.size() == 0) {
 			// load sample data
-			loadSampleData();
+			//loadSampleData();
 
-
-			//Toast.makeText(getContext(), "no items", Toast.LENGTH_SHORT).show();
-			//TextView noData = new TextView(getContext());
-			//noData.setText("No Items for This Period");
-			//layout.addView(noData);
+			//Table Row and params
+			TableRow.LayoutParams tableRow_params = new TableRow.LayoutParams(LayoutParams.MATCH_PARENT);
+			tableRow_params.setMargins(5, 5, 5, 5);
+			
+			//TextView and params
+			TextView noDataMessage = new TextView(this.getActivity());
+			noDataMessage.setGravity(Gravity.CENTER_HORIZONTAL);
+			noDataMessage.setPadding(10, 10, 10, 10);
+			
+			//Set TableRow Layout Params to TextView
+			noDataMessage.setLayoutParams(tableRow_params);
+			//Set Text
+			noDataMessage.setText("No Items for This Period");
+			
+			layout.addView(noDataMessage);
 
 		} else {
 			// load data from database
@@ -96,23 +108,17 @@ public class ItemsFragment extends Fragment {
 			Bundle savedInstanceState) {
 
 		View rootView = inflater.inflate(R.layout.itemsfragment_activity, container, false);
-
-
-
 		//this.getActivity().setContentView(R.layout.itemsfragment_activity);
 		layout = (TableLayout) rootView.findViewById(R.id.main_table);
-
-		loadItems();
-
 		return rootView;
 	}
-
+	
 	@Override
 	public void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
-		// re-generate list of items
+		//Remove all views
 		layout.removeAllViews();
 		loadItems();
 	}
+
 }
