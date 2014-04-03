@@ -15,6 +15,7 @@ public class Constants {
 	public static final String TABLE_ITEMS = "Items";				// name of the items table
 	public static final String COLUMN_ID = "_id";					// name of the ID column (primary key)
 	public static final String COLUMN_ITEM_NAME = "Name";			// name of the "name" column
+	public static final String COLUMN_ITEM_PERIOD = "Period";		// name of the period column
 	public static final String COLUMN_VALUE = "Value";				// name of the counter column
 	public static final String COLUMN_MAX = "Max";					// name of the max recommended column
 	
@@ -26,6 +27,7 @@ public class Constants {
 	
 	// SQL Queries
 	public static final String SQL_GET_ALL_ROWS = "SELECT * FROM " + TABLE_ITEMS + " WHERE 1";
+	public static final String SQL_GET_ROWS_MATCHING_PERIOD = "SELECT * FROM " + TABLE_ITEMS + " WHERE " + COLUMN_ITEM_PERIOD + " = '%s'";
 	public static final String SQL_GET_ROW_BY_NAME = "SELECT * FROM " + TABLE_ITEMS + " WHERE " + COLUMN_ITEM_NAME + " = '%s'";
 	public static final String SQL_GET_ROW_BY_ID = "SELECT * FROM " + TABLE_ITEMS + " WHERE " + COLUMN_ID + " = '%d'";
 	public static final String SQL_GET_TIMESTAMP_ROWS_MATCHING_ITEMID = "SELECT " + COLUMN_TIME_ID + " FROM " + TABLE_TIMESTAMPS + " WHERE " + COLUMN_TIME_ITEM_ID + "='%s'";
@@ -40,7 +42,8 @@ public class Constants {
 	public static final String EXTRA_MAX = "extra_max";
 	
 	// Sample Data
-	public static final String[][] SAMPLE_DATA = { {"Fats, Oils, Sweets", "1"}, {"Meat", "2"}, {"Eggs", "2"}, {"Dairy", "3"}, {"Fruits", "4"}, {"Vegetables", "5"}, {"Breads, Carbs", "3"}, {"Nuts", "4"} };
+	public static final String[][] SAMPLE_DATA = { {"Fats, Oils, Sweets", "1", "0"}, {"Meat", "2", "0"}, {"Eggs", "2", "1"}, {"Dairy", "3", "2"}, {"Fruits", "4", "3"}, {"Vegetables", "5", "3"}, {"Breads, Carbs", "3", "2"}, {"Nuts", "4", "1"} };
+
 
 	
 	

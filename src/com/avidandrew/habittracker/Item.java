@@ -14,6 +14,7 @@ import static com.avidandrew.habittracker.Constants.*;
 public class Item extends Object{
 	public long itemID = -1;		// the unique ID of the item
 	public String item_name;		// the name of the item
+	public int period = 0;			// the period of the item
 	public int totalCounter;		// the current value of the counter
 	public int max_in_period = 2;	// the maximum recommended/periodic counter value	
 	private Context c = null;		// the Context passed to the constructor (may be needed by other methods)
@@ -39,10 +40,11 @@ public class Item extends Object{
 	 * @param name
 	 * @param max_in_period
 	 */
-	public Item(Context c, String name, int max_in_period){
+	public Item(Context c, String name, int period, int max_in_period){
 		open(c);
 
 		this.item_name = name;
+		this.period = period;
 		this.max_in_period = max_in_period;
 		
 		// check if this item exists already in the database (check based on name)
@@ -51,6 +53,7 @@ public class Item extends Object{
 			// no existing row found, add one for this item
             ContentValues values = new ContentValues();
             values.put(COLUMN_ITEM_NAME, name);
+            values.put(COLUMN_ITEM_PERIOD, period);
             values.put(COLUMN_VALUE, 0);
             values.put(COLUMN_MAX, max_in_period);
 			long ret = database.insert(TABLE_ITEMS, null, values);
@@ -82,7 +85,7 @@ public class Item extends Object{
 		open(c);
 		updateVariablesFromDB(data, true);
 	}
-
+	
 	/** 
 	 * Updates local variables from the results pulled from the database
 	 * @param results the Cursor object with the results
@@ -95,6 +98,7 @@ public class Item extends Object{
 		}
 		itemID = results.getInt(results.getColumnIndexOrThrow(COLUMN_ID));
 		item_name = results.getString(results.getColumnIndexOrThrow(COLUMN_ITEM_NAME));
+		period = results.getInt(results.getColumnIndexOrThrow(COLUMN_ITEM_PERIOD));
 		totalCounter = results.getInt(results.getColumnIndexOrThrow(COLUMN_VALUE));
 		max_in_period = results.getInt(results.getColumnIndexOrThrow(COLUMN_MAX));
 	}
@@ -142,6 +146,20 @@ public class Item extends Object{
 		}
 		
 		return update(COLUMN_ITEM_NAME, new_name);
+	}
+	
+	/**
+	 * Updates the name of the item; does not check if a different item already 
+	 * @param new_name the new name to give the item
+	 * @return true if the update succeeded, false otherwise
+	 */
+	public boolean updatePeriod(int new_period){
+		if (new_period == period) {
+			// meet the new period, same as the old period; won't get fooled again
+			return true;
+		}
+		
+		return update(COLUMN_ITEM_PERIOD, String.valueOf(new_period));
 	}
 	
 	/**

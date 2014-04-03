@@ -18,6 +18,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	private static final String TABLE_CREATE_ITEMS = "Create table " + TABLE_ITEMS
 			  + "(" + COLUMN_ID + " integer primary key autoincrement, " 
 			  + COLUMN_ITEM_NAME + " text not null, " 
+			  + COLUMN_ITEM_PERIOD + " integer, " 
 			  + COLUMN_VALUE + " integer, " 
 			  + COLUMN_MAX + " integer); ";
 
@@ -42,13 +43,31 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	/** 
 	 * Gets all of the items currently in the database
-	 * @param c the current context
 	 * @return a list of the items in the database, or an empty list if the database is empty
 	 */
 	public ArrayList<Item> getItems() {
 		dbInit();
 		ArrayList<Item> items = new ArrayList<Item>();
 		Cursor results = database.rawQuery(SQL_GET_ALL_ROWS, null);
+		
+		if (results.moveToFirst()) {
+			do {
+				items.add(new Item(c, results));
+			} while (results.moveToNext());
+        }
+        
+        return items;
+	}
+	
+	/** 
+	 * Gets all of the items currently in the database for a specific period
+	 * @param int the period
+	 * @return a list of the items in the database, or an empty list if the database is empty
+	 */
+	public ArrayList<Item> getItemsByPeriod(int period) {
+		dbInit();
+		ArrayList<Item> items = new ArrayList<Item>();
+		Cursor results = database.rawQuery(String.format(SQL_GET_ROWS_MATCHING_PERIOD, period), null);
 		
 		if (results.moveToFirst()) {
 			do {

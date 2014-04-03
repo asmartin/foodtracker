@@ -28,25 +28,32 @@ public final class R {
         public static final int vegetables=0x7f020004;
     }
     public static final class id {
-        public static final int about_actvity=0x7f080013;
+        public static final int about_actvity=0x7f08001a;
         public static final int about_paragraph=0x7f080001;
         public static final int about_title=0x7f080000;
-        public static final int action_settings=0x7f08000f;
-        public static final int add_item=0x7f080012;
-        public static final int add_item_button=0x7f080008;
+        public static final int action_settings=0x7f080016;
+        public static final int add_item=0x7f080019;
+        public static final int add_item_button=0x7f08000f;
         public static final int add_item_field=0x7f080006;
-        public static final int delete_item=0x7f08000c;
-        public static final int edit_item_name=0x7f080009;
-        public static final int edit_max_quantity=0x7f08000a;
-        public static final int export_db=0x7f080011;
-        public static final int import_db=0x7f080010;
+        public static final int delete_item=0x7f080013;
+        public static final int edit_item_name=0x7f080010;
+        public static final int edit_max_quantity=0x7f080011;
+        public static final int export_db=0x7f080018;
+        public static final int import_db=0x7f080017;
         public static final int main_relative_layout=0x7f080002;
-        public static final int main_table=0x7f08000e;
+        public static final int main_table=0x7f080015;
         public static final int max_quant_field=0x7f080007;
         public static final int pager=0x7f080004;
         public static final int pager_title_strip=0x7f080005;
-        public static final int save_changes=0x7f08000b;
-        public static final int scroll_view=0x7f08000d;
+        public static final int period_label=0x7f080008;
+        public static final int radio_period_daily=0x7f08000c;
+        public static final int radio_period_monthly=0x7f08000e;
+        public static final int radio_period_none=0x7f08000a;
+        public static final int radio_period_weekly=0x7f08000d;
+        public static final int radiogroup_period=0x7f080009;
+        public static final int save_changes=0x7f080012;
+        public static final int scroll_view=0x7f080014;
+        public static final int textView1=0x7f08000b;
         public static final int title_goal=0x7f080003;
     }
     public static final class layout {
@@ -68,15 +75,16 @@ public final class R {
          */
         public static final int BUTTON_YES=0x7f050013;
         public static final int MSG_ERROR_DECREMENT=0x7f05001f;
-        public static final int MSG_ERROR_DELETE_ITEM=0x7f050027;
-        public static final int MSG_ERROR_GOAL_EMPTY=0x7f050021;
-        public static final int MSG_ERROR_GOAL_NAN=0x7f050022;
+        public static final int MSG_ERROR_DELETE_ITEM=0x7f050028;
+        public static final int MSG_ERROR_GOAL_EMPTY=0x7f050022;
+        public static final int MSG_ERROR_GOAL_NAN=0x7f050023;
         public static final int MSG_ERROR_INCREMENT=0x7f05001e;
-        public static final int MSG_ERROR_NAME_DUPLICATE=0x7f050023;
+        public static final int MSG_ERROR_NAME_DUPLICATE=0x7f050024;
         public static final int MSG_ERROR_NAME_EMPTY=0x7f050020;
-        public static final int MSG_ERROR_NOT_IN_DATABASE=0x7f050024;
-        public static final int MSG_ERROR_UPDATE_GOAL=0x7f050026;
-        public static final int MSG_ERROR_UPDATE_NAME=0x7f050025;
+        public static final int MSG_ERROR_NOT_IN_DATABASE=0x7f050025;
+        public static final int MSG_ERROR_PERIOD_EMPTY=0x7f050021;
+        public static final int MSG_ERROR_UPDATE_GOAL=0x7f050027;
+        public static final int MSG_ERROR_UPDATE_NAME=0x7f050026;
         /**  Message Strings 
          */
         public static final int MSG_INFO_ADD_SUCCESS=0x7f050018;
@@ -91,10 +99,10 @@ public final class R {
          */
         public static final int PERIOD_NONE_LABEL=0x7f05000f;
         public static final int PERIOD_WEEKLY_LABEL=0x7f050011;
-        public static final int about_paragraph=0x7f050029;
+        public static final int about_paragraph=0x7f05002a;
         /**  Paragraphs 
          */
-        public static final int about_title=0x7f050028;
+        public static final int about_title=0x7f050029;
         public static final int action_settings=0x7f050001;
         public static final int add_item=0x7f05000c;
         public static final int app_name=0x7f050000;

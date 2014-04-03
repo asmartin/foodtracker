@@ -41,6 +41,7 @@
     <string name="MSG_ERROR_INCREMENT">Error increasing count of %s</string>
     <string name="MSG_ERROR_DECREMENT">Error decreasing count of %s</string>
     <string name="MSG_ERROR_NAME_EMPTY">Item Name cannot be empty</string>
+    <string name="MSG_ERROR_PERIOD_EMPTY">Item period must be selected</string>
     <string name="MSG_ERROR_GOAL_EMPTY">Goal Quantity cannot be empty</string>
     <string name="MSG_ERROR_GOAL_NAN">Error: Goal must be a number</string>
     <string name="MSG_ERROR_NAME_DUPLICATE">An item with the same name already exists</string>

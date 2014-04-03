@@ -30,7 +30,7 @@ public class ItemsFragment extends Fragment {
 	 */
 	private void loadItems() {
 		DBHelper db = new DBHelper(this.getActivity());
-		ArrayList<Item> items = db.getItems();
+		ArrayList<Item> items = db.getItemsByPeriod(period);
 		if (items == null || items.size() == 0) {
 			// load sample data
 			loadSampleData();
@@ -68,7 +68,8 @@ public class ItemsFragment extends Fragment {
 		for (String[] sample : SAMPLE_DATA) {
 			if (sample.length > 1) {
 				int max = Integer.parseInt(sample[1]);
-				sampleData.add(new Item(this.getActivity(), sample[0], max));
+				int period = Integer.parseInt(sample[2]);
+				sampleData.add(new Item(this.getActivity(), sample[0], period, max));
 			}
 		}
 		
