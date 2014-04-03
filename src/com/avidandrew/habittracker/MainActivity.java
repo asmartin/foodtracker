@@ -41,7 +41,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		actionBar.setHomeButtonEnabled(false);
 		
 		// empty DB (for debugging)
-		DBHelper.emptyDB(this);
+		//DBHelper.emptyDB(this);
 		
 		// ASM: uncomment to show tabs
 		//actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);        
