@@ -29,6 +29,9 @@
     <string name="BUTTON_MINUS">-</string>
     <string name="BUTTON_PLUS">+</string>
     <string name="BUTTON_ABOUT">About</string>
+    
+    <!-- Labels -->
+    <string name="label_period">Period</string>
 
     <!-- Message Strings -->
 

@@ -34,38 +34,43 @@ public final class R {
         public static final int vegetables=0x7f020004;
     }
     public static final class id {
-        public static final int about_actvity=0x7f090020;
+        public static final int RadioButton_Daily=0x7f090016;
+        public static final int RadioButton_Monthly=0x7f090018;
+        public static final int RadioButton_No_Period=0x7f090015;
+        public static final int RadioButton_Weekly=0x7f090017;
+        public static final int about_actvity=0x7f090025;
         public static final int about_paragraph=0x7f090001;
         public static final int about_title=0x7f090000;
-        public static final int action_settings=0x7f09001c;
-        public static final int add_item=0x7f09001f;
-        public static final int add_item_button=0x7f09000f;
+        public static final int action_settings=0x7f090021;
+        public static final int add_item=0x7f090024;
+        public static final int add_item_button=0x7f09000e;
         public static final int add_item_field=0x7f090006;
-        public static final int delete_item=0x7f090013;
-        public static final int edit_item_name=0x7f090010;
-        public static final int edit_max_quantity=0x7f090011;
-        public static final int export_db=0x7f09001e;
-        public static final int import_db=0x7f09001d;
+        public static final int delete_item=0x7f090012;
+        public static final int edit_item_name=0x7f09000f;
+        public static final int edit_max_quantity=0x7f090010;
+        public static final int export_db=0x7f090023;
+        public static final int import_db=0x7f090022;
+        public static final int label_period_edit_item=0x7f090011;
         public static final int main_relative_layout=0x7f090002;
-        public static final int main_table=0x7f090015;
+        public static final int main_table=0x7f09001a;
         public static final int max_quant_field=0x7f090007;
         public static final int pager=0x7f090004;
         public static final int pager_title_strip=0x7f090005;
         public static final int period_label=0x7f090008;
-        public static final int radio_period_daily=0x7f09000c;
-        public static final int radio_period_monthly=0x7f09000e;
+        public static final int radio_period_daily=0x7f09000b;
+        public static final int radio_period_monthly=0x7f09000d;
         public static final int radio_period_none=0x7f09000a;
-        public static final int radio_period_weekly=0x7f09000d;
+        public static final int radio_period_weekly=0x7f09000c;
         public static final int radiogroup_period=0x7f090009;
-        public static final int save_changes=0x7f090012;
-        public static final int scroll_view=0x7f090014;
-        public static final int sort_order_row=0x7f090016;
-        public static final int sort_order_spinner=0x7f090018;
-        public static final int sort_order_title=0x7f090017;
-        public static final int starting_table_row=0x7f090019;
-        public static final int starting_table_spinner=0x7f09001b;
-        public static final int starting_table_title=0x7f09001a;
-        public static final int textView1=0x7f09000b;
+        public static final int radiogroup_period_edit_item=0x7f090014;
+        public static final int save_changes=0x7f090013;
+        public static final int scroll_view=0x7f090019;
+        public static final int sort_order_row=0x7f09001b;
+        public static final int sort_order_spinner=0x7f09001d;
+        public static final int sort_order_title=0x7f09001c;
+        public static final int starting_table_row=0x7f09001e;
+        public static final int starting_table_spinner=0x7f090020;
+        public static final int starting_table_title=0x7f09001f;
         public static final int title_goal=0x7f090003;
     }
     public static final class layout {
@@ -87,36 +92,36 @@ public final class R {
         /**  Buttons 
          */
         public static final int BUTTON_YES=0x7f050013;
-        public static final int MSG_ERROR_DECREMENT=0x7f05001f;
-        public static final int MSG_ERROR_DELETE_ITEM=0x7f050028;
-        public static final int MSG_ERROR_GOAL_EMPTY=0x7f050022;
-        public static final int MSG_ERROR_GOAL_NAN=0x7f050023;
-        public static final int MSG_ERROR_INCREMENT=0x7f05001e;
-        public static final int MSG_ERROR_NAME_DUPLICATE=0x7f050024;
-        public static final int MSG_ERROR_NAME_EMPTY=0x7f050020;
-        public static final int MSG_ERROR_NOT_IN_DATABASE=0x7f050025;
-        public static final int MSG_ERROR_PERIOD_EMPTY=0x7f050021;
-        public static final int MSG_ERROR_UPDATE_GOAL=0x7f050027;
-        public static final int MSG_ERROR_UPDATE_NAME=0x7f050026;
+        public static final int MSG_ERROR_DECREMENT=0x7f050020;
+        public static final int MSG_ERROR_DELETE_ITEM=0x7f050029;
+        public static final int MSG_ERROR_GOAL_EMPTY=0x7f050023;
+        public static final int MSG_ERROR_GOAL_NAN=0x7f050024;
+        public static final int MSG_ERROR_INCREMENT=0x7f05001f;
+        public static final int MSG_ERROR_NAME_DUPLICATE=0x7f050025;
+        public static final int MSG_ERROR_NAME_EMPTY=0x7f050021;
+        public static final int MSG_ERROR_NOT_IN_DATABASE=0x7f050026;
+        public static final int MSG_ERROR_PERIOD_EMPTY=0x7f050022;
+        public static final int MSG_ERROR_UPDATE_GOAL=0x7f050028;
+        public static final int MSG_ERROR_UPDATE_NAME=0x7f050027;
         /**  Message Strings 
          */
-        public static final int MSG_INFO_ADD_SUCCESS=0x7f050018;
-        public static final int MSG_INFO_CONFIRM_DELETE_TEXT=0x7f05001a;
-        public static final int MSG_INFO_CONFIRM_DELETE_TITLE=0x7f050019;
-        public static final int MSG_INFO_DELETE_SUCCESS=0x7f05001b;
-        public static final int MSG_INFO_UPDATE_GOAL=0x7f05001d;
-        public static final int MSG_INFO_UPDATE_NAME=0x7f05001c;
-        public static final int MSG_NO_ITEMS=0x7f050029;
+        public static final int MSG_INFO_ADD_SUCCESS=0x7f050019;
+        public static final int MSG_INFO_CONFIRM_DELETE_TEXT=0x7f05001b;
+        public static final int MSG_INFO_CONFIRM_DELETE_TITLE=0x7f05001a;
+        public static final int MSG_INFO_DELETE_SUCCESS=0x7f05001c;
+        public static final int MSG_INFO_UPDATE_GOAL=0x7f05001e;
+        public static final int MSG_INFO_UPDATE_NAME=0x7f05001d;
+        public static final int MSG_NO_ITEMS=0x7f05002a;
         public static final int PERIOD_DAILY_LABEL=0x7f050010;
         public static final int PERIOD_MONTHLY_LABEL=0x7f050012;
         /**  Periods 
          */
         public static final int PERIOD_NONE_LABEL=0x7f05000f;
         public static final int PERIOD_WEEKLY_LABEL=0x7f050011;
-        public static final int about_paragraph=0x7f05002b;
+        public static final int about_paragraph=0x7f05002c;
         /**  Paragraphs 
          */
-        public static final int about_title=0x7f05002a;
+        public static final int about_title=0x7f05002b;
         public static final int action_settings=0x7f050001;
         public static final int add_item=0x7f05000c;
         public static final int app_name=0x7f050000;
@@ -128,6 +133,9 @@ public final class R {
         public static final int import_db=0x7f050007;
         public static final int item=0x7f050005;
         public static final int item_name=0x7f05000b;
+        /**  Labels 
+         */
+        public static final int label_period=0x7f050018;
         public static final int minus=0x7f050004;
         public static final int plus=0x7f050003;
         public static final int save_changes=0x7f05000d;

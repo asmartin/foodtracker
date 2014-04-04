@@ -162,6 +162,12 @@ public class Item extends Object{
 		return update(COLUMN_ITEM_PERIOD, String.valueOf(new_period));
 	}
 	
+	public int getPeriod(){
+		
+		return this.period;
+		
+	}
+	
 	/**
 	 * Increments the counter; updates the data in the database
 	 * @return the new value of the counter

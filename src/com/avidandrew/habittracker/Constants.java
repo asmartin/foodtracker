@@ -40,6 +40,7 @@ public class Constants {
 	// Extras
 	public static final String EXTRA_NAME = "extra_name";
 	public static final String EXTRA_MAX = "extra_max";
+	public static final String EXTRA_PERIOD	= "extra_period";
 	
 	// Sample Data
 	public static final String[][] SAMPLE_DATA = { {"Fats, Oils, Sweets", "1", "0"}, {"Meat", "2", "0"}, {"Eggs", "2", "1"}, {"Dairy", "3", "2"}, {"Fruits", "4", "3"}, {"Vegetables", "5", "3"}, {"Breads, Carbs", "3", "2"}, {"Nuts", "4", "1"} };

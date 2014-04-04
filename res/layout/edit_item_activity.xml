@@ -2,50 +2,90 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center_horizontal"
-     >
+    android:layout_gravity="center_horizontal" >
 
     <EditText
         android:id="@+id/edit_item_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
-        android:maxLength="20"
         android:ems="10"
-        
         android:inputType="textCapSentences"
-        >
+        android:maxLength="20" >
     </EditText>
 
     <EditText
         android:id="@+id/edit_max_quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_item_name"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:ems="10"
-        android:maxLength="3"
-        android:layout_below="@+id/edit_item_name" 
         android:inputType="number"
-        />
+        android:maxLength="3" />
 
-    <Button
-        android:id="@+id/save_changes"
+    <TextView
+        android:id="@+id/label_period_edit_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:layout_centerHorizontal="true"
-        android:text="@string/save_changes" 
+        android:layout_alignLeft="@+id/edit_max_quantity"
         android:layout_below="@+id/edit_max_quantity"
-        />
+        android:layout_marginTop="20dp"
+        android:text="@string/label_period" />
 
     <Button
         android:id="@+id/delete_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:layout_centerHorizontal="true"
-		android:layout_below="@+id/save_changes"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:text="@string/delete_item" />
+
+    <Button
+        android:id="@+id/save_changes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/delete_item"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="28dp"
+        android:text="@string/save_changes" />
+
+    <RadioGroup
+        android:id="@+id/radiogroup_period_edit_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/label_period_edit_item"
+        android:layout_below="@+id/label_period_edit_item" >
+
+        <RadioButton
+            android:id="@+id/RadioButton_No_Period"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="@string/PERIOD_NONE_LABEL" />
+
+        <RadioButton
+            android:id="@+id/RadioButton_Daily"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/PERIOD_DAILY_LABEL" />
+
+        <RadioButton
+            android:id="@+id/RadioButton_Weekly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/PERIOD_WEEKLY_LABEL" />
+
+        <RadioButton
+            android:id="@+id/RadioButton_Monthly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/PERIOD_MONTHLY_LABEL" />
+    </RadioGroup>
 
 </RelativeLayout>

@@ -77,6 +77,7 @@ public class ItemView extends TableRow {
 				// make the name and max variables available in the new activity
 				edit_item.putExtra(EXTRA_NAME, item.getName());
 				edit_item.putExtra(EXTRA_MAX, item.getMaxInPeriod());
+				edit_item.putExtra(EXTRA_PERIOD, item.getPeriod());
 
 				// launch the new activity
 				getContext().startActivity(edit_item);

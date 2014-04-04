@@ -1,6 +1,7 @@
 package com.avidandrew.habittracker;
 
 import com.example.first_app.R;
+import com.example.first_app.R.id;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -10,13 +11,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 import static com.avidandrew.habittracker.Constants.*;
 
 public class Edit_Item extends Activity{
 	private DBHelper dbHelper = new DBHelper(this);
-
-
+	private RadioGroup periods;
+	Item thisItem;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,10 +32,15 @@ public class Edit_Item extends Activity{
 		//Update text for those fields
 		final String item_name = getIntent().getStringExtra(EXTRA_NAME);
 		final int max_quant = getIntent().getIntExtra(EXTRA_MAX,  0);
+		final int item_period = getIntent().getIntExtra(EXTRA_PERIOD, 0);
 		
 		//Get fields
 		EditText item_name_field2 = (EditText) findViewById(R.id.edit_item_name);
 		EditText max_quantity_field2 = (EditText) findViewById(R.id.edit_max_quantity);
+		
+		periods = (RadioGroup) findViewById(R.id.radiogroup_period_edit_item);
+		periods.check(getPeriodId(item_period));
+		
 		
 		//Set fields to name of button and goal
 		item_name_field2.setText(item_name);
@@ -47,7 +56,7 @@ public class Edit_Item extends Activity{
 			public void onClick(View v) {
 				EditText item_name_field = (EditText) findViewById(R.id.edit_item_name);
 				EditText max_quantity_field = (EditText) findViewById(R.id.edit_max_quantity);
-				Item thisItem = dbHelper.getItem(nameText);
+				 thisItem = dbHelper.getItem(nameText);
 
 				//Check if item name is null
 				if (thisItem == null) {
@@ -88,7 +97,11 @@ public class Edit_Item extends Activity{
 						Toast.makeText(getBaseContext(), R.string.MSG_ERROR_GOAL_NAN, Toast.LENGTH_SHORT).show();
 						error = true;
 					}
-
+					
+					
+					///Update Period for Item
+					error = updateItemsPeriod();
+					
 					if (!error) {
 						// if no errors, return to the main activity
 						finish();
@@ -113,17 +126,13 @@ public class Edit_Item extends Activity{
 					public void onClick(DialogInterface dialog, int which) {
 
 						Item thisItem = dbHelper.getItem(nameText);
-						if(thisItem == null){
+						if(thisItem == null){ Toast.makeText(getBaseContext(), R.string.MSG_ERROR_DELETE_ITEM, Toast.LENGTH_SHORT).show();}
 
-							Toast.makeText(getBaseContext(), R.string.MSG_ERROR_DELETE_ITEM, Toast.LENGTH_SHORT).show();
-						}
-
-						if(dbHelper.deleteItem(thisItem.getID())){
-							Toast.makeText(getBaseContext(), R.string.MSG_INFO_DELETE_SUCCESS, Toast.LENGTH_SHORT).show();
-							finish();
-						}
+						if(dbHelper.deleteItem(thisItem.getID()))
+						{Toast.makeText(getBaseContext(), R.string.MSG_INFO_DELETE_SUCCESS, Toast.LENGTH_SHORT).show();
+							finish();}
+						
 						else {Toast.makeText(getBaseContext(), R.string.MSG_ERROR_DELETE_ITEM, Toast.LENGTH_SHORT).show();}
-
 					}
 
 				});
@@ -142,6 +151,54 @@ public class Edit_Item extends Activity{
 			}
 		});
 
+	}
+	
+	private Boolean updateItemsPeriod(){
+		
+		try{
+		RadioButton selectRadio = (RadioButton) findViewById(periods.getCheckedRadioButtonId());
+		String period_label = selectRadio.getText().toString();
+		int period_value = getPeriodByLabel(period_label);
+		thisItem.updatePeriod(period_value);
+		}
+		catch(Exception e){
+			Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+			return true;}
+		
+		return false;
+		
+	}
+	
+	private int getPeriodId(int period){
+		switch (period) {
+		case 0:
+			return R.id.RadioButton_No_Period;
+		case 1:
+			return R.id.RadioButton_Daily;
+		case 2:
+			return R.id.RadioButton_Weekly;
+		case 3:
+			return R.id.RadioButton_Monthly;
+		default:
+			return R.id.RadioButton_No_Period;
+			
+		}
+		
+	}
+	
+	private int getPeriodByLabel(String label) {
+		if (label.equals(getResources().getString(R.string.PERIOD_NONE_LABEL))) {
+			return PERIOD_NONE;
+		} else if (label.equals(getResources().getString(R.string.PERIOD_DAILY_LABEL))) {
+			return PERIOD_DAILY;
+		} else if (label.equals(getResources().getString(R.string.PERIOD_WEEKLY_LABEL))) {
+			return PERIOD_WEEKLY;
+		} else if (label.equals(getResources().getString(R.string.PERIOD_MONTHLY_LABEL))) {
+			return PERIOD_MONTHLY;
+		}
+		
+		// if no period can be identified, return PERIOD_NONE
+		return PERIOD_NONE;
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
