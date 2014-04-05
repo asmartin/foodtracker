@@ -162,7 +162,7 @@ public class Edit_Item extends Activity{
 		thisItem.updatePeriod(period_value);
 		}
 		catch(Exception e){
-			Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), R.string.MSG_NO_PERIOD_SELECTED, Toast.LENGTH_SHORT).show();
 			return true;}
 		
 		return false;

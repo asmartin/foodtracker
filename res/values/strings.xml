@@ -53,6 +53,7 @@
     <string name="MSG_ERROR_UPDATE_GOAL">Error updating Goal</string>
     <string name="MSG_ERROR_DELETE_ITEM">Error deleting Item</string>
     <string name="MSG_NO_ITEMS">No Items for This Period</string>
+    <string name="MSG_NO_PERIOD_SELECTED">Error No Period Selected</string>
     
     <!-- Paragraphs -->
     <string name="about_title">About</string>
