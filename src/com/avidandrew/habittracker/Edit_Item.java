@@ -6,6 +6,7 @@ import com.example.first_app.R.id;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -140,14 +141,27 @@ public class Edit_Item extends Activity{
 				builder.setNegativeButton(R.string.BUTTON_NO, new DialogInterface.OnClickListener() {
 
 					@Override
-					public void onClick(DialogInterface dialog, int which) {
-
-					}
+					public void onClick(DialogInterface dialog, int which) {	}
 				});
 
 				AlertDialog alert = builder.create();
 				alert.show();
 
+			}
+		});
+		
+		
+		Button view_history = (Button) findViewById(R.id.view_history);
+		view_history.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				Intent item_history = new Intent(getBaseContext(), Chart_Activity.class);
+				startActivity(item_history);
+				
+				
+				
 			}
 		});
 
