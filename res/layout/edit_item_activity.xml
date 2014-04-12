@@ -12,8 +12,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
         android:ems="10"
+        android:hint="Item Name"
         android:inputType="textCapSentences"
         android:maxLength="20" >
+
     </EditText>
 
     <EditText
@@ -24,6 +26,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:ems="10"
+        android:hint="Item Goal"
         android:inputType="number"
         android:maxLength="3" />
 
@@ -44,16 +47,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:text="@string/delete_item" />
-
-    <Button
-        android:id="@+id/save_changes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/delete_item"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="28dp"
-        android:text="@string/save_changes" />
 
     <RadioGroup
         android:id="@+id/radiogroup_period_edit_item"
@@ -87,5 +80,22 @@
             android:layout_height="wrap_content"
             android:text="@string/PERIOD_MONTHLY_LABEL" />
     </RadioGroup>
+
+    <Button
+        android:id="@+id/save_changes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/delete_item"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/save_changes" />
+
+    <Button
+        android:id="@+id/view_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/save_changes"
+        android:layout_centerHorizontal="true"
+        android:text="View History" />
 
 </RelativeLayout>

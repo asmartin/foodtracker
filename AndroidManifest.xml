@@ -27,6 +27,7 @@
         <activity android:name="com.avidandrew.habittracker.Edit_Item"   />
         <activity android:name="com.avidandrew.habittracker.About_Activity"   />
         <activity android:name="com.avidandrew.habittracker.Settings_Activity"   />
+        <activity android:name="com.avidandrew.habittracker.Chart_Activity"   />
 
     </application>
 
