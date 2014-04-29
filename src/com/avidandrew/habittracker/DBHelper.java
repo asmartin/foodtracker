@@ -71,7 +71,37 @@ public class DBHelper extends SQLiteOpenHelper {
 		
 		if (results.moveToFirst()) {
 			do {
-				items.add(new Item(c, results));
+				
+				if (period == PERIOD_NONE) {
+					items.add(new Item(c, results));
+				} else {
+					Item thisItem = new Item(c, results);
+					
+					String periodFormat = null;
+					if (period == PERIOD_DAILY) {
+						periodFormat = "%j-%Y";
+					} else if (period == PERIOD_WEEKLY) {
+						// the manpage for POSIX strftime lists Monday as the first day of the week
+						periodFormat = "%W-%Y";
+					} else if (period == PERIOD_MONTHLY) {
+						periodFormat = "%m-%Y";
+					}
+					
+					if (periodFormat == null) {
+						// no period could be determined, just use all of the items
+						items.add(thisItem);
+					} else {
+						// we have found a valid period, find out how many of the timestamps are within the current one
+						int numTimestampsInPeriod = getNumRows(String.format(SQL_GET_TIMESTAMPS_IN_PERIOD, thisItem.getID(), periodFormat, periodFormat));
+						if (numTimestampsInPeriod < 0) {
+							numTimestampsInPeriod = 0;
+						}
+						
+						// now add the item, with the adjusted number of timestamps
+						items.add(new Item(c, results, numTimestampsInPeriod));
+					}
+				}
+				
 			} while (results.moveToNext());
         }
         

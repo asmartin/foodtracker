@@ -86,6 +86,18 @@ public class Item extends Object{
 		updateVariablesFromDB(data, true);
 	}
 	
+	/**
+	 * Create a new item from data pulled from the database
+	 * @param c the context (view)
+	 * @param data the Cursor object, moveToFirst already run
+	 * @param numInPeriod the number of items in the current period (overrides the number of items in data)
+	 */
+	public Item(Context c, Cursor data, int numInPeriod) {
+		open(c);
+		updateVariablesFromDB(data, true);
+		totalCounter = numInPeriod;
+	}
+	
 	/** 
 	 * Updates local variables from the results pulled from the database
 	 * @param results the Cursor object with the results

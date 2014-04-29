@@ -28,6 +28,7 @@ public class Constants {
 	// SQL Queries
 	public static final String SQL_GET_ALL_ROWS = "SELECT * FROM " + TABLE_ITEMS + " WHERE 1";
 	public static final String SQL_GET_ROWS_MATCHING_PERIOD = "SELECT * FROM " + TABLE_ITEMS + " WHERE " + COLUMN_ITEM_PERIOD + " = '%s'";
+	public static final String SQL_GET_TIMESTAMPS_IN_PERIOD = "SELECT * FROM " + TABLE_TIMESTAMPS + " WHERE " + COLUMN_TIME_ITEM_ID + " = '%s' AND strftime('%s', " + COLUMN_TIME_STAMP + ") = strftime('%s', 'now')";
 	public static final String SQL_GET_ROW_BY_NAME = "SELECT * FROM " + TABLE_ITEMS + " WHERE " + COLUMN_ITEM_NAME + " = '%s'";
 	public static final String SQL_GET_ROW_BY_ID = "SELECT * FROM " + TABLE_ITEMS + " WHERE " + COLUMN_ID + " = '%d'";
 	public static final String SQL_GET_TIMESTAMP_ROWS_MATCHING_ITEMID = "SELECT " + COLUMN_TIME_ID + " FROM " + TABLE_TIMESTAMPS + " WHERE " + COLUMN_TIME_ITEM_ID + "='%s'";
