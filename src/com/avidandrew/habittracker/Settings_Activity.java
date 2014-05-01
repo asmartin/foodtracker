@@ -4,15 +4,22 @@ package com.avidandrew.habittracker;
 import com.example.first_app.R;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class Settings_Activity extends Activity implements OnItemSelectedListener {
+
+	Spinner spinner_sort_order;
+	//Shared preferences
+	SharedPreferences sharedPref;
+	SharedPreferences.Editor editor;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,18 +30,27 @@ public class Settings_Activity extends Activity implements OnItemSelectedListene
 		//Set back button
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
+		/// This code probably belongs on the first activity
+
+		sharedPref = this.getPreferences(this.MODE_PRIVATE);
+		editor = sharedPref.edit();
+
+
+
+		//////////////////END 
 
 		//				Sort Order Spinner Code
 
-		Spinner sort_order_spinner = (Spinner) findViewById(R.id.sort_order_spinner);
+		spinner_sort_order = (Spinner) findViewById(R.id.spinner_sort_order);
 		// Create an ArrayAdapter using the string array and a default spinner layout
 		ArrayAdapter<CharSequence> sort_order_adapter = ArrayAdapter.createFromResource(this,
 				R.array.sort_order  , android.R.layout.simple_spinner_item);
 		// Specify the layout to use when the list of choices appears
 		sort_order_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		// Apply the adapter to the spinner
-		sort_order_spinner.setAdapter(sort_order_adapter);
-
+		spinner_sort_order.setAdapter(sort_order_adapter);
+		spinner_sort_order.setOnItemSelectedListener(this);
+		spinner_sort_order.setSelection(sharedPref.getInt("sort_order", 0));
 
 		// 				Starting Table Spinner Code
 
@@ -46,6 +62,8 @@ public class Settings_Activity extends Activity implements OnItemSelectedListene
 		starting_table_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		// Apply the adapter to the spinner
 		starting_table_spinner.setAdapter(starting_table_adapter);
+		starting_table_spinner.setOnItemSelectedListener(this);
+		starting_table_spinner.setSelection(sharedPref.getInt("start_table", 0));
 
 
 	}
@@ -56,18 +74,31 @@ public class Settings_Activity extends Activity implements OnItemSelectedListene
 		return super.onOptionsItemSelected(item);
 	}
 
-	@Override
-	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
-			long arg3) {
+	public void onItemSelected(AdapterView<?> parent, View view, 
+			int pos, long id) 
+	{
 		// An item was selected. You can retrieve the selected item using
-        // parent.getItemAtPosition(pos)
-		
+		// parent.getItemAtPosition(pos)
+
+		switch(parent.getId()){
+		case R.id.spinner_sort_order:
+
+			editor.putInt("sort_order", pos).commit();
+			break;
+
+		case R.id.starting_table_spinner:
+			editor.putInt("start_table", pos).commit();
+
+		default:
+			break;
+		}
+
 	}
 
-	@Override
-	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
-		
+	public void onNothingSelected(AdapterView<?> parent) {
+		// Another interface callback
+
+		Toast.makeText(this, "no item selected", Toast.LENGTH_SHORT).show();
 	}
 
 }

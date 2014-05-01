@@ -67,8 +67,8 @@ public final class R {
         public static final int save_changes=0x7f090019;
         public static final int scroll_view=0x7f09001b;
         public static final int sort_order_row=0x7f09001d;
-        public static final int sort_order_spinner=0x7f09001f;
         public static final int sort_order_title=0x7f09001e;
+        public static final int spinner_sort_order=0x7f09001f;
         public static final int starting_table_row=0x7f090020;
         public static final int starting_table_spinner=0x7f090022;
         public static final int starting_table_title=0x7f090021;

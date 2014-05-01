@@ -10,12 +10,14 @@ import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.Toast;
 import android.widget.TableRow.LayoutParams;
 
 import com.avidandrew.habittracker.TabsPagerAdapter;
@@ -26,6 +28,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	private ViewPager viewPager;
 	private TabsPagerAdapter mAdapter;
 	private ActionBar actionBar;
+	SharedPreferences sharedPref;
+	SharedPreferences.Editor editor;
+	
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +45,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 		viewPager.setAdapter(mAdapter);
 		actionBar.setHomeButtonEnabled(false);
-		
+				
+		//set Shared preferences
+		setSharedPreferences();
+
 		// empty DB (for debugging)
 		//DBHelper.emptyDB(this);
 		
@@ -106,6 +115,29 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			
 		default:
 			return super.onOptionsItemSelected(item);
+		}
+		
+	}
+	
+	private void setSharedPreferences(){
+		SharedPreferences sharedPref = this.getPreferences(this.MODE_PRIVATE);
+		SharedPreferences.Editor editor = sharedPref.edit();
+		
+		//Start Shared Preferences
+		if(sharedPref.getBoolean("firstrun", true)){
+		
+		//First Launch, set values	
+			sharedPref.edit().putBoolean("firstrun", false).commit();
+	
+			//spinner sort order
+			// 0 = Alphabetical
+			// 1 = Order Added
+			editor.putInt("sort_order", 0).commit();
+		
+			//spinner starting table
+			editor.putInt("start_table", 0).commit();
+			
+		editor.commit();
 		}
 		
 	}

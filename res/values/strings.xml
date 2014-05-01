@@ -77,8 +77,7 @@
     <string-array name="sort_order">
         <item>Alphabetically</item>
         <item>Order Added</item>
-        <item>Highest to Lowest Goal</item>
-        <item>Lowest to Highest Goal </item>
+
     </string-array>
     
        <string-array name="starting_table_spinner">
