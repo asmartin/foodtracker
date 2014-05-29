@@ -2,7 +2,10 @@ package com.avidandrew.habittracker;
 
 public class Constants {
 	public static final String APP_NAME = "Habit Tracker";
+	public static final String APP_EXTENSION = "htr";
 	public static final String DATABASE_NAME = "habittracker.db";	// name of the database
+	public static final String VERSION = "0.9.0pre";					// name of the current version
+	public static final String SEP = ", ";							// separator between items in SQL SELECT queries
 	
 	// periods
 	public static final int PERIOD_NONE = 0;
@@ -18,15 +21,31 @@ public class Constants {
 	public static final String COLUMN_ITEM_PERIOD = "Period";		// name of the period column
 	public static final String COLUMN_VALUE = "Value";				// name of the counter column
 	public static final String COLUMN_MAX = "Max";					// name of the max recommended column
+	public static final String ITEMS_COLUMNS_ORDER = COLUMN_ID + SEP + COLUMN_ITEM_NAME + SEP + COLUMN_ITEM_PERIOD + SEP + COLUMN_VALUE + SEP + COLUMN_MAX;
 	
 	// Timestamps table
 	public static final String TABLE_TIMESTAMPS = "Timestamps";		// name of the timestamp table
 	public static final String COLUMN_TIME_ID = "_id";				// name of the timestamp table's ID column
 	public static final String COLUMN_TIME_ITEM_ID = "itemid";		// name of the ID of the item associated with this timestamp (a foreign key)
 	public static final String COLUMN_TIME_STAMP = "timestamp";		// name of the timestamp column
+	public static final String TIMESTAMPS_COLUMNS_ORDER = COLUMN_TIME_ID + SEP + COLUMN_TIME_ITEM_ID + SEP + COLUMN_TIME_STAMP;
+
+	// Database creation
+	public static final String TABLE_CREATE_ITEMS = "Create table " + TABLE_ITEMS
+			  + "(" + COLUMN_ID + " integer primary key autoincrement, " 
+			  + COLUMN_ITEM_NAME + " text not null, " 
+			  + COLUMN_ITEM_PERIOD + " integer, " 
+			  + COLUMN_VALUE + " integer, " 
+			  + COLUMN_MAX + " integer); ";
+
+	public static final String TABLE_CREATE_TIMESTAMPS = "Create table " + TABLE_TIMESTAMPS
+			  + "(" + COLUMN_TIME_ID + " integer primary key autoincrement, "
+			  + COLUMN_TIME_ITEM_ID + " integer, "
+			  + COLUMN_TIME_STAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP);";	
 	
 	// SQL Queries
-	public static final String SQL_GET_ALL_ROWS = "SELECT * FROM " + TABLE_ITEMS + " WHERE 1";
+	public static final String SQL_GET_ALL_ROWS = "SELECT " + ITEMS_COLUMNS_ORDER + " FROM " + TABLE_ITEMS + " WHERE 1";
+	public static final String SQL_GET_ALL_TIMESTAMPS_ROWS = "SELECT " + TIMESTAMPS_COLUMNS_ORDER + " FROM " + TABLE_TIMESTAMPS + " WHERE 1";
 	public static final String SQL_GET_ROWS_MATCHING_PERIOD = "SELECT * FROM " + TABLE_ITEMS + " WHERE " + COLUMN_ITEM_PERIOD + " = '%s'";
 	public static final String SQL_GET_TIMESTAMPS_IN_PERIOD = "SELECT * FROM " + TABLE_TIMESTAMPS + " WHERE " + COLUMN_TIME_ITEM_ID + " = '%s' AND strftime('%s', " + COLUMN_TIME_STAMP + ") = strftime('%s', 'now')";
 	public static final String SQL_GET_ROW_BY_NAME = "SELECT * FROM " + TABLE_ITEMS + " WHERE " + COLUMN_ITEM_NAME + " = '%s'";

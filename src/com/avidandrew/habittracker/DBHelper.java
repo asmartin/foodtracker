@@ -1,5 +1,6 @@
 package com.avidandrew.habittracker;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import android.content.Context;
@@ -14,19 +15,6 @@ public class DBHelper extends SQLiteOpenHelper {
 	
 	private Context c = null;		// the Context passed to the constructor (may be needed by other methods)
 
-	// Database creation SQL statement
-	private static final String TABLE_CREATE_ITEMS = "Create table " + TABLE_ITEMS
-			  + "(" + COLUMN_ID + " integer primary key autoincrement, " 
-			  + COLUMN_ITEM_NAME + " text not null, " 
-			  + COLUMN_ITEM_PERIOD + " integer, " 
-			  + COLUMN_VALUE + " integer, " 
-			  + COLUMN_MAX + " integer); ";
-
-	private static final String TABLE_CREATE_TIMESTAMPS = "Create table " + TABLE_TIMESTAMPS
-			  + "(" + COLUMN_TIME_ID + " integer primary key autoincrement, "
-			  + COLUMN_TIME_ITEM_ID + " integer, "
-			  + COLUMN_TIME_STAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP);";	
-	
 	public DBHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		this.c = context;	// save the context for use in methods
@@ -54,9 +42,33 @@ public class DBHelper extends SQLiteOpenHelper {
 			do {
 				items.add(new Item(c, results));
 			} while (results.moveToNext());
-        }
+		}
         
-        return items;
+		return items;
+	}
+	
+	/** 
+	 * Gets all of the results of the specified query and return as an arraylist of strings
+	 * @return a list of the results from the database, or an empty list if the database is empty
+	 */
+	public ArrayList<ArrayList<String>> getResultsAsStrings(String query) {
+		dbInit();
+		ArrayList<ArrayList<String>> items = new ArrayList<ArrayList<String>>();
+		Cursor results = database.rawQuery(query, null);
+		
+		if (results.moveToFirst()) {
+			do {
+				ArrayList<String> thisItem = new ArrayList<String>();
+				String[] columns = results.getColumnNames();
+				for (String col : columns) {
+					int thisIndex = results.getColumnIndex(col);
+					thisItem.add(results.getString(thisIndex));
+				}
+				items.add(thisItem);
+			} while (results.moveToNext());
+		}
+        
+		return items;
 	}
 	
 	/** 

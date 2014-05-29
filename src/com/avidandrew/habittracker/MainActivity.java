@@ -102,7 +102,12 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			intent = new Intent(this, Settings_Activity.class);
 			startActivity(intent);
 			return true;
-		
+			
+		case R.id.export_db:
+			ExportHelper eh = new ExportHelper(this);
+			eh.export();
+			return true;
+			
 		case R.id.add_item:
 			intent = new Intent(this, Add_Item_Activity.class);
 			startActivity(intent);

@@ -86,6 +86,7 @@
         <item>Weekly</item>
         <item>Monthly</item>
     </string-array>
+       <string name="send_to">Send To...</string>
     
 
 </resources>
