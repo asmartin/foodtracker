@@ -21,23 +21,32 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
  
     @Override
     public Fragment getItem(int index) {
- 
+    	ItemsFragment f = null;
+    	
         switch (index) {
         case 0:
             // No Period
-            return new ItemsFragment(PERIOD_NONE);
+        	f = new ItemsFragment();
+        	f.setPeriod(PERIOD_NONE);
+            return f;
         case 1:
             // Daily
-            return new ItemsFragment(PERIOD_DAILY);
+        	f = new ItemsFragment();
+        	f.setPeriod(PERIOD_DAILY);
+            return f;
         case 2:
             // Weekly
-            return new ItemsFragment(PERIOD_WEEKLY);
+        	f = new ItemsFragment();
+        	f.setPeriod(PERIOD_WEEKLY);
+            return f;
         case 3:
             // Monthly
-            return new ItemsFragment(PERIOD_MONTHLY);
+        	f = new ItemsFragment();
+        	f.setPeriod(PERIOD_MONTHLY);
+            return f;
         }
  
-        return null;
+        return f;
     }
  
     @Override

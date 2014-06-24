@@ -1,9 +1,7 @@
 package com.avidandrew.habittracker;
 
 import static com.avidandrew.habittracker.Constants.*;
-
 import java.util.ArrayList;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,16 +14,17 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.TableRow.LayoutParams;
-
 import com.example.first_app.R;
 
 public class ItemsFragment extends Fragment {
 	private TableLayout layout = null;
 	private int period = 0;
-
-	public ItemsFragment(int period) {
+	
+	public ItemsFragment() {
 		super();
+	}
 
+	public void setPeriod(int period) {
 		this.period = period;
 	}
 
