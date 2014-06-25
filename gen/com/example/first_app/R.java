@@ -143,6 +143,7 @@ public final class R {
         public static final int minus=0x7f050004;
         public static final int plus=0x7f050003;
         public static final int save_changes=0x7f05000d;
+        public static final int send_to=0x7f05002e;
         public static final int total=0x7f050006;
     }
     public static final class style {
