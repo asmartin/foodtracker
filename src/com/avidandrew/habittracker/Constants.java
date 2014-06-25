@@ -7,12 +7,12 @@ public class Constants {
 	public static final String VERSION = "0.9.0pre";					// name of the current version
 	public static final String SEP = ", ";							// separator between items in SQL SELECT queries
 	
-	// periods
+	// periods - these values MUST correspond to the indexes of the ActionBar tabs
 	public static final int PERIOD_NONE = 0;
 	public static final int PERIOD_DAILY = 1;
 	public static final int PERIOD_WEEKLY = 2;
 	public static final int PERIOD_MONTHLY = 3;
-	public static final int DEFAULT_TAB_INDEX = 1;					// by default start at the daily tab
+	public static final int DEFAULT_TAB_INDEX = PERIOD_DAILY;		// by default start at the daily tab
 	
 	// Items table
 	public static final String TABLE_ITEMS = "Items";				// name of the items table

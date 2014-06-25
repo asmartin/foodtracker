@@ -22,10 +22,12 @@ public class ItemsFragment extends Fragment {
 	
 	public ItemsFragment() {
 		super();
+		period = this.getId();
 	}
 
 	public void setPeriod(int period) {
 		this.period = period;
+		
 	}
 
 	/**
