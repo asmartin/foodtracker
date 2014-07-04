@@ -2,7 +2,7 @@ package com.avidandrew.habittracker;
 
 import java.util.ArrayList;
 
-import com.example.first_app.R;
+import com.avidandrew.habittracker.R;
 
 import android.os.Bundle;
 import android.app.ActionBar;

@@ -10,7 +10,7 @@ import org.achartengine.renderer.SimpleSeriesRenderer;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
-import com.example.first_app.R;
+import com.avidandrew.habittracker.R;
 
 import android.app.Activity;
 import android.graphics.Color;

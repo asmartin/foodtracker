@@ -10,7 +10,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.first_app.R;
+import com.avidandrew.habittracker.R;
 
 import static com.avidandrew.habittracker.Constants.*;
 

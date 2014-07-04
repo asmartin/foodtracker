@@ -16,7 +16,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.time.FastDateFormat;
 import org.xmlpull.v1.XmlSerializer;
 
-import com.example.first_app.R;
+import com.avidandrew.habittracker.R;
 
 import android.content.Context;
 import android.content.Intent;

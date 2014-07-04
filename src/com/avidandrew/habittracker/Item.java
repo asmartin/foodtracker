@@ -1,6 +1,6 @@
 package com.avidandrew.habittracker;
 
-import com.example.first_app.R;
+import com.avidandrew.habittracker.R;
 
 import android.content.ContentValues;
 import android.content.Context;

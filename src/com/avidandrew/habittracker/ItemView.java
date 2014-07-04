@@ -2,7 +2,7 @@ package com.avidandrew.habittracker;
 
 import java.lang.reflect.TypeVariable;
 
-import com.example.first_app.R;
+import com.avidandrew.habittracker.R;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

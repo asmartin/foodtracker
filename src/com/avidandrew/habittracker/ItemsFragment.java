@@ -14,7 +14,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.TableRow.LayoutParams;
-import com.example.first_app.R;
+import com.avidandrew.habittracker.R;
 
 public class ItemsFragment extends Fragment {
 	private TableLayout layout = null;
