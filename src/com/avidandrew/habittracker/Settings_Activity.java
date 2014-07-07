@@ -6,6 +6,7 @@ import com.avidandrew.habittracker.R;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,7 +33,8 @@ public class Settings_Activity extends Activity implements OnItemSelectedListene
 
 		/// This code probably belongs on the first activity
 
-		sharedPref = this.getPreferences(this.MODE_PRIVATE);
+		//sharedPref = this.getPreferences(this.MODE_PRIVATE);
+		sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 		editor = sharedPref.edit();
 
 
@@ -63,7 +65,7 @@ public class Settings_Activity extends Activity implements OnItemSelectedListene
 		// Apply the adapter to the spinner
 		starting_table_spinner.setAdapter(starting_table_adapter);
 		starting_table_spinner.setOnItemSelectedListener(this);
-		starting_table_spinner.setSelection(sharedPref.getInt("start_table", 0));
+		starting_table_spinner.setSelection(sharedPref.getInt("start_table", Constants.DEFAULT_TAB_INDEX));
 
 
 	}
