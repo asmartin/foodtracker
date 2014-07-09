@@ -62,6 +62,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 		// Adding Tabs
 
+		/*
+
 		actionBar.addTab(actionBar.newTab().setText(
 				getResources().getString(R.string.PERIOD_NONE_LABEL)).setTabListener(this));
 
@@ -73,7 +75,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 		actionBar.addTab(actionBar.newTab().setText(
 				getResources().getString(R.string.PERIOD_MONTHLY_LABEL)).setTabListener(this));
-
+		 */
 
 
 		/**

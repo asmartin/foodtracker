@@ -1,7 +1,9 @@
 package com.avidandrew.habittracker;
 
 import static com.avidandrew.habittracker.Constants.*;
+
 import java.util.ArrayList;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,11 +11,14 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.TableRow.LayoutParams;
+
 import com.avidandrew.habittracker.R;
 
 public class ItemsFragment extends Fragment {
@@ -22,6 +27,7 @@ public class ItemsFragment extends Fragment {
 	
 	public ItemsFragment() {
 		super();
+		
 		period = this.getId();
 	}
 
@@ -56,18 +62,66 @@ public class ItemsFragment extends Fragment {
 		}
 	}
 
-	public Context getContext(){return getContext();}
 
 	/**
 	 * Loads a list of items into the activity
 	 * @param items
 	 */
 	private void loadItemsView(ArrayList<Item> items) {
+		
+		
 		if (items != null) {			
 			//Margins
-			TableRow.LayoutParams rowMargins = new TableRow.LayoutParams();
+			TableRow.LayoutParams rowMargins = new TableRow.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT, 6.0f);
 			rowMargins.setMargins(5, 5, 5, 5);
 
+			//Create First row for Goal label
+			TableRow title_row = new TableRow(getActivity());
+			//Create and Set params
+			TableRow.LayoutParams title_row_params = new LayoutParams();	
+			title_row_params.gravity = Gravity.CENTER_HORIZONTAL;
+			title_row_params.setMargins(5, 5, 5, 5);
+			title_row.setLayoutParams(title_row_params);
+			
+			//Params variable for individual buttons
+			TableRow.LayoutParams button_params = new LayoutParams();
+			button_params.gravity = Gravity.CENTER_HORIZONTAL;
+			button_params.setMargins(5, 0, 5, 0);
+			
+			// Minus Button Label 
+			TextView title_minus = new TextView(getActivity());
+			button_params.weight = 1;
+			title_minus.setLayoutParams(button_params);
+			title_minus.setText("Minus");
+			title_row.addView(title_minus);
+			
+			//Item Button
+			TextView title_item = new TextView(getActivity());
+			title_item.setText("Item");
+			button_params.weight = 3;
+			title_item.setLayoutParams(button_params);
+			title_row.addView(title_item);
+			
+			//Plus Button
+			TextView title_plus = new TextView(getActivity());
+			button_params.weight = 1;
+			title_plus.setLayoutParams(button_params);
+			title_plus.setText("Plus");
+			title_row.addView(title_plus);
+			
+			//Add Goal Title
+			button_params.weight = 1;
+			TextView goal = new TextView(getActivity());
+			goal.setText("Goal");
+			goal.setLayoutParams(button_params);
+			title_row.addView(goal);
+			
+			
+			//Add First Row to View
+			layout.addView(title_row);
+			
+			
+			//Add items to period
 			for (final Item item : items) {
 				TableRow row = new ItemView(this.getActivity(), item);
 				row.setLayoutParams(rowMargins);
