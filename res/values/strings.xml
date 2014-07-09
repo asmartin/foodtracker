@@ -32,6 +32,10 @@
     
     <!-- Labels -->
     <string name="label_period">Period</string>
+    <string name="title_subtract">Subtract</string>
+    <string name="title_item">Item</string>
+    <string name="title_add">Add</string>
+    <string name="title_goal">Goal</string>
 
     <!-- Message Strings -->
 

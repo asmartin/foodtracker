@@ -83,37 +83,41 @@ public class ItemsFragment extends Fragment {
 			title_row_params.setMargins(5, 5, 5, 5);
 			title_row.setLayoutParams(title_row_params);
 			
-			//Params variable for individual buttons
-			TableRow.LayoutParams button_params = new LayoutParams();
-			button_params.gravity = Gravity.CENTER_HORIZONTAL;
-			button_params.setMargins(5, 0, 5, 0);
 			
 			// Minus Button Label 
 			TextView title_minus = new TextView(getActivity());
-			button_params.weight = 1;
-			title_minus.setLayoutParams(button_params);
-			title_minus.setText("Minus");
+			TableRow.LayoutParams title_subtract_params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f);
+			title_subtract_params.gravity = Gravity.RIGHT;
+			title_subtract_params.setMargins(5, 0, 5, 0);
+			title_minus.setLayoutParams(title_subtract_params);
+			title_minus.setText(getString(R.string.title_subtract));
 			title_row.addView(title_minus);
 			
 			//Item Button
 			TextView title_item = new TextView(getActivity());
-			title_item.setText("Item");
-			button_params.weight = 3;
-			title_item.setLayoutParams(button_params);
+			title_item.setText(getString(R.string.title_item));
+			TableRow.LayoutParams title_item_params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 3f);
+			title_item_params.gravity = Gravity.RIGHT;
+			title_item_params.setMargins(5, 0, 5, 0);
+			title_item.setLayoutParams(title_item_params);
 			title_row.addView(title_item);
 			
 			//Plus Button
 			TextView title_plus = new TextView(getActivity());
-			button_params.weight = 1;
-			title_plus.setLayoutParams(button_params);
-			title_plus.setText("Plus");
+			TableRow.LayoutParams button_add_params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f);
+			button_add_params.gravity = Gravity.RIGHT;
+			button_add_params.setMargins(5, 0, 5, 0);
+			title_plus.setLayoutParams(button_add_params);
+			title_plus.setText(getString(R.string.title_add));
 			title_row.addView(title_plus);
 			
 			//Add Goal Title
-			button_params.weight = 1;
 			TextView goal = new TextView(getActivity());
-			goal.setText("Goal");
-			goal.setLayoutParams(button_params);
+			TableRow.LayoutParams title_goal_params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f);
+			title_goal_params.gravity = Gravity.RIGHT;
+			title_goal_params.setMargins(5, 0, 5, 0);
+			goal.setText(getString(R.string.goal));
+			goal.setLayoutParams(title_goal_params);
 			title_row.addView(goal);
 			
 			
