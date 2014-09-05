@@ -1,14 +1,11 @@
 package com.avidandrew.habittracker;
 
-import java.lang.reflect.TypeVariable;
-
 import com.avidandrew.habittracker.R;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableRow;

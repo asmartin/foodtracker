@@ -6,6 +6,9 @@ public class Constants {
 	public static final String DATABASE_NAME = "habittracker.db";	// name of the database
 	public static final String VERSION = "0.9.0pre";					// name of the current version
 	public static final String SEP = ", ";							// separator between items in SQL SELECT queries
+	public static final String MANIFEST_FILENAME = "manifest.xml";	// filename of the manifest
+	public static final String ITEMS_FILENAME = "items.csv";	// filename of the items csv file
+	public static final String TIMESTAMPS_FILENAME = "timestamps.csv";	// filename of the timestamps csv file
 	
 	// periods - these values MUST correspond to the indexes of the ActionBar tabs
 	public static final int PERIOD_NONE = 0;
@@ -31,14 +34,14 @@ public class Constants {
 	public static final String TIMESTAMPS_COLUMNS_ORDER = COLUMN_TIME_ID + SEP + COLUMN_TIME_ITEM_ID + SEP + COLUMN_TIME_STAMP;
 
 	// Database creation
-	public static final String TABLE_CREATE_ITEMS = "Create table " + TABLE_ITEMS
+	public static final String TABLE_CREATE_ITEMS = "CREATE TABLE IF NOT EXISTS " + TABLE_ITEMS
 			  + "(" + COLUMN_ID + " integer primary key autoincrement, " 
 			  + COLUMN_ITEM_NAME + " text not null, " 
 			  + COLUMN_ITEM_PERIOD + " integer, " 
 			  + COLUMN_VALUE + " integer, " 
 			  + COLUMN_MAX + " integer); ";
 
-	public static final String TABLE_CREATE_TIMESTAMPS = "Create table " + TABLE_TIMESTAMPS
+	public static final String TABLE_CREATE_TIMESTAMPS = "CREATE TABLE IF NOT EXISTS " + TABLE_TIMESTAMPS
 			  + "(" + COLUMN_TIME_ID + " integer primary key autoincrement, "
 			  + COLUMN_TIME_ITEM_ID + " integer, "
 			  + COLUMN_TIME_STAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP);";	
@@ -56,6 +59,12 @@ public class Constants {
 	public static final String SQL_DELETE_LAST_TIMESTAMP = "DELETE FROM " + TABLE_TIMESTAMPS + " WHERE " + COLUMN_TIME_ID + " IN (SELECT " + COLUMN_TIME_ID + " FROM "
 			+ TABLE_TIMESTAMPS + " WHERE " + COLUMN_TIME_ITEM_ID + "='%d' ORDER BY " + COLUMN_TIME_ID + " DESC LIMIT 1)";
 	public static final String SQL_DELETE_ITEM = "DELETE FROM " + TABLE_ITEMS + " WHERE " + COLUMN_ID + "='%d'";
+	
+	// Manifest file
+	public static final String MANIFEST_TAG_ROOT = "habittracker";
+	public static final String MANIFEST_TAG_VERSION = "version";
+	public static final String MANIFEST_TAG_SQL_ITEMS = "SQL_Items";
+	public static final String MANIFEST_TAG_SQL_TIMESTAMPS = "SQL_Timestamps";
 	
 	// Extras
 	public static final String EXTRA_NAME = "extra_name";

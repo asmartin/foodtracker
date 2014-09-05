@@ -12,7 +12,7 @@ import static com.avidandrew.habittracker.Constants.*;
 
 public class TabsPagerAdapter extends FragmentPagerAdapter {
 	private Activity activity = null;
-	
+
     public TabsPagerAdapter(FragmentManager fm, Activity activity) {
         super(fm);
         

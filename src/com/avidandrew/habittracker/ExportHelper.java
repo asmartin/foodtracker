@@ -6,14 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringWriter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.time.FastDateFormat;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.avidandrew.habittracker.R;
@@ -54,9 +50,9 @@ public class ExportHelper {
 	
 	public boolean exportTo_v0_9_0() {
 		File outputDir = context.getCacheDir(); // context being the Activity pointer
-		String items_filename = outputDir.getPath() + File.separator + "items.csv";
-		String timestamps_filename = outputDir.getPath() + File.separator + "timestamps.csv";
-		String manifest_filename = outputDir.getPath() + File.separator + "manifest.xml";
+		String items_filename = outputDir.getPath() + File.separator + ITEMS_FILENAME;
+		String timestamps_filename = outputDir.getPath() + File.separator + TIMESTAMPS_FILENAME;
+		String manifest_filename = outputDir.getPath() + File.separator + MANIFEST_FILENAME;
 		String export_filename = Environment.getExternalStorageDirectory() + File.separator + APP_NAME.replace(" ", "_") + "_" + Util.getDatestamp() + "." + APP_EXTENSION;
 		File exportFile = new File(export_filename);
 
@@ -79,21 +75,21 @@ public class ExportHelper {
 		        serializer.setOutput(writer);
 		        serializer.startDocument("UTF-8", true);
 		        serializer.text("\n");
-		            serializer.startTag("", "habittracker");
+		            serializer.startTag("", MANIFEST_TAG_ROOT);
 		            serializer.text("\n");
-		            serializer.startTag("", "version");
+		            serializer.startTag("", MANIFEST_TAG_VERSION);
 		            serializer.text(Util.sanitizeVersion(VERSION));
-		            serializer.endTag("", "version");
+		            serializer.endTag("", MANIFEST_TAG_VERSION);
 		            serializer.text("\n");
-		            serializer.startTag("", "SQL_Items");
+		            serializer.startTag("", MANIFEST_TAG_SQL_ITEMS);
 		            serializer.text(TABLE_CREATE_ITEMS);
-		            serializer.endTag("", "SQL_Items");
+		            serializer.endTag("", MANIFEST_TAG_SQL_ITEMS);
 		            serializer.text("\n");
-		            serializer.startTag("", "SQL_Timestamps");
+		            serializer.startTag("", MANIFEST_TAG_SQL_TIMESTAMPS);
 		            serializer.text(TABLE_CREATE_TIMESTAMPS);
-		            serializer.endTag("", "SQL_Timestamps");
+		            serializer.endTag("", MANIFEST_TAG_SQL_TIMESTAMPS);
 		            serializer.text("\n");
-		            serializer.endTag("", "habittracker");
+		            serializer.endTag("", MANIFEST_TAG_ROOT);
 		        serializer.endDocument();
 		        writer.close();
 		    } catch (Exception e) {

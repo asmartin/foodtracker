@@ -1,6 +1,5 @@
 package com.avidandrew.habittracker;
 
-import java.util.ArrayList;
 
 import com.avidandrew.habittracker.R;
 
@@ -8,19 +7,14 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
-import android.app.Activity;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.Toast;
-import android.widget.TableRow.LayoutParams;
 
 import com.avidandrew.habittracker.TabsPagerAdapter;
 
@@ -99,11 +93,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			}
 		});
 
+		
 
-		viewPager.setCurrentItem(sharedPref.getInt("start_table", DEFAULT_TAB_INDEX));
+		viewPager.setCurrentItem(sharedPref.getInt("start_table", actionBar.getSelectedNavigationIndex()));
 
 	}
-
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -116,7 +110,12 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			intent = new Intent(this, Settings_Activity.class);
 			startActivity(intent);
 			return true;
-
+	
+		case R.id.import_db:
+			ImportHelper ih = new ImportHelper(this);
+			ih.selectFile();
+			return true;			
+			
 		case R.id.export_db:
 			ExportHelper eh = new ExportHelper(this);
 			eh.export();

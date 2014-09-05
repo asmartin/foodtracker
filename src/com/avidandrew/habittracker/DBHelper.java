@@ -1,8 +1,8 @@
 package com.avidandrew.habittracker;
 
-import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,7 +17,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	public DBHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		this.c = context;	// save the context for use in methods
+		this.c = context;	// save the context for use in methods		
 	}
 	
 	/** 
@@ -26,6 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	private void dbInit() {
 		if (database == null) {
 			database = this.getWritableDatabase();
+			onCreate(database);	// create the tables if they don't exist
 		}
 	}
 
@@ -44,6 +45,8 @@ public class DBHelper extends SQLiteOpenHelper {
 			} while (results.moveToNext());
 		}
         
+		results.close();
+		
 		return items;
 	}
 	
@@ -67,8 +70,26 @@ public class DBHelper extends SQLiteOpenHelper {
 				items.add(thisItem);
 			} while (results.moveToNext());
 		}
+		
+		results.close();
         
 		return items;
+	}
+	
+	public boolean insertFromCSV(String table, String header[], String data[]) {
+		dbInit();
+		// read in the contents of the file
+		ContentValues cv = new ContentValues();
+		for (int i = 0; i < header.length; i++) {
+			if (data.length < i) {
+				// data and header mismatch, fail
+				return false;
+			}
+			
+			cv.put(header[i], data[i]);
+		}
+		
+		return (database.insert(table, null, cv) >= 0);
 	}
 	
 	/** 
@@ -116,6 +137,8 @@ public class DBHelper extends SQLiteOpenHelper {
 				
 			} while (results.moveToNext());
         }
+		
+		results.close();
         
         return items;
 	}
@@ -169,6 +192,8 @@ public class DBHelper extends SQLiteOpenHelper {
 		if (results.moveToFirst()) {
 			thisItem = new Item(c, results);
         }
+		
+		results.close();
         
         return thisItem;
 	}
@@ -212,7 +237,26 @@ public class DBHelper extends SQLiteOpenHelper {
 	 * deletes all content from the database
 	 * @param c the current context
 	 */
-	public static void emptyDB(Context c) {
+	public void emptyDB() {
+		dbInit();
+		this.execSQL("DROP TABLE IF EXISTS " + TABLE_ITEMS);
+		this.execSQL("DROP TABLE IF EXISTS " + TABLE_TIMESTAMPS);
+	}
+	
+	/**
+	 * executes SQL on the database
+	 * @param c the current context
+	 */
+	public void execSQL(String sql) {
+		SQLiteDatabase d = this.getWritableDatabase();
+		d.execSQL(sql);
+	}
+	
+	/**
+	 * deletes all content from the database
+	 * @param c the current context
+	 */
+	public static void recreateDB(Context c, String sql) {
 		DBHelper dbh = new DBHelper(c);
 		SQLiteDatabase d = dbh.getWritableDatabase();
 		d.execSQL("DROP TABLE IF EXISTS " + TABLE_ITEMS);

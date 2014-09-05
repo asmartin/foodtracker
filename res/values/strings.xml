@@ -58,7 +58,23 @@
     <string name="MSG_ERROR_DELETE_ITEM">Error deleting Item</string>
     <string name="MSG_NO_ITEMS">No Items for This Period</string>
     <string name="MSG_NO_PERIOD_SELECTED">Error No Period Selected</string>
-    
+    <string name="MSG_IMPORTING_WAIT">Importing, please wait&#8230;</string>
+	<string name="MSG_IMPORT_SUCCESSFUL_TITLE">Import Successful</string>
+	<string name="MSG_IMPORT_SUCCESSFUL_TEXT">The import was successful!</string>
+	<string name="MSG_FILE_NOT_FOUND_TITLE">File not found</string>
+	<string name="MSG_FILE_NOT_FOUND_TEXT">The file you selected could not be found.</string>
+	<string name="MSG_IMPORT_CONFIRM_TITLE">Confirm Import</string>
+	<string name="MSG_IMPORT_CONFIRM_TEXT">This import will erase your current %1$s data - are you sure you want to continue?</string>
+	<string name="MSG_YES">Yes</string>
+	<string name="MSG_NO">No</string>
+	<string name="MSG_IMPORT_FAILED_TITLE">Import Failed</string>
+	<string name="MSG_IMPORT_FAILED_EXTRACT_TEXT">Failed to extract backup</string>
+	<string name="MSG_IMPORT_FAILED_PARSE_TEXT">Failed to parse backup</string>
+	<string name="MSG_IMPORT_FAILED_READ_TEXT">Cannot read backup</string>
+	<string name="MSG_SELECT_DIRECTORY">Select a directory</string>
+	<string name="MSG_NO_ITEM_SELECTED">No Item Selected</string>
+	<string name="MSG_OK">OK</string>
+	
     <!-- Paragraphs -->
     <string name="about_title">About</string>
     <string name="about_paragraph">

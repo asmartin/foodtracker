@@ -100,7 +100,7 @@ public class Settings_Activity extends Activity implements OnItemSelectedListene
 	public void onNothingSelected(AdapterView<?> parent) {
 		// Another interface callback
 
-		Toast.makeText(this, "no item selected", Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, getResources().getString(R.string.MSG_NO_ITEM_SELECTED), Toast.LENGTH_SHORT).show();
 	}
 
 }
