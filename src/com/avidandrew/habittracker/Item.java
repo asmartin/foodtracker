@@ -108,6 +108,7 @@ public class Item extends Object{
 			// if not already done, move to the first row of results
 			results.moveToFirst();
 		}
+		
 		itemID = results.getInt(results.getColumnIndexOrThrow(COLUMN_ID));
 		item_name = results.getString(results.getColumnIndexOrThrow(COLUMN_ITEM_NAME));
 		period = results.getInt(results.getColumnIndexOrThrow(COLUMN_ITEM_PERIOD));
@@ -174,11 +175,7 @@ public class Item extends Object{
 		return update(COLUMN_ITEM_PERIOD, String.valueOf(new_period));
 	}
 	
-	public int getPeriod(){
-		
-		return this.period;
-		
-	}
+	public int getPeriod(){return this.period;}
 	
 	/**
 	 * Increments the counter; updates the data in the database
@@ -196,20 +193,12 @@ public class Item extends Object{
 		if (ret < 0) {
 			// error inserting row
 										
-			Toast.makeText(c, getResource().getString(R.string.MSG_ERROR_INCREMENT) + item_name, Toast.LENGTH_SHORT).show();
+			Toast.makeText(c, c.getApplicationContext().getString(R.string.MSG_ERROR_INCREMENT) + item_name, Toast.LENGTH_SHORT).show();
 		}
 			
 		return totalCounter;
 	}
 	
-	/**
-	 * Get handle in order to access String Resources.
-	 * @return	Resource to accesss strings
-	 */
-	public  Resources getResource(){
-		
-		return getResource();
-	}
 	
 	/**
 	 * Decrements the counter; updates the data in the database
@@ -222,7 +211,7 @@ public class Item extends Object{
 			return totalCounter;
 		}
 		totalCounter--;
-		
+				
 		// check how many timestamp rows there are before the removal
 		int numRowsBefore = dbHelper.getNumRows(String.format(SQL_GET_TIMESTAMP_ROWS_MATCHING_ITEMID, itemID));
 		
@@ -235,7 +224,7 @@ public class Item extends Object{
 		if (numRowsBefore == -1 || numRowsAfter + 1 != numRowsBefore) {
 			// this method was supposed to remove one row from this table, but something else happened
 			
-			Toast.makeText(c, getResource().getString(R.string.MSG_ERROR_DECREMENT) + item_name, Toast.LENGTH_SHORT).show();
+			Toast.makeText(c, c.getApplicationContext().getResources().getString(R.string.MSG_ERROR_DECREMENT) + item_name, Toast.LENGTH_SHORT).show();
 		}
 		
 		update(COLUMN_VALUE, String.valueOf(totalCounter));

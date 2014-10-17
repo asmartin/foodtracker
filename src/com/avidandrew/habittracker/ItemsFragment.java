@@ -1,6 +1,6 @@
 package com.avidandrew.habittracker;
 
-import static com.avidandrew.habittracker.Constants.*;
+import static com.avidandrew.habittracker.Constants.SAMPLE_DATA;
 
 import java.util.ArrayList;
 
@@ -12,10 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 import android.widget.TableRow.LayoutParams;
-
-import com.avidandrew.habittracker.R;
+import android.widget.TextView;
 
 public class ItemsFragment extends Fragment {
 	private TableLayout layout = null;
@@ -23,7 +21,6 @@ public class ItemsFragment extends Fragment {
 	
 	public ItemsFragment() {
 		super();
-		
 		period = this.getId();
 	}
 
@@ -66,6 +63,7 @@ public class ItemsFragment extends Fragment {
 	private void loadItemsView(ArrayList<Item> items) {
 		
 		
+		
 		if (items != null) {			
 			//Margins
 			TableRow.LayoutParams rowMargins = new TableRow.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT, 6.0f);
@@ -74,11 +72,11 @@ public class ItemsFragment extends Fragment {
 			//Create First row for Goal label
 			TableRow title_row = new TableRow(getActivity());
 			//Create and Set params
-			TableRow.LayoutParams title_row_params = new LayoutParams();	
+			TableRow.LayoutParams title_row_params = new LayoutParams();
+			
 			title_row_params.gravity = Gravity.CENTER_HORIZONTAL;
 			title_row_params.setMargins(5, 5, 5, 5);
 			title_row.setLayoutParams(title_row_params);
-			
 			
 			// Minus Button Label 
 			TextView title_minus = new TextView(getActivity());
@@ -115,7 +113,6 @@ public class ItemsFragment extends Fragment {
 			goal.setText(getString(R.string.goal));
 			goal.setLayoutParams(title_goal_params);
 			title_row.addView(goal);
-			
 			
 			//Add First Row to View
 			layout.addView(title_row);

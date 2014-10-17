@@ -38,8 +38,6 @@ public class ItemView extends TableRow {
 		
 		minus.setLayoutParams(params_minus_button);
 		
-		
-		
 		minus.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
 		minus.setBackgroundResource(R.drawable.minus_button_style);
 		minus.setOnClickListener(new View.OnClickListener() {
@@ -122,7 +120,6 @@ public class ItemView extends TableRow {
 	    int minTextViewSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 55, getResources().getDisplayMetrics());
 		text_view_params.width = minTextViewSize;
 		counterView.setLayoutParams(text_view_params);
-			
 		counterView.setText(item.getCounterValue() + "/" + item.getMaxInPeriod());
 	}
 }

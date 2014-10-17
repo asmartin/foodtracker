@@ -28,6 +28,7 @@
         <activity android:name="com.avidandrew.habittracker.About_Activity"   />
         <activity android:name="com.avidandrew.habittracker.Settings_Activity"   />
         <activity android:name="com.avidandrew.habittracker.Chart_Activity"   />
+        <activity android:name="com.avidandrew.habittracker.Reminders_Activity"></activity>
 
     </application>
 

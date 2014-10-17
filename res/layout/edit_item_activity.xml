@@ -4,18 +4,26 @@
     android:layout_height="match_parent"
     android:layout_gravity="center_horizontal" >
 
+    <TextView
+        android:id="@+id/title_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Edit Item"
+        android:textSize="20sp" />
+
     <EditText
         android:id="@+id/edit_item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="60dp"
         android:ems="10"
         android:hint="Item Name"
         android:inputType="textCapSentences"
         android:maxLength="20" >
-
     </EditText>
 
     <EditText
@@ -38,15 +46,6 @@
         android:layout_below="@+id/edit_max_quantity"
         android:layout_marginTop="20dp"
         android:text="@string/label_period" />
-
-    <Button
-        android:id="@+id/delete_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/delete_item" />
 
     <RadioGroup
         android:id="@+id/radiogroup_period_edit_item"
@@ -81,21 +80,49 @@
             android:text="@string/PERIOD_MONTHLY_LABEL" />
     </RadioGroup>
 
-    <Button
-        android:id="@+id/save_changes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/delete_item"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/save_changes" />
-
-    <Button
-        android:id="@+id/view_history"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/save_changes"
-        android:layout_centerHorizontal="true"
-        android:text="View History" />
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:gravity="center_horizontal" >
+
+        <ImageButton
+            android:id="@+id/button_stats"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/button_stats" />
+
+        <ImageButton
+            android:id="@+id/imageButton_view_graph"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/button_graphs" />
+
+        <ImageButton
+            android:id="@+id/imageButton_reminders"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            
+            android:background="@drawable/button_reminders" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/imageButton_save"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="15dp"
+        android:background="@drawable/button_save" />
+
+    <ImageButton
+        android:id="@+id/imageButton_delete_item"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/button_trash" />
 
 </RelativeLayout>

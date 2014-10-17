@@ -44,8 +44,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		//set Shared preferences
 		setSharedPreferences();
 
-
-
 		// empty DB (for debugging)
 		//DBHelper.emptyDB(this);
 
@@ -93,8 +91,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			}
 		});
 
-		
-
 		viewPager.setCurrentItem(sharedPref.getInt("start_table", actionBar.getSelectedNavigationIndex()));
 
 	}
@@ -137,6 +133,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 	}
 
+	
+	/*
+	 * This method sets up initial settings of the application
+	 */
 	private void setSharedPreferences(){
 
 
@@ -157,20 +157,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			// 1 = Order Added
 			editor.putInt("sort_order", 0).commit();
 
-			//spinner starting table
-			//1-4 No period to monthly
-			editor.putInt("start_table", 0).commit();
-
-			//Set Enabled Tabs
-			editor.putBoolean("no_period", true).commit();
-			editor.putBoolean("daily", true).commit();
-			editor.putBoolean("weekly", true).commit();
-			editor.putBoolean("montly", true).commit();
-
 			//Set Starting Table
 			editor.putInt("start_table", DEFAULT_TAB_INDEX).commit();
-
-
 		}
 
 	}
