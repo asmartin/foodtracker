@@ -1,6 +1,5 @@
 package com.avidandrew.habittracker;
 
-import static com.avidandrew.habittracker.Constants.SAMPLE_DATA;
 
 import java.util.ArrayList;
 
@@ -15,19 +14,35 @@ import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
-public class ItemsFragment extends Fragment {
-	private TableLayout layout = null;
-	private int period = 0;
+public class ItemsFragment extends Fragment implements Constants{
+	private TableLayout layout;
+	private int period;
 	
-	public ItemsFragment() {
-		super();
-		period = this.getId();
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		
+		//GET TAB INDEX FROM ARGUMENTS
+		Bundle bundle = getArguments();
+		period = bundle.getInt(EXTRA_FRAGMENT_ID);
+		
+		//CREATE THE VIEW TO RETURN
+		View rootView = inflater.inflate(R.layout.itemsfragment_activity, container, false);
+		layout = (TableLayout) rootView.findViewById(R.id.main_table);
+		loadItems();
+		
+		return rootView;
 	}
+	
+	
+		
 
+
+	/*
 	public void setPeriod(int period) {
 		this.period = period;
-		
 	}
+	*/
 
 	/**
 	 * determines if there is data in the Items database; if so, display it; else, display sample data
@@ -147,16 +162,8 @@ public class ItemsFragment extends Fragment {
 		loadItemsView(sampleData);
 	}
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.itemsfragment_activity, container, false);
-		//this.getActivity().setContentView(R.layout.itemsfragment_activity);
-		layout = (TableLayout) rootView.findViewById(R.id.main_table);
-		return rootView;
-	}
-	
+	/*
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -164,5 +171,5 @@ public class ItemsFragment extends Fragment {
 		layout.removeAllViews();
 		loadItems();
 	}
-
+*/
 }

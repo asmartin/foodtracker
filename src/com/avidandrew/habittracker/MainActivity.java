@@ -1,22 +1,26 @@
 package com.avidandrew.habittracker;
 
 
+import java.util.Locale;
+
 import com.avidandrew.habittracker.R;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
-import com.avidandrew.habittracker.TabsPagerAdapter;
 
 import static com.avidandrew.habittracker.Constants.*;
 
@@ -33,46 +37,48 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		// Initialization
+
+
+		// INITIALIZE ADAPTER AND VIEWPAGER
 		viewPager = (ViewPager) findViewById(R.id.pager);
 		actionBar = getActionBar();
 		mAdapter = new TabsPagerAdapter(getSupportFragmentManager(), this);
-
 		viewPager.setAdapter(mAdapter);
-		actionBar.setHomeButtonEnabled(false);
 
-		//set Shared preferences
+		//LOAD SHARED PREFERENCES
 		setSharedPreferences();
+
+		//Set current fragment to display
+		viewPager.setCurrentItem(sharedPref.getInt("start_table", actionBar.getSelectedNavigationIndex()));
+		
+		//SETUP ACTIONBAR
+		actionBar.setHomeButtonEnabled(false);
 
 		// empty DB (for debugging)
 		//DBHelper.emptyDB(this);
 
 		// ASM: uncomment to show tabs
 		//actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);        
-
 		//Toast.makeText(this, String.valueOf(sharedPref.getInt("start_table", DEFAULT_TAB_INDEX)) , Toast.LENGTH_SHORT).show();
-
 		// Adding Tabs
 
 		/*
-
 		actionBar.addTab(actionBar.newTab().setText(
 				getResources().getString(R.string.PERIOD_NONE_LABEL)).setTabListener(this));
-
 		actionBar.addTab(actionBar.newTab().setText(
 				getResources().getString(R.string.PERIOD_DAILY_LABEL)).setTabListener(this));	
-
 		actionBar.addTab(actionBar.newTab().setText(
 				getResources().getString(R.string.PERIOD_WEEKLY_LABEL)).setTabListener(this));	
-
 		actionBar.addTab(actionBar.newTab().setText(
 				getResources().getString(R.string.PERIOD_MONTHLY_LABEL)).setTabListener(this));
 		 */
 
 
+		//POSSIBLE UNNECESSSARY CODE BELOW
 		/**
 		 * on swiping the viewpager make respective tab selected
 		 * */
+		/*
 		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
 			@Override
@@ -91,7 +97,18 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			}
 		});
 
-		viewPager.setCurrentItem(sharedPref.getInt("start_table", actionBar.getSelectedNavigationIndex()));
+		 */
+
+
+	}
+
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		//Refresh fragments in case new items added
+		mAdapter.notifyDataSetChanged();
+
 
 	}
 
@@ -106,12 +123,12 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			intent = new Intent(this, Settings_Activity.class);
 			startActivity(intent);
 			return true;
-	
+
 		case R.id.import_db:
 			ImportHelper ih = new ImportHelper(this);
 			ih.selectFile();
 			return true;			
-			
+
 		case R.id.export_db:
 			ExportHelper eh = new ExportHelper(this);
 			eh.export();
@@ -184,5 +201,89 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 	@Override
 	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+	}
+
+
+	/**
+	 * Tabs Pager Adapter - Extends the adapter 											View Pager Adapter
+	 * @author emmanuel
+	 *
+	 */
+	public class TabsPagerAdapter extends FragmentPagerAdapter {
+		private Activity activity;
+
+		public TabsPagerAdapter(FragmentManager fm, Activity activity) {
+			super(fm);
+
+			this.activity = activity;
+		}
+
+		/**
+		 * This method is used to make sure the notifydatasetchanged actually updates the
+		 * viewpager after adding an item
+		 */
+		public int getItemPosition(Object object) {  
+			return POSITION_NONE;  
+		} 
+
+		@Override
+		public Fragment getItem(int index) {
+
+			ItemsFragment fragment = new ItemsFragment();
+			Bundle args = new Bundle();
+			args.putInt(EXTRA_FRAGMENT_ID, index);
+			fragment.setArguments(args);
+
+			//f.setPeriod(index);
+			return fragment;
+
+		}
+
+		@Override
+		public int getCount() {
+			// get item count - equal to number of tabs
+			return 4;
+		}
+
+		public String getLabel(int period) {
+			String label = "";
+
+			switch (period) {
+			case PERIOD_NONE:
+				label = activity.getResources().getString(R.string.PERIOD_NONE_LABEL);
+				break;
+			case PERIOD_DAILY:
+				label = activity.getResources().getString(R.string.PERIOD_DAILY_LABEL);
+				break;
+			case PERIOD_WEEKLY:
+				label = activity.getResources().getString(R.string.PERIOD_WEEKLY_LABEL);
+				break;
+			case PERIOD_MONTHLY:
+				label = activity.getResources().getString(R.string.PERIOD_MONTHLY_LABEL);
+				break;
+			}
+
+			return label;
+		}
+
+		@Override
+		public CharSequence getPageTitle(int position) {
+			Locale l = Locale.getDefault();
+			switch (position) {
+			case 0:
+				// No Period
+				return getLabel(PERIOD_NONE).toUpperCase(l);
+			case 1:
+				// Daily
+				return getLabel(PERIOD_DAILY).toUpperCase(l);
+			case 2:
+				// Weekly
+				return getLabel(PERIOD_WEEKLY).toUpperCase(l);
+			case 3:
+				// Monthly
+				return getLabel(PERIOD_MONTHLY).toUpperCase(l);
+			}
+			return "";
+		}
 	}
 }

@@ -1,6 +1,6 @@
 package com.avidandrew.habittracker;
 
-public class Constants {
+public interface Constants {
 	public static final String APP_NAME = "Habit Tracker";
 	public static final String APP_EXTENSION = "htr";
 	public static final String DATABASE_NAME = "habittracker.db";	// name of the database
@@ -16,6 +16,13 @@ public class Constants {
 	public static final int PERIOD_WEEKLY = 2;
 	public static final int PERIOD_MONTHLY = 3;
 	public static final int DEFAULT_TAB_INDEX = PERIOD_DAILY;		// by default start at the daily tab
+	
+	
+	//Bundles for passing data between fragments
+	
+	public static final String EXTRA_FRAGMENT_ID = "com.avidandrew.habittracker.fragment_id";
+	
+	
 	
 	// Items table
 	public static final String TABLE_ITEMS = "Items";				// name of the items table
