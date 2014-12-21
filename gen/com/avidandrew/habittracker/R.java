@@ -40,31 +40,35 @@ public final class R {
     }
     public static final class id {
         public static final int Chart_layout=0x7f09000e;
+        public static final int LinearLayout1=0x7f090024;
         public static final int RadioButton_Daily=0x7f090015;
         public static final int RadioButton_Monthly=0x7f090017;
         public static final int RadioButton_No_Period=0x7f090014;
         public static final int RadioButton_Weekly=0x7f090016;
-        public static final int ScrollView1=0x7f090020;
-        public static final int about_actvity=0x7f09002d;
+        public static final int ScrollView1=0x7f090029;
+        public static final int about_actvity=0x7f090035;
         public static final int about_paragraph=0x7f090001;
         public static final int about_title=0x7f090000;
-        public static final int action_settings=0x7f090029;
-        public static final int add_item=0x7f09002c;
+        public static final int action_settings=0x7f090031;
+        public static final int add_item=0x7f090034;
         public static final int add_item_button=0x7f09000d;
         public static final int add_item_field=0x7f090005;
-        public static final int button1=0x7f090022;
+        public static final int button1=0x7f09002a;
+        public static final int button_add=0x7f090027;
+        public static final int button_item_name=0x7f090026;
         public static final int button_stats=0x7f090018;
+        public static final int button_subtract=0x7f090025;
         public static final int edit_item_name=0x7f090010;
         public static final int edit_max_quantity=0x7f090011;
-        public static final int export_db=0x7f09002b;
+        public static final int export_db=0x7f090033;
         public static final int imageButton_delete_item=0x7f09001c;
         public static final int imageButton_reminders=0x7f09001a;
         public static final int imageButton_save=0x7f09001b;
         public static final int imageButton_view_graph=0x7f090019;
-        public static final int import_db=0x7f09002a;
+        public static final int import_db=0x7f090032;
         public static final int label_period_edit_item=0x7f090012;
         public static final int main_relative_layout=0x7f090002;
-        public static final int main_table=0x7f09001f;
+        public static final int main_table=0x7f090023;
         public static final int max_quant_field=0x7f090006;
         public static final int pager=0x7f090003;
         public static final int pager_title_strip=0x7f090004;
@@ -75,16 +79,20 @@ public final class R {
         public static final int radio_period_weekly=0x7f09000b;
         public static final int radiogroup_period=0x7f090008;
         public static final int radiogroup_period_edit_item=0x7f090013;
-        public static final int scroll_view=0x7f09001d;
-        public static final int sort_order_row=0x7f090023;
-        public static final int sort_order_title=0x7f090024;
-        public static final int spinner_sort_order=0x7f090025;
-        public static final int starting_table_row=0x7f090026;
-        public static final int starting_table_spinner=0x7f090028;
-        public static final int starting_table_title=0x7f090027;
-        public static final int textView1=0x7f090021;
+        public static final int scroll_view=0x7f090021;
+        public static final int sort_order_row=0x7f09002b;
+        public static final int sort_order_title=0x7f09002c;
+        public static final int spinner_sort_order=0x7f09002d;
+        public static final int starting_table_row=0x7f09002e;
+        public static final int starting_table_spinner=0x7f090030;
+        public static final int starting_table_title=0x7f09002f;
+        public static final int textView1=0x7f09001d;
+        public static final int textView2=0x7f09001e;
+        public static final int textView3=0x7f09001f;
+        public static final int textView4=0x7f090020;
+        public static final int textView_label_goal=0x7f090028;
         public static final int title_edit_text=0x7f09000f;
-        public static final int title_goal=0x7f09001e;
+        public static final int title_goal=0x7f090022;
     }
     public static final class layout {
         public static final int about_activity=0x7f030000;
@@ -92,9 +100,11 @@ public final class R {
         public static final int add_item_activity=0x7f030002;
         public static final int chart_activity=0x7f030003;
         public static final int edit_item_activity=0x7f030004;
-        public static final int itemsfragment_activity=0x7f030005;
-        public static final int reminders_activity=0x7f030006;
-        public static final int settings_activity=0x7f030007;
+        public static final int fragment_listview_items=0x7f030005;
+        public static final int itemsfragment_activity=0x7f030006;
+        public static final int listview_item=0x7f030007;
+        public static final int reminders_activity=0x7f030008;
+        public static final int settings_activity=0x7f030009;
     }
     public static final class menu {
         public static final int main=0x7f080000;

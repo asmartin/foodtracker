@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal"
+    android:focusable="false"
+    android:weightSum="10" >
+
+    <Button
+        android:id="@+id/button_subtract"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_margin="5dp"
+        android:focusable="false"
+        android:background="@drawable/minus_button_style"
+        
+        android:text="-" />
+
+    <Button
+        android:id="@+id/button_item_name"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:layout_margin="5dp"
+        android:focusable="false"
+        android:background="@drawable/button_style"
+        android:text="Item 1" />
+
+    <Button
+        android:id="@+id/button_add"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_margin="5dp"
+        android:focusable="false"
+        android:background="@drawable/plus_button_style"
+        android:text="+" />
+
+    <TextView
+        android:id="@+id/textView_label_goal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:focusable="false"
+        android:gravity="center_horizontal"
+        android:text="999/999" />
+
+</LinearLayout>

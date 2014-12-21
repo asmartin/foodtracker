@@ -1,153 +1,73 @@
 package com.avidandrew.habittracker;
 
 
+import static com.avidandrew.habittracker.Constants.EXTRA_MAX;
+import static com.avidandrew.habittracker.Constants.EXTRA_NAME;
+import static com.avidandrew.habittracker.Constants.EXTRA_PERIOD;
+
 import java.util.ArrayList;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
-public class ItemsFragment extends Fragment implements Constants{
-	private TableLayout layout;
+public class ItemsFragment extends ListFragment implements Constants{
+
 	private int period;
-	
+
+	private Items_ListViewAdapter adapter;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		
+
 		//GET TAB INDEX FROM ARGUMENTS
 		Bundle bundle = getArguments();
 		period = bundle.getInt(EXTRA_FRAGMENT_ID);
-		
-		//CREATE THE VIEW TO RETURN
-		View rootView = inflater.inflate(R.layout.itemsfragment_activity, container, false);
-		layout = (TableLayout) rootView.findViewById(R.id.main_table);
-		loadItems();
-		
-		return rootView;
-	}
-	
-	
-		
 
+		//Inflate ListView of Items
+		View view = inflater.inflate(R.layout.fragment_listview_items, container, false);
 
-	/*
-	public void setPeriod(int period) {
-		this.period = period;
+		//GET LIST OF ITEMS
+		ArrayList<Item> list = getArrayofItems(period);
+
+		//Load Sample Data if ArrayList is empty
+		if(getArrayofItems(period).size() == 0 || list == null){
+			//	list = loadSampleData();
+		}
+
+		adapter = new Items_ListViewAdapter(getActivity(), R.layout.listview_item, list);
+		setListAdapter(adapter);
+
+		return view;
 	}
-	*/
 
 	/**
-	 * determines if there is data in the Items database; if so, display it; else, display sample data
+	 * GET THE ARRAY OF ITEMS DEPENDING ON THE PERIOD
+	 * @return
 	 */
-	private void loadItems() {
+	private ArrayList<Item> getArrayofItems(int period){
 		DBHelper db = new DBHelper(this.getActivity());
 		ArrayList<Item> items = db.getItemsByPeriod(period);
-		if (items == null || items.size() == 0) {
-			// load sample data
-			//loadSampleData();
-			
-			//TextView and params
-			TextView noDataMessage = new TextView(this.getActivity());
-			noDataMessage.setGravity(Gravity.CENTER_HORIZONTAL);
-			noDataMessage.setPadding(10, 10, 10, 10);
-			noDataMessage.setText(R.string.MSG_NO_ITEMS);
-			
-			layout.addView(noDataMessage);
-
-		} else {
-			// load data from database
-			loadItemsView(items);
-
-
-		}
-	}
-
-
-	/**
-	 * Loads a list of items into the activity
-	 * @param items
-	 */
-	private void loadItemsView(ArrayList<Item> items) {
-		
-		
-		
-		if (items != null) {			
-			//Margins
-			TableRow.LayoutParams rowMargins = new TableRow.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT, 6.0f);
-			rowMargins.setMargins(5, 5, 5, 5);
-
-			//Create First row for Goal label
-			TableRow title_row = new TableRow(getActivity());
-			//Create and Set params
-			TableRow.LayoutParams title_row_params = new LayoutParams();
-			
-			title_row_params.gravity = Gravity.CENTER_HORIZONTAL;
-			title_row_params.setMargins(5, 5, 5, 5);
-			title_row.setLayoutParams(title_row_params);
-			
-			// Minus Button Label 
-			TextView title_minus = new TextView(getActivity());
-			TableRow.LayoutParams title_subtract_params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f);
-			title_subtract_params.gravity = Gravity.RIGHT;
-			title_subtract_params.setMargins(5, 0, 5, 0);
-			title_minus.setLayoutParams(title_subtract_params);
-			title_minus.setText(getString(R.string.title_subtract));
-			title_row.addView(title_minus);
-			
-			//Item Button
-			TextView title_item = new TextView(getActivity());
-			title_item.setText(getString(R.string.title_item));
-			TableRow.LayoutParams title_item_params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 3f);
-			title_item_params.gravity = Gravity.RIGHT;
-			title_item_params.setMargins(5, 0, 5, 0);
-			title_item.setLayoutParams(title_item_params);
-			title_row.addView(title_item);
-			
-			//Plus Button
-			TextView title_plus = new TextView(getActivity());
-			TableRow.LayoutParams button_add_params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f);
-			button_add_params.gravity = Gravity.RIGHT;
-			button_add_params.setMargins(5, 0, 5, 0);
-			title_plus.setLayoutParams(button_add_params);
-			title_plus.setText(getString(R.string.title_add));
-			title_row.addView(title_plus);
-			
-			//Add Goal Title
-			TextView goal = new TextView(getActivity());
-			TableRow.LayoutParams title_goal_params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f);
-			title_goal_params.gravity = Gravity.RIGHT;
-			title_goal_params.setMargins(5, 0, 5, 0);
-			goal.setText(getString(R.string.goal));
-			goal.setLayoutParams(title_goal_params);
-			title_row.addView(goal);
-			
-			//Add First Row to View
-			layout.addView(title_row);
-			
-			
-			//Add items to period
-			for (final Item item : items) {
-				TableRow row = new ItemView(this.getActivity(), item);
-				row.setLayoutParams(rowMargins);
-				//add row to view
-
-				layout.addView(row);
-			}
-		}
+		return items;
 	}
 
 	/**
-	 * Loads sample data into the activity
+	 * Return Sample data if no items displayed
 	 */
-	private void loadSampleData() {
+	private ArrayList<Item> loadSampleData() {
 		ArrayList<Item> sampleData = new ArrayList<Item>();
 		for (String[] sample : SAMPLE_DATA) {
 			if (sample.length > 1) {
@@ -158,18 +78,162 @@ public class ItemsFragment extends Fragment implements Constants{
 				}
 			}
 		}
+		return sampleData;
 
-		loadItemsView(sampleData);
 	}
 
-
-	/*
 	@Override
-	public void onResume() {
-		super.onResume();
-		//Remove all views
-		layout.removeAllViews();
-		loadItems();
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+
+
+		ArrayList<Item> mItems = getArrayofItems(period);
+		/// MINUS ON CLICK LISTENER
+
+		switch(v.getId()){
+		case R.id.button_subtract:
+			mItems.get(position).decrement();
+			adapter.notifyDataSetChanged();
+
+			break;
+		case R.id.button_add:
+			mItems.get(position).increment();
+			adapter.notifyDataSetChanged();
+
+			break;
+		case R.id.button_item_name:
+			Intent edit_item = new Intent(getActivity(), Edit_Item.class);
+			// make the name and max variables available in the new activity
+			edit_item.putExtra(EXTRA_NAME, mItems.get(position).getName());
+			edit_item.putExtra(EXTRA_MAX, mItems.get(position).getMaxInPeriod());
+			edit_item.putExtra(EXTRA_PERIOD, mItems.get(position).getPeriod());
+
+			// launch the new activity
+			getActivity().startActivity(edit_item);
+
+			break;
+		default:
+			break;
+		}
+
 	}
-*/
+
+	/**
+	 * CLASS EXTENDING THE LISTVIEW ADAPTER TO LOAD THE ITEMS
+	 * @author emmanuel
+	 *
+	 */
+	public class Items_ListViewAdapter extends ArrayAdapter<Item>{
+
+		public Items_ListViewAdapter(Context context, 
+				int textViewResourceId, ArrayList<Item> objects) {
+			super(context,  textViewResourceId, objects);
+
+			//Array passed when creating adapter
+			this.mItems_Array = objects;
+		}
+
+		private ArrayList<Item> mItems_Array;
+		Item mItem;
+
+
+		/**
+		 * View Holder class to fix all listviews rows pointing to same item
+		 * I think this happens because converView is recycled when creating 
+		 * the listview
+		 * @author emmanuel
+		 *
+		 */
+		public class ViewHolder{
+			Button mSubtract, mItemName, mAdd;
+			TextView mLabelGoal;
+			Item item;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+
+			View view = convertView;
+
+			//Fields
+			//Button mSubtract, mItemName, mAdd;
+			//TextView mLabelGoal;
+
+			final ViewHolder viewHolder;
+
+			//Inflate view if empty
+			if(view == null){
+				LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				view = inflater.inflate(R.layout.listview_item, null);
+
+				viewHolder = new ViewHolder();
+				//LINK VIEWS 
+				//LINK VIEWS
+				viewHolder.mSubtract = (Button) view.findViewById(R.id.button_subtract);
+				viewHolder.mItemName = (Button) view.findViewById(R.id.button_item_name);
+				viewHolder.mAdd = (Button) view.findViewById(R.id.button_add);
+				viewHolder.mLabelGoal = (TextView) view.findViewById(R.id.textView_label_goal);
+				
+				//Store item in viewHolder
+				viewHolder.item = mItems_Array.get(position);
+				
+				view.setTag(viewHolder);
+			}
+
+			else { 
+				//view = convertView;
+				viewHolder = (ViewHolder) view.getTag();
+			}
+			////////////////////////////---- SETUP LISTVIEW ROW ----////////////////////////////////
+			//Get the item from the Array
+
+			//Populate Buttons
+
+			viewHolder.mSubtract.setText("-");
+			viewHolder.mAdd.setText("+");
+			viewHolder.mItemName.setText(viewHolder.item.getName());
+			String goal = viewHolder.item.getCounterValue() + " / " + viewHolder.item.getMaxInPeriod();
+			viewHolder.mLabelGoal.setText(goal);	
+
+			////SUBTRACT ON CLICK LISTENER
+			viewHolder.mSubtract.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					viewHolder.item.decrement();
+					adapter.notifyDataSetChanged();
+				}
+			});
+			////ITEM ON CLICK LISTENER
+			viewHolder.mItemName.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					Intent edit_item = new Intent(getContext(), Edit_Item.class);
+
+					// make the name and max variables available in the new activity
+					edit_item.putExtra(EXTRA_NAME, viewHolder.item.getName());
+					edit_item.putExtra(EXTRA_MAX, viewHolder.item.getMaxInPeriod());
+					edit_item.putExtra(EXTRA_PERIOD, viewHolder.item.getPeriod());
+
+					// launch the new activity
+					getContext().startActivity(edit_item);
+				}
+			});
+			////ADD ON CLICK LISTENER
+			viewHolder.mAdd.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					viewHolder.item.increment();
+					adapter.notifyDataSetChanged();
+				}
+			});
+
+			///////////////////////////////////////////////////////////////////////////
+
+			return view;
+
+		}
+	}
 }

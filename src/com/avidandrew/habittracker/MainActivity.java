@@ -37,8 +37,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-
-
 		// INITIALIZE ADAPTER AND VIEWPAGER
 		viewPager = (ViewPager) findViewById(R.id.pager);
 		actionBar = getActionBar();
@@ -50,12 +48,13 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 		//Set current fragment to display
 		viewPager.setCurrentItem(sharedPref.getInt("start_table", actionBar.getSelectedNavigationIndex()));
-		
+
 		//SETUP ACTIONBAR
 		actionBar.setHomeButtonEnabled(false);
 
 		// empty DB (for debugging)
-		//DBHelper.emptyDB(this);
+		//DBHelper helper = new DBHelper(getApplicationContext());
+		//helper.emptyDB();
 
 		// ASM: uncomment to show tabs
 		//actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);        
@@ -72,33 +71,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		actionBar.addTab(actionBar.newTab().setText(
 				getResources().getString(R.string.PERIOD_MONTHLY_LABEL)).setTabListener(this));
 		 */
-
-
-		//POSSIBLE UNNECESSSARY CODE BELOW
-		/**
-		 * on swiping the viewpager make respective tab selected
-		 * */
-		/*
-		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-			@Override
-			public void onPageSelected(int position) {
-				// on changing the page
-				// make respected tab selected
-				//actionBar.setSelectedNavigationItem(position);
-			}
-
-			@Override
-			public void onPageScrolled(int arg0, float arg1, int arg2) {
-			}
-
-			@Override
-			public void onPageScrollStateChanged(int arg0) {
-			}
-		});
-
-		 */
-
 
 	}
 
@@ -150,7 +122,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 	}
 
-	
+
 	/*
 	 * This method sets up initial settings of the application
 	 */
@@ -189,19 +161,16 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	}
 
 	@Override
-	public void onTabReselected(Tab tab, FragmentTransaction ft) {
-	}
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {}
 
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
-		// on tab selected
-		// show respected fragment view
+		// on tab selected highlight respected fragment view
 		viewPager.setCurrentItem(tab.getPosition());
 	}
 
 	@Override
-	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-	}
+	public void onTabUnselected(Tab tab, FragmentTransaction ft) {}
 
 
 	/**
@@ -214,7 +183,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 		public TabsPagerAdapter(FragmentManager fm, Activity activity) {
 			super(fm);
-
 			this.activity = activity;
 		}
 
@@ -245,26 +213,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			return 4;
 		}
 
-		public String getLabel(int period) {
-			String label = "";
-
-			switch (period) {
-			case PERIOD_NONE:
-				label = activity.getResources().getString(R.string.PERIOD_NONE_LABEL);
-				break;
-			case PERIOD_DAILY:
-				label = activity.getResources().getString(R.string.PERIOD_DAILY_LABEL);
-				break;
-			case PERIOD_WEEKLY:
-				label = activity.getResources().getString(R.string.PERIOD_WEEKLY_LABEL);
-				break;
-			case PERIOD_MONTHLY:
-				label = activity.getResources().getString(R.string.PERIOD_MONTHLY_LABEL);
-				break;
-			}
-
-			return label;
-		}
 
 		@Override
 		public CharSequence getPageTitle(int position) {
@@ -272,18 +220,20 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			switch (position) {
 			case 0:
 				// No Period
-				return getLabel(PERIOD_NONE).toUpperCase(l);
+				return getResources().getString(R.string.PERIOD_NONE_LABEL).toUpperCase(l);
 			case 1:
 				// Daily
-				return getLabel(PERIOD_DAILY).toUpperCase(l);
+				return getResources().getString(R.string.PERIOD_DAILY_LABEL).toUpperCase(l);
 			case 2:
 				// Weekly
-				return getLabel(PERIOD_WEEKLY).toUpperCase(l);
+				return getResources().getString(R.string.PERIOD_WEEKLY_LABEL).toUpperCase(l);
 			case 3:
 				// Monthly
-				return getLabel(PERIOD_MONTHLY).toUpperCase(l);
+				return getResources().getString(R.string.PERIOD_MONTHLY_LABEL).toUpperCase(l);
+			default:
+				return "error in getPageTitle";
 			}
-			return "";
+
 		}
 	}
 }

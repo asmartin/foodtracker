@@ -22,8 +22,6 @@ public interface Constants {
 	
 	public static final String EXTRA_FRAGMENT_ID = "com.avidandrew.habittracker.fragment_id";
 	
-	
-	
 	// Items table
 	public static final String TABLE_ITEMS = "Items";				// name of the items table
 	public static final String COLUMN_ID = "_id";					// name of the ID column (primary key)
