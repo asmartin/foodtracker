@@ -185,10 +185,7 @@ public class ItemsFragment extends ListFragment implements Constants{
 				viewHolder = (ViewHolder) view.getTag();
 			}
 			////////////////////////////---- SETUP LISTVIEW ROW ----////////////////////////////////
-			//Get the item from the Array
-
 			//Populate Buttons
-
 			viewHolder.mSubtract.setText("-");
 			viewHolder.mAdd.setText("+");
 			viewHolder.mItemName.setText(viewHolder.item.getName());
